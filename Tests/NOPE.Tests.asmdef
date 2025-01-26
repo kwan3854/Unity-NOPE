@@ -4,7 +4,8 @@
     "references": [
         "NOPE.Runtime",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "UniTask"
     ],
     "includePlatforms": [
         "Editor"
@@ -19,6 +20,17 @@
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "Unity",
+            "expression": "6000.0.0",
+            "define": "NOPE_AWAITABLE"
+        },
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "2.0.0",
+            "define": "NOPE_UNITASK"
+        }
+    ],
     "noEngineReferences": false
 }
