@@ -4,7 +4,7 @@
   "displayName": "Unity NOPE",
   "description": "No Overused Possibly Evil exceptions.",
   "unity": "2022.3",
-  "documentationUrl": "https://kwanjoong-dev.gitbook.io/unity-ui-storyboard",
+  "documentationUrl": "https://github.com/kwan3854/Unity-NOPE",
   "keywords": [
     "result",
     "exception",
