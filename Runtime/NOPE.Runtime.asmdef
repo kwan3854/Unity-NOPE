@@ -1,7 +1,9 @@
 {
     "name": "NOPE.Runtime",
     "rootNamespace": "NOPE.Runtime",
-    "references": [],
+    "references": [
+        "UniTask"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
@@ -9,6 +11,17 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "Unity",
+            "expression": "6000.0.0",
+            "define": "NOPE_AWAITABLE"
+        },
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "2.0.0",
+            "define": "NOPE_UNITASK"
+        }
+    ],
     "noEngineReferences": false
 }
