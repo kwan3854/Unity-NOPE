@@ -1,6 +1,6 @@
 using System;
 
-namespace NOPE.Runtime.Core
+namespace NOPE.Runtime.Core.Maybe
 {
     /// <summary>
     /// Provides extension methods for Maybe&lt;T&gt; to enable functional-style chaining.

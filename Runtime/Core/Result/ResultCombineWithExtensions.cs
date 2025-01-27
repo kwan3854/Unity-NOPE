@@ -1,9 +1,8 @@
-using System;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace NOPE.Runtime.Core
+namespace NOPE.Runtime.Core.Result
 {
     public readonly partial struct Result
     {

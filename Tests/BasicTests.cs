@@ -1,5 +1,7 @@
 using NOPE.Runtime;
 using NOPE.Runtime.Core;
+using NOPE.Runtime.Core.Maybe;
+using NOPE.Runtime.Core.Result;
 using NUnit.Framework;
 
 namespace NOPE.Tests

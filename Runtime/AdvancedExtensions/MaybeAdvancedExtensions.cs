@@ -1,5 +1,6 @@
 using System;
 using NOPE.Runtime.Core;
+using NOPE.Runtime.Core.Maybe;
 
 namespace NOPE.Runtime.AdvancedExtensions
 {

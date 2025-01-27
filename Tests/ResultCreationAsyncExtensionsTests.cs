@@ -8,6 +8,8 @@ using NOPE.Runtime.Core;
 using System;
 using UnityEngine;
 using System.Threading.Tasks;
+using NOPE.Runtime.Core.Result;
+using Result = NOPE.Runtime.Core.Result.Result;
 
 namespace NOPE.Tests
 {

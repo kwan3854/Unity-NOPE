@@ -5,6 +5,8 @@ using NOPE.Runtime.Core;
 using NUnit.Framework;
 using UnityEngine;
 using System.Linq;
+using NOPE.Runtime.Core.Result;
+using Result = NOPE.Runtime.Core.Result.Result;
 
 namespace NOPE.Tests
 {
