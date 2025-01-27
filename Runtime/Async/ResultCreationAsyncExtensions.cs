@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using NOPE.Runtime.Core;
 using UnityEngine;
 
-namespace NOPE.Runtime
+namespace NOPE.Runtime.Async
 {
     /// <summary>
     /// Provides utility methods for creating Result&lt;T&gt; instances

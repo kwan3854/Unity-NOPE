@@ -1,7 +1,6 @@
 using System;
-using NOPE.Runtime.Core;
 
-namespace NOPE.Runtime
+namespace NOPE.Runtime.Core
 {
     /// <summary>
     /// Provides extension methods for Result&lt;T&gt; to enable functional-style chaining.

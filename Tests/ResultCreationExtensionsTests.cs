@@ -1,5 +1,6 @@
 using System;
 using NOPE.Runtime;
+using NOPE.Runtime.Core;
 using NUnit.Framework;
 
 namespace NOPE.Tests

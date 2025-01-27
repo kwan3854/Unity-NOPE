@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using NOPE.Runtime.Core;
 
-namespace NOPE.Runtime
+namespace NOPE.Runtime.Collection
 {
     public static class CollectionUtilitiesExtensions
     {
