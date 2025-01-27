@@ -146,7 +146,9 @@ namespace NOPE.Tests
         public async Task SelectMany_HasValue_BindsValue()
         {
             var maybe = UniTask.FromResult(Maybe<int>.From(5));
-            var result = await maybe.SelectMany(x => UniTask.FromResult(Maybe<string>.From($"Value:{x}")));
+            var result = await maybe.SelectMany(
+                x => UniTask.FromResult(Maybe<string>.From($"Value:{x}")),
+                (x, y) => y);
             Assert.IsTrue(result.HasValue);
             Assert.AreEqual("Value:5", result.Value);
         }
@@ -155,7 +157,9 @@ namespace NOPE.Tests
         public async Task SelectMany_NoValue_ReturnsNone()
         {
             var maybe = UniTask.FromResult(Maybe<int>.None);
-            var result = await maybe.SelectMany(x => UniTask.FromResult(Maybe<string>.From($"Value:{x}")));
+            var result = await maybe.SelectMany(
+                x => UniTask.FromResult(Maybe<string>.From($"Value:{x}")),
+                (x, y) => y);
             Assert.IsFalse(result.HasValue);
         }
     }
@@ -261,7 +265,9 @@ namespace NOPE.Tests
         public async Task SelectMany_HasValue_BindsValue()
         {
             var asyncMaybe = CreateAwaitable(Maybe<int>.From(9));
-            var result = await asyncMaybe.SelectMany(x => CreateAwaitable(Maybe<string>.From($"Val:{x}")));
+            var result = await asyncMaybe.SelectMany(
+                x => CreateAwaitable(Maybe<string>.From($"Val:{x}")),
+                (x, y) => y);
             Assert.IsTrue(result.HasValue);
             Assert.AreEqual("Val:9", result.Value);
         }
@@ -270,7 +276,9 @@ namespace NOPE.Tests
         public async Task SelectMany_NoValue_ReturnsNone()
         {
             var asyncMaybe = CreateAwaitable(Maybe<int>.None);
-            var result = await asyncMaybe.SelectMany(x => CreateAwaitable(Maybe<string>.From($"Val:{x}")));
+            var result = await asyncMaybe.SelectMany(
+                x => CreateAwaitable(Maybe<string>.From($"Val:{x}")),
+                (x, y) => y);
             Assert.IsFalse(result.HasValue);
         }
     }

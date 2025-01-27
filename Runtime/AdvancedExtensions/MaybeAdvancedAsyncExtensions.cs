@@ -106,12 +106,19 @@ namespace NOPE.Runtime.AdvancedExtensions
         /// Asynchronously binds a Maybe using the provided binder function.
         /// If the Maybe is None, returns None.
         /// </summary>
-        public static async UniTask<Maybe<TResult>> SelectMany<T, TResult>(
+        public static async UniTask<Maybe<TResult>> SelectMany<T, TIntermediate, TResult>(
             this UniTask<Maybe<T>> asyncMaybe,
-            Func<T, UniTask<Maybe<TResult>>> binder)
+            Func<T, UniTask<Maybe<TIntermediate>>> binder,
+            Func<T, TIntermediate, TResult> resultSelector)
         {
             var maybe = await asyncMaybe;
-            return maybe.HasValue ? await binder(maybe.Value) : Maybe<TResult>.None;
+            if (maybe.HasNoValue)
+                return Maybe<TResult>.None;
+
+            var intermediate = await binder(maybe.Value);
+            return intermediate.HasValue
+                ? Maybe<TResult>.From(resultSelector(maybe.Value, intermediate.Value))
+                : Maybe<TResult>.None;
         }
 #endif
 
@@ -211,12 +218,19 @@ namespace NOPE.Runtime.AdvancedExtensions
         /// Asynchronously binds a Maybe using the provided binder function.
         /// If the Maybe is None, returns None.
         /// </summary>
-        public static async Awaitable<Maybe<TResult>> SelectMany<T, TResult>(
+        public static async Awaitable<Maybe<TResult>> SelectMany<T, TIntermediate, TResult>(
             this Awaitable<Maybe<T>> asyncMaybe,
-            Func<T, Awaitable<Maybe<TResult>>> binder)
+            Func<T, Awaitable<Maybe<TIntermediate>>> binder,
+            Func<T, TIntermediate, TResult> resultSelector)
         {
             var maybe = await asyncMaybe;
-            return maybe.HasValue ? await binder(maybe.Value) : Maybe<TResult>.None;
+            if (maybe.HasNoValue)
+                return Maybe<TResult>.None;
+
+            var intermediate = await binder(maybe.Value);
+            return intermediate.HasValue
+                ? Maybe<TResult>.From(resultSelector(maybe.Value, intermediate.Value))
+                : Maybe<TResult>.None;
         }
 #endif
     }

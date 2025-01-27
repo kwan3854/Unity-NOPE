@@ -84,9 +84,16 @@ namespace NOPE.Runtime.AdvancedExtensions
         /// </summary>
         public static Maybe<TResult> SelectMany<T, TResult>(
             this Maybe<T> maybe,
-            Func<T, Maybe<TResult>> binder)
+            Func<T, Maybe<TResult>> binder,
+            Func<T, TResult, TResult> resultSelector)
         {
-            return maybe.Bind(binder);
+            if (maybe.HasNoValue)
+                return Maybe<TResult>.None;
+
+            var intermediate = binder(maybe.Value);
+            return intermediate.HasValue
+                ? Maybe<TResult>.From(resultSelector(maybe.Value, intermediate.Value))
+                : Maybe<TResult>.None;
         }
     }
 }
