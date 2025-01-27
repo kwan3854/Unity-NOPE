@@ -7,7 +7,7 @@ namespace NOPE.Runtime
     /// Provides utility methods for creating Result&lt;T&gt; instances
     /// in a more convenient or condition-based manner.
     /// </summary>
-    public static class Result
+    public static partial class Result
     {
         /// <summary>
         /// Returns a Success(resultValue) if <paramref name="condition"/> is true;
