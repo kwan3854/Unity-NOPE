@@ -91,6 +91,19 @@ namespace NOPE.Runtime.Core
             else
                 return await onFailureAsync(result.Error);
         }
+        
+        /// <summary>
+        /// (UniTask) Asynchronously executes an action regardless of the Result's success or failure.
+        /// </summary>
+        public static async UniTask<Result<T>> Finally<T>(
+            this UniTask<Result<T>> asyncResult,
+            Action<Result<T>> action)
+        {
+            var result = await asyncResult;
+            action(result);
+            return result;
+        }
+        
 #endif // NOPE_UNITASK
 
 
@@ -174,6 +187,18 @@ namespace NOPE.Runtime.Core
                 return await onSuccessAwaitable(result.Value);
             else
                 return await onFailureAwaitable(result.Error);
+        }
+        
+        /// <summary>
+        /// (Awaitable) Asynchronously executes an action regardless of the Result's success or failure.
+        /// </summary>
+        public static async Awaitable<Result<T>> Finally<T>(
+            this Awaitable<Result<T>> asyncResult,
+            Action<Result<T>> action)
+        {
+            var result = await asyncResult;
+            action(result);
+            return result;
         }
 #endif // NOPE_AWAITABLE
     }

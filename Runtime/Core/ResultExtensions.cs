@@ -94,5 +94,17 @@ namespace NOPE.Runtime.Core
             }
             return result;
         }
+        
+        /// <summary>
+        /// Executes an action regardless of whether the Result is successful or failed.
+        /// Returns the original Result.
+        /// </summary>
+        public static Result<T> Finally<T>(
+            this Result<T> result,
+            Action<Result<T>> finalAction)
+        {
+            finalAction(result);
+            return result;
+        }
     }
 }

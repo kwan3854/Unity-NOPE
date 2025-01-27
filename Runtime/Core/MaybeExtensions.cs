@@ -60,5 +60,17 @@ namespace NOPE.Runtime.Core
                 ? onValue(maybe.Value)
                 : onNone();
         }
+        
+        /// <summary>
+        /// Executes an action regardless of whether the Maybe has a value or not.
+        /// Returns the original Maybe.
+        /// </summary>
+        public static Maybe<T> Finally<T>(
+            this Maybe<T> maybe,
+            Action<Maybe<T>> finalAction)
+        {
+            finalAction(maybe);
+            return maybe;
+        }
     }
 }
