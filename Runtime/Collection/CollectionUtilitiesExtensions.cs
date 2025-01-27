@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NOPE.Runtime.Core;
+using NOPE.Runtime.Core.Maybe;
 
 namespace NOPE.Runtime.Collection
 {

@@ -1,6 +1,6 @@
 using System;
 
-namespace NOPE.Runtime.Core
+namespace NOPE.Runtime.Core.Result
 {
     /// <summary>
     /// Provides extension methods for Result&lt;T&gt; to enable functional-style chaining.
@@ -69,9 +69,9 @@ namespace NOPE.Runtime.Core
         /// Transforms a Result into a single value by providing two functions:
         /// one for handling success, and one for handling failure.
         /// </summary>
-        public static TResult Match<T, TResult>(
-            this Result<T> result,
-            Func<T, TResult> onSuccess,
+        public static TResult Match<TOriginal, TResult>(
+            this Result<TOriginal> result,
+            Func<TOriginal, TResult> onSuccess,
             Func<string, TResult> onFailure)
         {
             return result.IsSuccess
@@ -97,14 +97,12 @@ namespace NOPE.Runtime.Core
         
         /// <summary>
         /// Executes an action regardless of whether the Result is successful or failed.
-        /// Returns the original Result.
         /// </summary>
-        public static Result<T> Finally<T>(
+        public static TOut Finally<T, TOut>(
             this Result<T> result,
-            Action<Result<T>> finalAction)
+            Func<Result<T>, TOut> finalFunc)
         {
-            finalAction(result);
-            return result;
+            return finalFunc(result);
         }
     }
 }

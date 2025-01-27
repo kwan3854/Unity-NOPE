@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace NOPE.Runtime.Core
+namespace NOPE.Runtime.Core.Maybe
 {
     public static class MaybeAsyncExtensions
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace NOPE.Runtime.Core
+namespace NOPE.Runtime.Core.Maybe
 {
     /// <summary>
     /// Represents an optional value: either it has a value (of type T) or it does not (None).

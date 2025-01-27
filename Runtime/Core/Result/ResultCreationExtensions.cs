@@ -1,6 +1,6 @@
 using System;
 
-namespace NOPE.Runtime.Core
+namespace NOPE.Runtime.Core.Result
 {
     /// <summary>
     /// Provides utility methods for creating Result&lt;T&gt; instances
