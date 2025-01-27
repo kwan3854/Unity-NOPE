@@ -1,12 +1,13 @@
 using System;
+using NOPE.Runtime.Core;
 
 namespace NOPE.Runtime
 {
     /// <summary>
-    /// Provides utility methods for creating Result<T> 
+    /// Provides utility methods for creating Result&lt;T&gt; instances
     /// in a more convenient or condition-based manner.
     /// </summary>
-    public static class ResultCreationExtensions
+    public static class Result
     {
         /// <summary>
         /// Returns a Success(resultValue) if <paramref name="condition"/> is true;
