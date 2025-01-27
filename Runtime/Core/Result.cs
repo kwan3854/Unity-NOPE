@@ -1,6 +1,6 @@
 using System;
 
-namespace NOPE.Runtime
+namespace NOPE.Runtime.Core
 {
     /// <summary>
     /// Represents the outcome of an operation that can either succeed (with a value)
