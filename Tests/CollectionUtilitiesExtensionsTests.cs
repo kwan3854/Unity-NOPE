@@ -196,5 +196,11 @@ namespace NOPE.Tests
             maybe.ExecuteNoValue(() => count++);
             Assert.AreEqual(1, count);
         }
+        
+        
     }
+}
+
+namespace NOPE.Tests
+{
 }
