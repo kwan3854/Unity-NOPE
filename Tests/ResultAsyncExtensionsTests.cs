@@ -352,7 +352,7 @@ namespace NOPE.Tests
         //===============================================================
 
         [Test]
-        public void Chain_SyncAndAsync_MultipleSteps_UniTask_Success()
+        public async Task Chain_SyncAndAsync_MultipleSteps_UniTask_Success()
         {
             // Start with a synchronous success result
             var initial = Result<int>.Success(2);
@@ -361,11 +361,15 @@ namespace NOPE.Tests
             // Note: "Match(...)" returns an int, so the chain becomes int,
             // then we call .Finally(...) which also returns an int, ending the chain.
 
-            var final = initial
+            var final = await initial
                 // 1) Sync Bind
                 .Bind(x => Result<int>.Success(x + 3))
                 // 2) Async Tap
-                .Tap(x => UniTask.Run(() => Debug.Log("Tap side effect with value: " + x)))
+                .Tap(x => UniTask.Create(async () =>
+                {
+                    await UniTask.Yield();
+                    Debug.Log("Tap side effect with value: " + x);
+                }))
                 // 3) Async Ensure
                 .Ensure(x => UniTask.FromResult(x < 10), "Value is too large!")
                 // 4) Async Map
@@ -387,7 +391,7 @@ namespace NOPE.Tests
                 .Finally(r =>
                 {
                     Debug.Log($"Final integer result: {r}");
-                    return r; // just return the same integer
+                    return r.IsSuccess ? r.Value : -1;
                 });
 
             // "Value is 5" => length = 10
@@ -402,7 +406,12 @@ namespace NOPE.Tests
 
             var final = await initial
                 .Bind(x => Result<int>.Success(x + 3))   // won't run
-                .Tap(x => UniTask.Run(() => Debug.Log("Tap side effect: " + x))) // won't run
+                .Tap(x => UniTask.Create(async () =>
+                {
+                    await UniTask.Yield();
+                    
+                    Debug.Log("Tap side effect: " + x);
+                })) // won't run
                 .Ensure(x => UniTask.FromResult(x < 10), "Value is too large!")  // won't run
                 .Map(x => UniTask.FromResult($"Value is {x}")) // won't run
                 .Match(
@@ -421,7 +430,7 @@ namespace NOPE.Tests
                 {
                     await UniTask.Yield();
                     Debug.Log($"Final integer result: {r}");
-                    return r;
+                    return r.IsSuccess ? r.Value : -1;
                 });
 
             Assert.AreEqual(-1, final);
