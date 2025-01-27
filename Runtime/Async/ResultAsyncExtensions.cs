@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using NOPE.Runtime.Core;
 using UnityEngine;
 
 namespace NOPE.Runtime.Async
