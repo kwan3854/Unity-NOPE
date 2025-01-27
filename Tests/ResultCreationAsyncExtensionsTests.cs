@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 #if NOPE_UNITASK
 using Cysharp.Threading.Tasks;
-using NOPE.Runtime.Async;
+using NOPE.Runtime.Core;
 #endif
 
 using System;

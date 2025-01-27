@@ -64,4 +64,30 @@ namespace NOPE.Runtime.Core
         /// </summary>
         public static implicit operator Result<T>(string error) => Failure(error);
     }
+    
+    /// <summary>
+    /// Non-generic Result type for representing success/failure without a value
+    /// </summary>
+    public readonly partial struct Result
+    {
+        private readonly string _error;
+
+        private Result(bool isSuccess, string error)
+        {
+            IsSuccess = isSuccess;
+            _error = error;
+        }
+
+        public bool IsSuccess { get; }
+        public bool IsFailure => !IsSuccess;
+        
+        public string Error => IsFailure
+            ? _error
+            : throw new InvalidOperationException("Attempted to access Error of a successful Result.");
+
+        public static Result Success() => new Result(true, default);
+        public static Result Failure(string error) => new Result(false, error);
+
+        public static implicit operator Result(string error) => Failure(error);
+    }
 }

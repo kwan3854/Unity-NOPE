@@ -1,15 +1,14 @@
 using System;
 using Cysharp.Threading.Tasks;
-using NOPE.Runtime.Core;
 using UnityEngine;
 
-namespace NOPE.Runtime.Async
+namespace NOPE.Runtime.Core
 {
     /// <summary>
     /// Provides utility methods for creating Result&lt;T&gt; instances
     /// in a more convenient or condition-based manner.
     /// </summary>
-    public static partial class Result
+    public partial struct Result
     {
 #if NOPE_UNITASK
         /// <summary>

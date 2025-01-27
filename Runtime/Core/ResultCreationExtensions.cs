@@ -6,7 +6,7 @@ namespace NOPE.Runtime.Core
     /// Provides utility methods for creating Result&lt;T&gt; instances
     /// in a more convenient or condition-based manner.
     /// </summary>
-    public static partial class Result
+    public partial struct Result
     {
         /// <summary>
         /// Returns a Success(resultValue) if <paramref name="condition"/> is true;

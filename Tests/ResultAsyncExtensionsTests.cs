@@ -1,5 +1,4 @@
 using NOPE.Runtime;
-using NOPE.Runtime.Async;
 using NOPE.Runtime.Core;
 using NUnit.Framework;
 using UnityEngine;

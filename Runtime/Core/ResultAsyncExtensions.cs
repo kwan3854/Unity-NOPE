@@ -1,9 +1,8 @@
 using System;
 using Cysharp.Threading.Tasks;
-using NOPE.Runtime.Core;
 using UnityEngine;
 
-namespace NOPE.Runtime.Async
+namespace NOPE.Runtime.Core
 {
     /// <summary>
     /// Async extension methods for Result&lt;T&gt; supporting UniTask or Unity's Awaitable.
