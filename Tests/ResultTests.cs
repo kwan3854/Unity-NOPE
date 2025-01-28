@@ -1,6 +1,7 @@
 // NUnit
 using System;
 using System.Threading.Tasks;
+using NOPE.Runtime.Core;
 using NOPE.Runtime.Core.Result;
 using NUnit.Framework;
 
@@ -78,7 +79,7 @@ namespace NOPE.Tests
         [Test]
         public void Result_NoValue_Success()
         {
-            var r = Result<string>.Success();
+            var r = Result<Unit, string>.Success(new Unit());
 
             Assert.IsTrue(r.IsSuccess);
             Assert.IsFalse(r.IsFailure);
@@ -93,7 +94,7 @@ namespace NOPE.Tests
         [Test]
         public void Result_NoValue_Failure()
         {
-            var r = Result<string>.Failure("FAIL");
+            var r = Result<Unit, string>.Failure("FAIL");
 
             Assert.IsTrue(r.IsFailure);
             Assert.AreEqual("FAIL", r.Error);
@@ -388,7 +389,7 @@ namespace NOPE.Tests
             var r1 = Result<int,string>.Success(100);
             var r2 = Result<double,string>.Success(3.14);
 
-            var combined = Result.CombineWith(r1, r2); 
+            var combined = Result.CombineValues(r1, r2); 
             Assert.IsTrue(combined.IsSuccess);
             Assert.AreEqual((100,3.14), combined.Value);
         }
@@ -399,7 +400,7 @@ namespace NOPE.Tests
             var r1 = Result<int,string>.Success(100);
             var r2 = Result<double,string>.Failure("PI_ERR");
 
-            var combined = Result.CombineWith(r1, r2);
+            var combined = Result.CombineValues(r1, r2);
             Assert.IsTrue(combined.IsFailure);
             Assert.AreEqual("PI_ERR", combined.Error);
         }
@@ -414,7 +415,7 @@ namespace NOPE.Tests
                 Result<int,string>.Failure("X"),
                 Result<int,string>.Success(4)
             };
-            var combined = Result.CombineWith(arr);
+            var combined = Result.CombineValues(arr);
             Assert.IsTrue(combined.IsFailure);
             Assert.AreEqual("X", combined.Error);
         }
@@ -426,7 +427,7 @@ namespace NOPE.Tests
             var async1 = UniTask.FromResult(Result<int,string>.Success(1));
             var async2 = UniTask.FromResult(Result<int,string>.Success(2));
 
-            var combined = await Result.CombineWith(async1, async2);
+            var combined = await Result.CombineValues(async1, async2);
             Assert.IsTrue(combined.IsSuccess);
             Assert.AreEqual((1,2), combined.Value);
         }
@@ -440,7 +441,7 @@ namespace NOPE.Tests
                 UniTask.FromResult(Result<int,string>.Failure("FailX")),
                 UniTask.FromResult(Result<int,string>.Success(30))
             };
-            var combined = await Result.CombineWith(tasks);
+            var combined = await Result.CombineValues(tasks);
             Assert.IsTrue(combined.IsFailure);
             Assert.AreEqual("FailX", combined.Error);
         }
