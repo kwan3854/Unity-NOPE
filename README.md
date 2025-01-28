@@ -1,262 +1,544 @@
-# NOPE — No Overused Possibly Evil Exceptions
+
+
+# NOPE (No Overused Possibly Evil Exceptions)
 
 A lightweight, **zero-allocation** functional extensions library for Unity, inspired by **CSharpFunctionalExtensions**.  
-Focuses on **explicitly handling success/failure** without throwing exceptions and **optional values** without null, using `Result<T>` and `Maybe<T>` types.
+Focuses on **explicitly handling success/failure** without throwing exceptions and **optional values** without null, using `Result<T,E>` and `Maybe<T>` types.
 
 - **Supports** both **synchronous** and **asynchronous** workflows:
-  - **UniTask** integration (if `Cysharp.Threading.Tasks` is installed, with `NOPE_UNITASK` define).
-  - **Awaitable** integration (if on **Unity6+** with built-in `Awaitable`, using `NOPE_AWAITABLE` define).
-- **Full sync ↔ async bridging** for both `Result<T>` and `Maybe<T>`:  
-  Map/Bind/Tap/Match/Finally now have **“all combos”** (sync→async, async→sync, async→async).
+    - **UniTask** integration (if `Cysharp.Threading.Tasks` is installed and `NOPE_UNITASK` define is set).
+    - **Awaitable** integration (if on **Unity6+** with built-in `Awaitable`, using `NOPE_AWAITABLE` define).
+- **Full sync ↔ async bridging** for both `Result<T,E>` and `Maybe<T>`:  
+  Map/Bind/Tap/Match/Finally now have **"all combos"** (sync→async, async→sync, async→async).
 - **Minimal GC pressure**: implemented as `readonly struct` to keep allocations low.
+
+> **Define Symbol** Usage:  
+> \- In your **Project Settings**, define **`NOPE_UNITASK`** if you want UniTask-based async.  
+> \- Or define **`NOPE_AWAITABLE`** (Unity6+) if you want the built-in Awaitable integrations.  
+> \- If you only plan to use synchronous methods, you can omit both defines.
 
 ---
 
 ## Table of Contents
 
-1. [Features Overview](#features-overview)  
-2. [Installation](#installation)  
-3. [Quick Start](#quick-start)
-4. [Common Usage Examples](#common-usage-examples)
-   - [Working with Results](#working-with-results)
-   - [Optional Values with Maybe](#optional-values-with-maybe)
-   - [Async Support (UniTask / Awaitable)](#async-support-unitask--awaitable)
-   - [Collection Utilities](#collection-utilities)
-   - [Advanced Chaining with `Finally`](#advanced-chaining-with-finally)
-5. [API Reference](#api-reference)
-   - [Result\<T\> API](#resultt-api)
-   - [Maybe\<T\> API](#maybet-api)
-   - [Sync ↔ Async Combos](#sync--async-combos)
-   - [Best Practices](#best-practices)
-6. [License](#license)
+1. [Motivation & Identity](#motivation--identity)
+2. [Installation](#installation)
+3. [Quick “Before & After”](#quick-before--after)
+4. [Features Overview](#features-overview)
+5. [Result\<T,E\> Usage](#resultte-usage)
+    - [Creating a Result](#1-creating-a-result)
+    - [Combine / CombineValues](#2-combine--combinevalues)
+    - [SuccessIf, FailureIf, Of](#3-successif-failureif-of)
+    - [Bind, Map, MapError, Tap, Ensure, Match, Finally](#4-bind-map-maperror-tap-ensure-match-finally)
+6. [Maybe\<T\> Usage](#maybet-usage)
+    - [Key Maybe Methods](#key-maybe-methods)
+    - [TryFind, Choose, TryFirst, TryLast, etc.](#tryfind-choose-tryfirst-trylast-etc)
+    - [LINQ Integration](#linq-integration)
+7. [Async Support](#async-support)
+    - [NOPE_UNITASK or NOPE_AWAITABLE](#nope_unitask-or-nope_awaitable)
+    - [Sync ↔ Async bridging](#sync--async-bridging)
+8. [Usage Examples](#usage-examples)
+9. [API Reference](#api-reference)
+10. [License](#license)
 
 ---
 
-## Features Overview
+## Motivation & Identity
 
-- **Result\<T\>** type:  
-  - Represents success/failure with a `Value` or an `Error (string)`.
-  - Provides functional extension methods (Map, Bind, Tap, Match, Ensure, MapError, etc.).
-  - **CFE-style** “Finally” to end the chain with a final output or do a final side effect.
+**NOPE** aims to eliminate **silent `null` checks** and **hidden exceptions** from your code. Instead, we use:
+- **Result\<T,E\>** (or `Result<T>` with `E=string` by default) for **explicit success/failure**.
+- **Maybe\<T\>** for optional values, similar to “nullable but without null pointer.”
 
-- **Maybe\<T\>** type:  
-  - Represents an optional value (`HasValue` vs. `None`).
-  - Also has `Map`, `Bind`, `Tap`, `Match`, `Finally`, etc.
+Thus you can chain safe transformations (`Map`, `Bind`, `Tap`), or handle outcomes (`Match`, `Finally`) in a **clean, functional style**.
 
-- **Complete Sync ↔ Async bridging**:  
-  - For each operation (`Map`, `Bind`, `Tap`, `Match`, `Finally`), we have:
-    - **Sync** input → **Async** transform
-    - **Async** input → **Sync** transform
-    - **Async** input → **Async** transform
-  - Works with **UniTask** or **Awaitable** (Unity6+), depending on which define (`NOPE_UNITASK` or `NOPE_AWAITABLE`) is active.
-
-- **No Null, No Exceptions** (where feasible):  
-  - Instead, use `Result.Failure(...)` or `Maybe.None` to represent errors or absent data.
+**Goal**: Make complex code more **readable**, safer, and explicit about error handling.  
+**Philosophy**: No hidden exceptions or `null` surprises. Return “**Failure**” or “**None**” states explicitly, with or without user-defined error types.
 
 ---
 
 ## Installation
 
-### 1) Via Git (UPM)
+1. **Via Git (UPM)**:  
+   In `Packages/manifest.json`:
+   ```json
+   {
+     "dependencies": {
+       "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git#1.0.0"
+     }
+   }
+   ```
+2. **Unity Package Manager (Git)**:
+    1) `Window → Package Manager`
+    2) “+” → “Add package from git URL…”
+    3) Paste `https://github.com/kwan3854/Unity-NOPE.git#1.0.0`
 
-In your `Packages/manifest.json`:
-```json
-{
-  "dependencies": {
-    "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git#v0.2.0"
-  }
-}
-```
+3. **Manual Download**:  
+   Clone or download, then place in `Packages/` or `Assets/Plugins`.
 
-You can omit `#v0.2.0` to get the latest commit, or specify any Git tag/branch.
-
-### 2) Unity Package Manager (Git URL)
-
-1. Open `Window → Package Manager`
-2. Click the “+” → “Add package from git URL…”
-3. Paste: `https://github.com/kwan3854/Unity-NOPE.git#v0.2.0`
-
-### 3) Manual Download
-
-Clone or download the repo, and place the **Unity-NOPE** folder under your `Packages` directory or `Assets/Plugins`.
+> [!NOTE] 
+> **Defines**:
+> - `NOPE_UNITASK` for using **UniTask** integration
+> - `NOPE_AWAITABLE` for Unity6+ built-in **Awaitable** integration
+> - Omit both if you only want synchronous usage.
+> - *Don't define both at the same time.*
 
 ---
 
-## Quick Start
+## Quick “Before & After”
 
-Below are minimal examples showing how to use **NOPE**.
+**Imagine** a function that checks two or three conditions, fetches some data asynchronously, ensures the data is valid, and returns either a success result or logs some error.
 
-### Example 1: `Result<T>` (Synchronous)
-```csharp
-Result<int> result1 = 100;         // Implicit => Success(100)
-Result<int> result2 = "Bad stuff"; // Implicit => Failure("Bad stuff")
-
-var final = result1
-    .Ensure(x => x < 50, "Value is too large!")
-    .Map(x => x * 2)
-    .Tap(x => UnityEngine.Debug.Log("Value is " + x))
-    .Match(
-       onSuccess: val => $"OK: {val}",
-       onFailure: err => $"FAIL: {err}"
-    );
-// => If result1 was 100, final == "FAIL: Value is too large!"
-```
-
-### Example 2: `Maybe<T>`
-```csharp
-Maybe<int> m1 = 42;           // HasValue = true
-Maybe<int> m2 = Maybe<int>.None;  // No value
-
-var mapped = m1.Map(x => x + 10); // => Maybe(52)
-
-mapped.Match(
-    onValue: v => $"Value is {v}",
-    onNone: () => "No value"
-);
-// => "Value is 52"
-```
-
-### Example 3: Async Support (UniTask / Awaitable)
+### Without NOPE
 
 ```csharp
-// If NOPE_UNITASK is defined:
-async UniTask<Result<string>> LoadDataAsync()
+public async Task<string> DoStuff()
 {
-    await UniTask.Delay(1000);
-    return "LoadedData";
+    // a) check some condition
+    if (!CheckA()) 
+        throw new Exception("Condition A failed!");
+
+    // b) fetch data
+    var data = await FetchData(); // might return null?
+    if (data == null)
+        return null; // ?
+
+    // c) parse & validate
+    var parsed = Parse(data);
+    if (parsed <= 0)
+        return "Negative value?";
+
+    // d) do final step
+    if (!await FinalStep(parsed))
+        return "Final step failed!";
+    
+    return "All Good!";
 }
+```
+**Problems**: We have a mix of thrown exceptions, `null`, special strings. It’s easy to forget checks or accidentally skip error paths.
 
-async UniTask SomeOperation()
-{
-    var result = await LoadDataAsync().Bind(async data => {
-        await UniTask.Delay(500);
-        return Result<int>.Success(data.Length);
-    });
-    // ...
-}
+### With NOPE
 
-// If NOPE_AWAITABLE is defined (Unity6+):
-public async Awaitable<Result<int>> DoStuff(Awaitable<Result<int>> input)
+```csharp
+public async UniTask<Result<string>> DoStuff()
 {
-    var mapped = await input.Map(x => x + 1);
-    return mapped;
+    return Result.SuccessIf(CheckA(), 0, "Condition A failed!")
+        .Bind(_ => FetchData()
+            .Map(data => Parse(data))
+            .Ensure(x => x > 0, "Parsed <= 0?"))
+        .Bind(parsed => FinalStep(parsed)
+            .Map(success => success 
+                ? "All Good!" 
+                : "Final step failed!"));
 }
 ```
 
-### Example 4: Collection Utilities
-```csharp
-Dictionary<string, int> fruitCounts = ...;
+Here, each step returns a `Result<T>`, we do **Bind/Map/Ensure** to unify success/failure in **one chain**. No `null` or thrown exceptions.
 
-Maybe<int> appleCount = fruitCounts.TryFind("apple");  // Maybe<int>
-Maybe<int> kiwiCount = fruitCounts.TryFind("kiwi");    // None if not found
+---
+
+## Features Overview
+
+- **Result<T,E>** or `Result<T>` (with `E=string`)
+    - chainable methods: `Map`, `Bind`, `Tap`, `Ensure`, `MapError`, `Match`, `Finally`
+    - combine multiple results with `Combine`(no value) or `CombineValues`(with new tuple/array)
+
+- **Maybe<T>**
+    - “optional” type, no `null` needed
+    - `Map`, `Bind`, `Tap`, `Match`, `Where`, `Execute` and more
+    - LINQ integration (`Select`, `SelectMany`, `Where`)
+
+- **Sync ↔ Async bridging**
+    - For every method (`Bind`, `Map`, etc.), we have:
+        - sync→sync, sync→async, async→sync, async→async
+    - Works with **UniTask** (if `NOPE_UNITASK`) or **Awaitable** (if `NOPE_AWAITABLE`)
+    - So you can seamlessly mix synchronous and asynchronous steps in a single chain.
+
+- **Collection Utilities**
+    - For `Maybe<T>`: `TryFind`, `TryFirst`, `TryLast`, `Choose`, etc.
+
+---
+
+## Result\<T,E\> Usage
+
+### 1) Creating a Result
+
+```csharp
+// Basic success/failure
+var r1 = Result<int>.Success(100);
+var r2 = Result<int>.Failure("Oops"); 
+
+// Implicit conversion
+Result<int, string> r3 = 10;
+Assert.IsTrue(r3.IsSuccess);
+Assert.AreEqual(10, r3.Value);
+
+Result<int, string> r4 = "Error";
+Assert.IsTrue(r4.IsFailure);
+Assert.AreEqual("Error", r4.Error);
+
+var a = 100;
+var b = 200;
+Result<int, string> r5 = b == 0 ?
+    "Divide by zero"
+    : 100;
+Assert.IsTrue(r5.IsSuccess);
+Assert.AreEqual(100, r5.Value);
+
+// If you use a custom error type E:
+var r6 = Result<int, SomeErrorEnum>.Failure(SomeErrorEnum.FileNotFound);
 ```
 
-### Example 5: Advanced Chaining with `Finally`
+### 2) Combine / CombineValues
 
-Use **CFE-style** `Finally` to run a final action or produce a final typed result, ending the chain:
+1. **`Combine`**
+    - Gathers multiple `Result<T,E>` into a single **“valueless”** `Result<Unit, E>` (only success/failure).
+    - If **all** are success → returns Success(). If **any** fail → returns the first error.
+
+   ```csharp
+    var r1 = Result<int, string>.Success(2);
+    var r2 = Result<int, string>.Success(3);
+    var combined = Result.Combine(r1, r2);
+    
+    Assert.IsTrue(combined.IsSuccess);
+    Assert.AreEqual(Unit.Value, combined.Value);
+    
+    var r3 = Result<int, string>.Failure("Fail");
+    var combined2 = Result.Combine(r1, r3);
+    Assert.IsTrue(combined2.IsFailure);
+    Assert.AreEqual("Fail", combined2.Error);
+   ```
+
+2. **`CombineValues`**
+    - Gathers multiple `Result<T,E>` into a single `Result<(T1,T2,...) , E>` or `Result<T[], E>`.
+    - If any fail, returns that error. Otherwise, returns a new combined “value.”
+
+   ```csharp
+    var r1 = Result<int, string>.Success(2);
+    var r2 = Result<int, string>.Success(3);
+    var r3 = Result<int, string>.Failure("Fail");
+
+    // Combine two results into a tuple
+    var combinedTuple = Result.CombineValues(r1, r2);
+    Assert.IsTrue(combinedTuple.IsSuccess);
+    Assert.AreEqual((2, 3), combinedTuple.Value);
+
+    // Combine three results into an array
+    var combinedArray = Result.CombineValues(r1, r2, r3);
+    Assert.IsTrue(combinedArray.IsFailure);
+    Assert.AreEqual("Fail", combinedArray.Error)
+   ```
+
+### 3) SuccessIf, FailureIf, Of
+
+- **`SuccessIf(condition, successValue, error)`**  
+  → “if condition is true → success, else → fail.”
+- **`FailureIf(condition, successValue, error)`**  
+  → “if condition is true → fail, else → success.”
+- **`Of(func, errorConverter)`**  
+  → Wrap a try/catch block, returning success if no exception, else fail(error).
 
 ```csharp
-Result<int> r = 10;
-var finalStr = await r
-    .Map(x => x + 5)
-    .Bind(x => x > 10 ? Result<string>.Success("OK") : Result<string>.Failure("Not OK"))
-    .Finally<string, string>(async res =>
-    {
-        // Possibly log or do side effects:
-        if (res.IsSuccess) UnityEngine.Debug.Log($"Result: {res.Value}");
-        else UnityEngine.Debug.LogError($"Error: {res.Error}");
+var x = 10;
 
-        // Return final string
-        return res.IsSuccess ? $"Result was {res.Value}" : "Failure ended chain";
-    });
-// finalStr => "Result was OK"
+var r1 = Result.SuccessIf(() => x > 5, x, "TooSmall");
+Assert.IsTrue(r1.IsSuccess);
+
+var r2 = Result.FailureIf(() => x % 2 == 0, 999, "CondFailed");
+Assert.IsTrue(r2.IsFailure);
+Assert.AreEqual("CondFailed", r2.Error);
+
+var r3 = Result.Of(() => x / 0, ex => $"{ex.Message} Added info");
+Assert.IsTrue(r3.IsFailure);
+Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
 ```
 
-For `Maybe<T>`:
+### 4) Bind, Map, MapError, Tap, Ensure, Match, Finally
+
+- **Bind**: transform `Result<TOriginal,E>` → `Result<TNew,E>` if success, else pass through error.
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var r2 = r1.Bind(x => Result<string, string>.Success($"Value is {x}"));
+    
+  Assert.IsTrue(r2.IsSuccess);
+  Assert.AreEqual("Value is 10", r2.Value);
+    
+  var r3 = Result<int, string>.Failure("Initial failure");
+  var r4 = r3.Bind(x => Result<string, string>.Success($"Value is {x}"));
+    
+  Assert.IsTrue(r4.IsFailure);
+  Assert.AreEqual("Initial failure", r4.Error);
+  ```
+- **Map**: transform the **value** if success → `Result<U,E>`, no extra error.
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var r2 = r1.Map(x => x + 1);
+
+  Assert.IsTrue(r2.IsSuccess);
+  Assert.AreEqual(11, r2.Value);
+  
+  var r3 = Result<int, string>.Failure("Initial failure");
+  var r4 = r3.Map(x => x + 1);
+
+  Assert.IsTrue(r4.IsFailure);
+  Assert.AreEqual("Initial failure", r4.Error);
+  ```
+> [!TIP]
+> ## Bind vs Map
+> ### Map
+> Simple transformation on success (T → U)
+> ```csharp
+> // mapFunc:  int => string
+> string mapFunc(int x) => $"Value is {x}";
+> 
+> var r1 = Result<int, string>.Success(10);
+> var r2 = r1.Map(mapFunc);
+> 
+> // r2 : Result<string, string>
+> // Success => "Value is 10"
+> ```
+> Since `mapFunc` itself returns a string, `Map` internally creates `Result<string, E>.Success(mapFunc(x))`. If `mapFunc` needs to produce an exception or failure, it is not possible (you would have to throw directly, which is outside the Result pattern).
+> ### Bind
+> Another Result on success (T → Result<U,E>)
+> ```csharp
+> // bindFunc:  int => Result<string,string>
+> Result<string,string> bindFunc(int x)
+> {
+> if (x > 5) return Result<string,string>.Success($"Value is {x}");
+> else return Result<string,string>.Failure("x <= 5");
+> }
+> 
+> var r3 = Result<int,string>.Success(10);
+> var r4 = r3.Bind(bindFunc);
+> 
+> // r4 : Result<string,string>
+> // Success => "Value is 10"
+> ```
+> `bindFunc` contains logic to directly produce "success or failure". `Bind` works by "calling `bindFunc` and returning its result (success or failure) if the input is successful", "keeping the existing failure if the input is a failure".
+
+- **MapError**: only changes the error.
+  ```csharp
+  var r1 = Result<int, string>.Failure("Initial error");
+  var r2 = r1.MapError(e => $"Custom: {e}");
+
+  Assert.IsTrue(r2.IsFailure);
+  Assert.AreEqual("Custom: Initial error", r2.Error);
+  
+  var r3 = Result<int, string>.Success(10);
+  var r4 = r3.MapError(e => $"Custom: {e}");
+
+  Assert.IsTrue(r4.IsSuccess);
+  Assert.AreEqual(10, r4.Value);
+  ```
+- **Tap**: run side effect if success.
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var r2 = r1.Tap(x => Debug.Log($"Value = {x}"));
+
+  Assert.IsTrue(r2.IsSuccess);
+  Assert.AreEqual(10, r2.Value);
+
+  var r3 = Result<int, string>.Failure("Initial failure");
+  var r4 = r3.Tap(x => Debug.Log($"Value = {x}"));
+
+  Assert.IsTrue(r4.IsFailure);
+  Assert.AreEqual("Initial failure", r4.Error);
+  ```
+- **Ensure**: “if success but fails predicate => become fail(error).”
+  ```csharp
+  var r1 = Result<int, string>.Success(15);
+  var r2 = r1.Ensure(x => x > 10, "too small?");
+
+  Assert.IsTrue(r2.IsSuccess);
+  Assert.AreEqual(15, r2.Value);
+
+  var r3 = Result<int, string>.Success(5);
+  var r4 = r3.Ensure(x => x > 10, "too small?");
+
+  Assert.IsTrue(r4.IsFailure);
+  Assert.AreEqual("too small?", r4.Error);
+  ```
+- **Match**: convert a `Result<T,E>` into a single outcome:
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var result1 = r1.Match(
+      onSuccess: val => $"Value = {val}",
+      onFailure: err => $"Err = {err}"
+  );
+
+  Assert.AreEqual("Value = 10", result1);
+
+  var r2 = Result<int, string>.Failure("Initial failure");
+  var result2 = r2.Match(
+      onSuccess: val => $"Value = {val}",
+      onFailure: err => $"Err = {err}"
+  );
+
+  Assert.AreEqual("Err = Initial failure", result2);
+  ```
+- **Finally**: “chain termination” with a final function.
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var finalString1 = r1.Finally(res =>
+  {
+      // do side effects
+      return res.IsSuccess ? "OK" : $"Fail({res.Error})";
+  });
+
+  Assert.AreEqual("OK", finalString1);
+
+  var r2 = Result<int, string>.Failure("Initial failure");
+  var finalString2 = r2.Finally(res =>
+  {
+      // do side effects
+      return res.IsSuccess ? "OK" : $"Fail({res.Error})";
+  });
+
+  Assert.AreEqual("Fail(Initial failure)", finalString2);
+  ```
+
+> All these methods have **sync → async** or **async → async** variants if `NOPE_UNITASK`/`NOPE_AWAITABLE` is set.
+
+---
+
+## Maybe\<T\> Usage
+
+`Maybe<T>` represents an optional value (like a `Nullable<T>` but without boxing and no null checks).
+
 ```csharp
-Maybe<int> m = 50;
-var finalMaybe = await m
-    .Tap(x => UniTask.Run(() => Debug.Log($"Tap: {x}")))
-    .Finally(async maybe =>
-    {
-        Debug.Log($"Finally side effect, hasValue={maybe.HasValue}");
-        await UniTask.CompletedTask;
-    });
-// finalMaybe == Maybe(50)
+Maybe<int> m1 = 100;         // => HasValue=true
+Maybe<int> m2 = Maybe<int>.None; // => no value
 ```
+
+### Key Maybe Methods
+
+- **`Map`, `Bind`, `Tap`, `Match`, `Ensure`** (similar concept as `Result`)
+- **`Where(predicate)`**: if `HasValue` but doesn’t satisfy `predicate`, becomes None.
+- **`Execute(action)`**: run side effect if has value / if no value.
+- **`Or(...)`**: fallback if None.
+- **`GetValueOrThrow`, `GetValueOrDefault`** for direct extraction.
+
+### TryFind, Choose, TryFirst, TryLast, etc
+
+We provide **collection** helpers returning a `Maybe<T>`:
+
+- `dict.TryFind(key) -> Maybe<TValue>`
+- `source.TryFirst()`, `source.TryLast()` → Maybe<T>
+- `Choose(...)` to filter out None from a sequence of `Maybe<T>`.
+
+### LINQ Integration
+
+We have `Select`, `SelectMany`, `Where` so you can do:
+```csharp
+Maybe<int> maybeNum = 50;
+var query =
+    from x in maybeNum
+    where x > 10
+    select x*2;
+// => Maybe(100)
+```
+
+---
+
+## Async Support
+
+### NOPE_UNITASK or NOPE_AWAITABLE
+
+If you define **`NOPE_UNITASK`**, we add `UniTask<Result<T,E>>` / `UniTask<Maybe<T>>` overloads for Map/Bind/etc.  
+If you define **`NOPE_AWAITABLE`** (Unity6+), we add `Awaitable<Result<T,E>>` / `Awaitable<Maybe<T>>` overloads.
+
+### Sync ↔ Async bridging
+
+```csharp
+// syncResult + asyncBinder
+public static async UniTask<Result<TNew>> Bind<T,TNew>(
+   this Result<T> result,
+   Func<T, UniTask<Result<TNew>>> asyncBinder);
+
+public static async Awaitable<Result<TNew>> Bind<T,TNew>(
+   this Result<T> result,
+   Func<T, Awaitable<Result<TNew>>> asyncBinder);
+```
+
+So you can seamlessly chain a synchronous step into an async step. Similarly, we have **asyncResult + sync transform** overloads.
+
+---
+
+## Usage Examples
+
+1. **Chaining multiple checks & async calls** with `Result<int>`:
+   ```csharp
+   public async UniTask<Result<string>> ComplexOperation()
+   {
+       return Result.SuccessIf(CheckA(), 0, "CheckA failed!")
+          .Bind(_ => FetchDataAsync()) // => UniTask<Result<string>>
+          .Ensure(str => !string.IsNullOrEmpty(str), "Empty data!")
+          .Map(str => str.Length)
+          .Bind(len => FinalStepAsync(len))
+          .Match(
+             onSuccess: val => $"Final OK: {val}",
+             onFailure: err => $"Failure: {err}"
+          );
+   }
+   ```
+
+2. **Maybe usage** with dictionary:
+   ```csharp
+   Dictionary<string,int> dict = new() {
+     {"apple", 10}, {"banana", 5}
+   };
+   var found = dict.TryFind("banana")
+       .Where(x => x >= 5)
+       .Map(x => x*2) // => Maybe(10)
+       .Execute(value => Debug.Log("HasValue: " + value))
+       .ExecuteNoValue(() => Debug.LogWarning("Not found or zero"));
+
+   // found => Maybe(10)
+   ```
+
+3. **Combine / CombineValues**:
+   ```csharp
+   var r1 = Result<int>.Success(2);
+   var r2 = Result<int>.Success(3);
+   var merged = Result.CombineValues(r1, r2);
+   // => Result<(int,int)>.Success((2,3))
+
+   var justCheck = Result.Combine(r1, r2);
+   // => Result.Success() or first error
+   ```
+
+4. **LINQ with Maybe**:
+   ```csharp
+   Maybe<int> maybeNum = 10;
+   var query =
+       from x in maybeNum
+       where x > 5
+       select x*3;
+   // => Maybe(30)
+   ```
 
 ---
 
 ## API Reference
 
-### Result<T> API
+**Result\<T,E\>**
+- **Combine** / **CombineValues**
+- **SuccessIf**, **FailureIf**, **Of**
+- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**
+- Overloads for sync→async bridging.
 
-- **Creation**
-  ```csharp
-  var r1 = Result<int>.Success(123);
-  var r2 = Result<int>.Failure("Error");
-  Result<int> r3 = 999;        // Implicit => Success(999)
-  Result<int> r4 = "Bad Error"; // Implicit => Failure("Bad Error")
-  ```
-- **Properties**: `IsSuccess`, `IsFailure`, `Value`, `Error`
-- **Core Methods**:
-    - `Map`, `Bind`, `Tap`, `Ensure`, `Match`, `MapError`, `Finally`
-    - “Sync ↔ Async” combos if `NOPE_UNITASK`/`NOPE_AWAITABLE` is enabled.
+**Maybe\<T\>**
+- **Map**, **Bind**, **Tap**, **Match**, **Finally**
+- **Where**, **Execute**, **Or**, **GetValueOrThrow**, etc.
+- **TryFind**, **TryFirst**, **TryLast**, **Choose** from collections.
+- LINQ operators: **Select**, **SelectMany**, **Where**.
 
-### Maybe<T> API
-
-- **Creation**:
-  ```csharp
-  Maybe<int> m1 = Maybe<int>.From(123);
-  Maybe<int> m2 = Maybe<int>.None;
-  Maybe<int> m3 = 999; // implicit
-  ```
-- **Properties**: `HasValue`, `HasNoValue`, `Value`
-- **Core Methods**:
-    - `Map`, `Bind`, `Tap`, `Match`, `Finally`
-    - “Sync ↔ Async” combos if `NOPE_UNITASK`/`NOPE_AWAITABLE`.
-
-### Sync ↔ Async Combos
-
-For both `Result<T>` and `Maybe<T>`, each operation (`Map`, `Bind`, `Tap`, `Match`, `Finally`) has **multiple overloads**:
-
-1. **Sync → Sync**: Already present in the `ResultExtensions` / `MaybeExtensions`.
-2. **Sync → Async**:
-   ```csharp
-   public static UniTask<Result<TNew>> Map<T, TNew>(
-       this Result<T> result,
-       Func<T, UniTask<TNew>> asyncSelector) { ... }
-   ```
-3. **Async → Sync**:
-   ```csharp
-   public static async UniTask<Result<TNew>> Map<T, TNew>(
-       this UniTask<Result<T>> asyncResult,
-       Func<T, TNew> selector) { ... }
-   ```
-4. **Async → Async**:
-   ```csharp
-   public static async UniTask<Result<TNew>> Map<T, TNew>(
-       this UniTask<Result<T>> asyncResult,
-       Func<T, UniTask<TNew>> asyncSelector) { ... }
-   ```
-*(And the same logic for `Maybe<T>` + `Awaitable`)  
-This ensures you can chain sync and async operations seamlessly.
-
-### Best Practices
-
-1. Use `Result<T>` or `Maybe<T>` instead of throwing exceptions or using `null`.
-2. Keep your “happy path” obvious, with errors explicitly in `IsFailure` or `HasNoValue` states.
-3. For complex async flows, prefer “**sync → async**” or “**async → async**” to reduce overhead.
-4. For “chain termination,” consider using:
-    - **CFE-style `Finally`** for `Result<T>` if you want a final typed outcome or final side effect.
-    - **Match** if you want to transform `Result<T>`/`Maybe<T>` into a single `TResult`.
+> For the complete list, see the `.cs` files in `NOPE.Runtime.Core.Result` / `NOPE.Runtime.Core.Maybe`.
 
 ---
 
 ## License
 
-NOPE is licensed under the **MIT License**.  
-Feel free to contribute, open issues, or fork for your own requirements.  
-Pull requests are also welcome!
+**MIT** License.  
+Contributions & Pull requests are welcome.
 
 ---
