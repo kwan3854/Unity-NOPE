@@ -14,7 +14,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines two asynchronous results into a single result containing a tuple of their values.
         /// </summary>
-        public static async UniTask<Result<(T1, T2), E>> CombineWith<T1, T2, E>(
+        public static async UniTask<Result<(T1, T2), E>> CombineValues<T1, T2, E>(
             UniTask<Result<T1, E>> r1,
             UniTask<Result<T2, E>> r2)
         {
@@ -30,7 +30,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines three asynchronous results into a single result containing a tuple of their values.
         /// </summary>
-        public static async UniTask<Result<(T1, T2, T3), E>> CombineWith<T1, T2, T3, E>(
+        public static async UniTask<Result<(T1, T2, T3), E>> CombineValues<T1, T2, T3, E>(
             UniTask<Result<T1, E>> r1,
             UniTask<Result<T2, E>> r2,
             UniTask<Result<T3, E>> r3)
@@ -50,7 +50,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines four asynchronous results into a single result containing a tuple of their values.
         /// </summary>
-        public static async UniTask<Result<(T1, T2, T3, T4), E>> CombineWith<T1, T2, T3, T4, E>(
+        public static async UniTask<Result<(T1, T2, T3, T4), E>> CombineValues<T1, T2, T3, T4, E>(
             UniTask<Result<T1, E>> r1,
             UniTask<Result<T2, E>> r2,
             UniTask<Result<T3, E>> r3,
@@ -74,7 +74,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines five asynchronous results into a single result containing a tuple of their values.
         /// </summary>
-        public static async UniTask<Result<(T1, T2, T3, T4, T5), E>> CombineWith<T1, T2, T3, T4, T5, E>(
+        public static async UniTask<Result<(T1, T2, T3, T4, T5), E>> CombineValues<T1, T2, T3, T4, T5, E>(
             UniTask<Result<T1, E>> r1,
             UniTask<Result<T2, E>> r2,
             UniTask<Result<T3, E>> r3,
@@ -102,7 +102,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines an array of asynchronous results into a single result containing an array of their values.
         /// </summary>
-        public static async UniTask<Result<T[], E>> CombineWith<T, E>(
+        public static async UniTask<Result<T[], E>> CombineValues<T, E>(
             params UniTask<Result<T, E>>[] results)
         {
             var values = new T[results.Length];
@@ -230,7 +230,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines two asynchronous results into a single result containing a tuple of their values.
         /// </summary>
-        public static async Awaitable<Result<(T1, T2), E>> CombineWith<T1, T2, E>(
+        public static async Awaitable<Result<(T1, T2), E>> CombineValues<T1, T2, E>(
             Awaitable<Result<T1, E>> r1,
             Awaitable<Result<T2, E>> r2)
         {
@@ -246,7 +246,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines three asynchronous results into a single result containing a tuple of their values.
         /// </summary>
-        public static async Awaitable<Result<(T1, T2, T3), E>> CombineWith<T1, T2, T3, E>(
+        public static async Awaitable<Result<(T1, T2, T3), E>> CombineValues<T1, T2, T3, E>(
             Awaitable<Result<T1, E>> r1,
             Awaitable<Result<T2, E>> r2,
             Awaitable<Result<T3, E>> r3)
@@ -266,7 +266,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines four asynchronous results into a single result containing a tuple of their values.
         /// </summary>
-        public static async Awaitable<Result<(T1, T2, T3, T4), E>> CombineWith<T1, T2, T3, T4, E>(
+        public static async Awaitable<Result<(T1, T2, T3, T4), E>> CombineValues<T1, T2, T3, T4, E>(
             Awaitable<Result<T1, E>> r1,
             Awaitable<Result<T2, E>> r2,
             Awaitable<Result<T3, E>> r3,
@@ -290,7 +290,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines five asynchronous results into a single result containing a tuple of their values.
         /// </summary>
-        public static async Awaitable<Result<(T1, T2, T3, T4, T5), E>> CombineWith<T1, T2, T3, T4, T5, E>(
+        public static async Awaitable<Result<(T1, T2, T3, T4, T5), E>> CombineValues<T1, T2, T3, T4, T5, E>(
             Awaitable<Result<T1, E>> r1,
             Awaitable<Result<T2, E>> r2,
             Awaitable<Result<T3, E>> r3,
@@ -318,7 +318,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines an array of asynchronous results into a single result containing an array of their values.
         /// </summary>
-        public static async Awaitable<Result<T[], E>> CombineWith<T, E>(
+        public static async Awaitable<Result<T[], E>> CombineValues<T, E>(
             params Awaitable<Result<T, E>>[] results)
         {
             var values = new T[results.Length];

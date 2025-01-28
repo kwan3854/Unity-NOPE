@@ -7,7 +7,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines two results into a single result containing a tuple of their values.
         /// </summary>
-        public static Result<(T1, T2), E> CombineWith<T1, T2, E>(
+        public static Result<(T1, T2), E> CombineValues<T1, T2, E>(
             Result<T1, E> r1,
             Result<T2, E> r2)
         {
@@ -19,7 +19,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines three results into a single result containing a tuple of their values.
         /// </summary>
-        public static Result<(T1, T2, T3), E> CombineWith<T1, T2, T3, E>(
+        public static Result<(T1, T2, T3), E> CombineValues<T1, T2, T3, E>(
             Result<T1, E> r1,
             Result<T2, E> r2,
             Result<T3, E> r3)
@@ -33,7 +33,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines four results into a single result containing a tuple of their values.
         /// </summary>
-        public static Result<(T1, T2, T3, T4), E> CombineWith<T1, T2, T3, T4, E>(
+        public static Result<(T1, T2, T3, T4), E> CombineValues<T1, T2, T3, T4, E>(
             Result<T1, E> r1,
             Result<T2, E> r2,
             Result<T3, E> r3,
@@ -49,7 +49,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines five results into a single result containing a tuple of their values.
         /// </summary>
-        public static Result<(T1, T2, T3, T4, T5), E> CombineWith<T1, T2, T3, T4, T5, E>(
+        public static Result<(T1, T2, T3, T4, T5), E> CombineValues<T1, T2, T3, T4, T5, E>(
             Result<T1, E> r1,
             Result<T2, E> r2,
             Result<T3, E> r3,
@@ -67,7 +67,7 @@ namespace NOPE.Runtime.Core.Result
         /// <summary>
         /// Combines an array of results into a single result containing an array of their values.
         /// </summary>
-        public static Result<T[], E> CombineWith<T, E>(
+        public static Result<T[], E> CombineValues<T, E>(
             params Result<T, E>[] results)
         {
             var firstFail = results.FirstOrDefault(r => r.IsFailure);
