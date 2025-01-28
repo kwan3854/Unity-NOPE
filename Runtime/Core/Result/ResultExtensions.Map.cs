@@ -19,14 +19,8 @@ namespace NOPE.Runtime.Core.Result
                 ? Result<TNew, E>.Success(selector(result.Value))
                 : Result<TNew, E>.Failure(result.Error);
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Result.UniTaskAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>Maps the value of a successful Result into a new form.</summary>
         public static async UniTask<Result<TNew, E>> Map<TOriginal, TNew, E>(
             this Result<TOriginal, E> result,
@@ -62,15 +56,9 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
             var newVal = await asyncSelector(result.Value);
             return newVal;
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Result.AwaitableAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>Maps the value of a successful Result into a new form.</summary>
         public static async Awaitable<Result<TNew, E>> Map<TOriginal, TNew, E>(
             this Result<TOriginal, E> result,
@@ -106,6 +94,6 @@ namespace NOPE.Runtime.Core.Result.AwaitableAsync
             var newVal = await asyncSelector(result.Value);
             return newVal;
         }
+#endif
     }
 }
-#endif

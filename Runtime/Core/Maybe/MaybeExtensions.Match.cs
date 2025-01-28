@@ -22,14 +22,8 @@ namespace NOPE.Runtime.Core.Maybe
                 ? onValue(maybe.Value)
                 : onNone();
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeExtensions
-    {
         /// <summary>
         /// Converts a Maybe to a single value by providing two functions:
         /// one for when there is a value, and one for when there is not.
@@ -137,15 +131,9 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
             else
                 return await onNoneAsync();
         }
-    }
-}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeExtensions
-    {
         /// <summary>
         /// Converts a Maybe to a single value by providing two functions:
         /// one for when there is a value, and one for when there is not.
@@ -253,6 +241,7 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
             else
                 return await onNoneAsync();
         }
+#endif // NOPE_AWAITABLE
+
     }
 }
-#endif // NOPE_AWAITABLE

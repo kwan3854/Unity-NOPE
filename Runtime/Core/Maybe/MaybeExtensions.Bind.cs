@@ -21,14 +21,10 @@ namespace NOPE.Runtime.Core.Maybe
                 ? binder(maybe.Value)
                 : Maybe<TNew>.None;
         }
-    }
-}
-
+        
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeExtensions
-    {
+        // ------------------- UniTask-based Async Methods (BIND) -------------------
+
         /// <summary>
         /// Converts the inner value into another Maybe if present; otherwise returns None.
         /// (similar to Bind/flatMap)
@@ -69,15 +65,11 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
 
             return await asyncBinder(maybe.Value);
         }
-    }
-}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeExtensions
-    {
+        // ------------------- Awaitable-based Async Methods (BIND) -------------------
+
         /// <summary>
         /// Converts the inner value into another Maybe if present; otherwise returns None.
         /// (similar to Bind/flatMap)
@@ -118,6 +110,7 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
 
             return await asyncBinder(maybe.Value);
         }
+#endif // NOPE_AWAITABLE
+
     }
 }
-#endif // NOPE_AWAITABLE

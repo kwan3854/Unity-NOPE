@@ -21,18 +21,12 @@ namespace NOPE.Runtime.Core.Maybe
             this Maybe<T> maybe,
             Func<T, bool> predicate)
         {
-            if (!maybe.HasValue)
+            if (!maybe.HasValue) 
                 return maybe;
             return predicate(maybe.Value) ? maybe : Maybe<T>.None;
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeWhereExtensions
-    {
         /// <summary>
         /// Returns this Maybe if the predicate is true; otherwise returns None.
         /// (If the Maybe is already None, it just remains None.)
@@ -78,15 +72,9 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
             bool valid = await predicateAsync(maybe.Value);
             return valid ? maybe : Maybe<T>.None;
         }
-    }
-}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeWhereExtensions
-    {
         /// <summary>
         /// Returns this Maybe if the predicate is true; otherwise returns None.
         /// (If the Maybe is already None, it just remains None.)
@@ -132,6 +120,7 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
             bool valid = await predicateAwaitable(maybe.Value);
             return valid ? maybe : Maybe<T>.None;
         }
+#endif // NOPE_AWAITABLE
+
     }
 }
-#endif // NOPE_AWAITABLE

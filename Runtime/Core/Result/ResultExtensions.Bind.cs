@@ -21,14 +21,8 @@ namespace NOPE.Runtime.Core.Result
                 ? binder(result.Value)
                 : Result<TNew, E>.Failure(result.Error);
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Result.UniTaskAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// Flat-maps (binds) the value of a successful Result into another Result.
         /// </summary>
@@ -66,15 +60,9 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 ? await asyncBinder(result.Value)
                 : Result<TNew, E>.Failure(result.Error);
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Result.AwaitableAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// Flat-maps (binds) the value of a successful Result into another Result.
         /// </summary>
@@ -112,6 +100,6 @@ namespace NOPE.Runtime.Core.Result.AwaitableAsync
                 ? await asyncBinder(result.Value)
                 : Result<TNew, E>.Failure(result.Error);
         }
+#endif
     }
 }
-#endif

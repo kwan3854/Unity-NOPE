@@ -44,14 +44,8 @@ namespace NOPE.Runtime.Core.Maybe
                     return Maybe<T>.From(item);
             return Maybe<T>.None;
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeEnumerableExtensions
-    {
         /// <summary>
         /// Tries to get the first element of the sequence that satisfies a condition.
         /// </summary>
@@ -72,18 +66,11 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
                 if (await predicateAsync(item))
                     return Maybe<T>.From(item);
             }
-
             return Maybe<T>.None;
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeEnumerableExtensions
-    {
         /// <summary>
         /// Tries to get the first element of the sequence that satisfies a condition.
         /// </summary>
@@ -104,19 +91,12 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
                 if (await predicateAwaitable(item))
                     return Maybe<T>.From(item);
             }
-
             return Maybe<T>.None;
         }
-    }
-}
 #endif
 
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeEnumerableExtensions
-    {
         /// <summary>
         /// Tries to get the first element of the sequence that satisfies a condition.
         /// </summary>
@@ -154,7 +134,7 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
                     return Maybe<T>.From(item);
             return Maybe<T>.None;
         }
-
+        
         /// <summary>
         /// Tries to get the first element of the sequence that satisfies a condition.
         /// </summary>
@@ -176,15 +156,9 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
                     return Maybe<T>.From(item);
             return Maybe<T>.None;
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeEnumerableExtensions
-    {
         /// <summary>
         /// Tries to get the first element of the sequence that satisfies a condition.
         /// </summary>
@@ -244,6 +218,6 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
                     return Maybe<T>.From(item);
             return Maybe<T>.None;
         }
+#endif
     }
 }
-#endif

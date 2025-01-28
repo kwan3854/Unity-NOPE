@@ -24,18 +24,12 @@ namespace NOPE.Runtime.Core.Maybe
             TKey key)
         {
             if (dict == null) throw new ArgumentNullException(nameof(dict));
-            return dict.TryGetValue(key, out var value)
-                ? Maybe<TValue>.From(value)
+            return dict.TryGetValue(key, out var value) 
+                ? Maybe<TValue>.From(value) 
                 : Maybe<TValue>.None;
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeDictionaryExtensions
-    {
         /// <summary>
         /// Tries to find a value in the dictionary by the specified key.
         /// </summary>
@@ -50,21 +44,15 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
             TKey key)
         {
             var dict = await asyncDict;
-            if (dict == null)
+            if (dict == null) 
                 throw new ArgumentNullException(nameof(dict));
-            return dict.TryGetValue(key, out var value)
-                ? Maybe<TValue>.From(value)
+            return dict.TryGetValue(key, out var value) 
+                ? Maybe<TValue>.From(value) 
                 : Maybe<TValue>.None;
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeDictionaryExtensions
-    {
         /// <summary>
         /// Tries to find a value in the dictionary by the specified key.
         /// </summary>
@@ -85,6 +73,6 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
                 ? Maybe<TValue>.From(value) 
                 : Maybe<TValue>.None;
         }
+#endif
     }
 }
-#endif

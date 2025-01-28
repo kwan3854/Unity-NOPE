@@ -29,14 +29,8 @@ namespace NOPE.Runtime.Core.Maybe
                 ? Maybe<TResult>.From(resultSelector(maybe.Value, intermediate.Value))
                 : Maybe<TResult>.None;
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeSelectManyExtensions
-    {
         /// <summary>
         /// Projects each element of a sequence to an intermediate sequence and flattens the resulting sequences into one sequence.
         /// </summary>
@@ -87,15 +81,9 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
                 ? Maybe<TResult>.From(await resultSelectorAsync(maybe.Value, intermediate.Value))
                 : Maybe<TResult>.None;
         }
-    }
-}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeSelectManyExtensions
-    {
         /// <summary>
         /// Projects each element of a sequence to an intermediate sequence and flattens the resulting sequences into one sequence.
         /// </summary>
@@ -146,16 +134,12 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
                 ? Maybe<TResult>.From(await resultSelectorAwaitable(maybe.Value, intermediate.Value))
                 : Maybe<TResult>.None;
         }
-    }
-}
 #endif // NOPE_AWAITABLE
 
-
+        // ========================
+        // 2) this UniTask<Maybe<T>>
+        // ========================
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeSelectManyExtensions
-    {
         /// <summary>
         /// Projects each element of a sequence to an intermediate sequence and flattens the resulting sequences into one sequence.
         /// </summary>
@@ -227,15 +211,9 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
                 ? Maybe<TResult>.From(await resultSelectorAsync(maybe.Value, intermediate.Value))
                 : Maybe<TResult>.None;
         }
-    }
-}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeSelectManyExtensions
-    {
         /// <summary>
         /// Projects each element of a sequence to an intermediate sequence and flattens the resulting sequences into one sequence.
         /// </summary>
@@ -307,6 +285,7 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
                 ? Maybe<TResult>.From(await resultSelectorAwaitable(maybe.Value, intermediate.Value))
                 : Maybe<TResult>.None;
         }
+#endif // NOPE_AWAITABLE
+
     }
 }
-#endif // NOPE_AWAITABLE

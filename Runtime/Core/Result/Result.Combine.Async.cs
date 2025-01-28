@@ -1,13 +1,16 @@
 using UnityEngine;
 
-
 #if NOPE_UNITASK
 using Cysharp.Threading.Tasks;
+#endif
 
-namespace NOPE.Runtime.Core.Result.UniTaskAsync
+
+
+namespace NOPE.Runtime.Core.Result
 {
     public readonly partial struct Result
     {
+#if NOPE_UNITASK
         /// <summary>
         /// Combines two asynchronous results into a single result containing a tuple of their values.
         /// </summary>
@@ -110,7 +113,6 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                     return r.Error;
                 values[i] = r.Value;
             }
-
             return values;
         }
 
@@ -128,7 +130,6 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 if (r.IsFailure)
                     return r.Error;
             }
-
             return Result<E>.Success();
         }
 
@@ -223,15 +224,9 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
 
             return Result<E>.Success();
         }
-    }
-}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Result.AwaitableAsync
-{
-    public readonly partial struct Result
-    {
         /// <summary>
         /// Combines two asynchronous results into a single result containing a tuple of their values.
         /// </summary>
@@ -445,6 +440,6 @@ namespace NOPE.Runtime.Core.Result.AwaitableAsync
 
             return Result<E>.Success();
         }
+#endif // NOPE_AWAITABLE
     }
 }
-#endif // NOPE_AWAITABLE

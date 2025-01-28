@@ -22,17 +22,10 @@ namespace NOPE.Runtime.Core.Result
             {
                 return Result<T, E>.Failure(error);
             }
-
             return result;
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Result.UniTaskAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// If this Result is successful but fails the predicate, transforms it into a failure with the given error.
         /// Otherwise, returns the original Result.
@@ -48,7 +41,6 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 if (!valid)
                     return Result<T, E>.Failure(error);
             }
-
             return result;
         }
 
@@ -66,7 +58,6 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
             {
                 return Result<T, E>.Failure(error);
             }
-
             return result;
         }
 
@@ -86,18 +77,11 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 if (!valid)
                     return Result<T, E>.Failure(error);
             }
-
             return result;
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Result.AwaitableAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// If this Result is successful but fails the predicate, transforms it into a failure with the given error.
         /// Otherwise, returns the original Result.
@@ -151,6 +135,6 @@ namespace NOPE.Runtime.Core.Result.AwaitableAsync
             }
             return result;
         }
+#endif
     }
 }
-#endif

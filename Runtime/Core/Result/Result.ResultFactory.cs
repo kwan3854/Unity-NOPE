@@ -81,15 +81,8 @@ namespace NOPE.Runtime.Core.Result
                 return errorConverter(ex);
             }
         }
-    }
-}
-
-
+        
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Result.UniTaskAsync
-{
-    public readonly partial struct Result
-    {
         /// <summary>
         /// Returns Success(successValue) if conditionAsync is true; otherwise Failure(error).
         /// </summary>
@@ -135,15 +128,9 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 return errorConverter(ex);
             }
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Result.AwaitableAsync
-{
-    public readonly partial struct Result
-    {
         /// <summary>
         /// Returns Success(successValue) if conditionAwaitable is true; otherwise Failure(error).
         /// </summary>
@@ -189,6 +176,7 @@ namespace NOPE.Runtime.Core.Result.AwaitableAsync
                 return errorConverter(ex);
             }
         }
+#endif
+
     }
 }
-#endif

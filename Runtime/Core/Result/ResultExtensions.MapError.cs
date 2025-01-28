@@ -21,18 +21,11 @@ namespace NOPE.Runtime.Core.Result
                 var newErr = errorSelector(result.Error);
                 return Result<T, E2>.Failure(newErr);
             }
-
             // Success
             return Result<T, E2>.Success(result.Value);
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Result.UniTaskAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// If failure => transform the error E1->E2. If success => keep Value same, return Result&lt;T,E2&gt;.Success.
         /// </summary>
@@ -45,7 +38,6 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 var newErr = await errorSelectorAsync(result.Error);
                 return Result<T, E2>.Failure(newErr);
             }
-
             return Result<T, E2>.Success(result.Value);
         }
 
@@ -62,7 +54,6 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 var newErr = errorSelector(r.Error);
                 return Result<T, E2>.Failure(newErr);
             }
-
             return Result<T, E2>.Success(r.Value);
         }
 
@@ -79,18 +70,11 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 var newErr = await errorSelectorAsync(r.Error);
                 return Result<T, E2>.Failure(newErr);
             }
-
             return Result<T, E2>.Success(r.Value);
         }
-    }
-}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Result.AwaitableAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// If failure => transform the error E1->E2. If success => keep Value same, return Result&lt;T,E2&gt;.Success.
         /// </summary>
@@ -137,6 +121,6 @@ namespace NOPE.Runtime.Core.Result.AwaitableAsync
             }
             return Result<T, E2>.Success(r.Value);
         }
+#endif // NOPE_AWAITABLE
     }
 }
-#endif // NOPE_AWAITABLE

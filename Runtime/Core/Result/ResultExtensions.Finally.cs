@@ -19,14 +19,8 @@ namespace NOPE.Runtime.Core.Result
         {
             return finalFunc(result);
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Result.UniTaskAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// Executes a final function regardless of success or failure,
         /// returning whatever finalFunc produces.
@@ -37,7 +31,6 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
         {
             return await finalFunc(result);
         }
-
         /// <summary>
         /// Executes a final function regardless of success or failure,
         /// returning whatever finalFunc produces.
@@ -61,15 +54,9 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
             var result = await asyncResult;
             return await finalFunc(result);
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Result.AwaitableAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// Executes a final function regardless of success or failure,
         /// returning whatever finalFunc produces.
@@ -104,6 +91,7 @@ namespace NOPE.Runtime.Core.Result.AwaitableAsync
             var result = await asyncResult;
             return await finalFunc(result);
         }
+#endif
+        
     }
 }
-#endif

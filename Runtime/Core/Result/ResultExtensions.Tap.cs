@@ -21,14 +21,8 @@ namespace NOPE.Runtime.Core.Result
                 action(result.Value);
             return result;
         }
-    }
-}
-
+        
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Result.UniTaskAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// Executes the given action if the Result is successful, then returns the original Result as-is.
         /// (side-effect only)
@@ -69,15 +63,9 @@ namespace NOPE.Runtime.Core.Result.UniTaskAsync
                 await asyncAction(result.Value);
             return result;
         }
-    }
-}
 #endif
         
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Result.AwaitableAsync
-{
-    public static partial class ResultExtensions
-    {
         /// <summary>
         /// Executes the given action if the Result is successful, then returns the original Result as-is.
         /// (side-effect only)
@@ -118,6 +106,6 @@ namespace NOPE.Runtime.Core.Result.AwaitableAsync
                 await asyncAction(result.Value);
             return result;
         }
+#endif
     }
 }
-#endif

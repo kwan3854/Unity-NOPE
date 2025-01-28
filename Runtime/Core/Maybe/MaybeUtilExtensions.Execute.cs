@@ -20,7 +20,7 @@ namespace NOPE.Runtime.Core.Maybe
             this Maybe<T> maybe,
             Action<T> action)
         {
-            if (maybe.HasValue)
+            if (maybe.HasValue) 
                 action(maybe.Value);
             return maybe;
         }
@@ -36,18 +36,12 @@ namespace NOPE.Runtime.Core.Maybe
             this Maybe<T> maybe,
             Action action)
         {
-            if (maybe.HasNoValue)
+            if (maybe.HasNoValue) 
                 action();
             return maybe;
         }
-    }
-}
 
 #if NOPE_UNITASK
-namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
-{
-    public static partial class MaybeUtilExtensions
-    {
         /// <summary>
         /// Executes an action if the <see cref="Maybe{T}"/> has a value.
         /// </summary>
@@ -147,15 +141,9 @@ namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
                 await actionAsync();
             return m;
         }
-    }
-}
 #endif
 
 #if NOPE_AWAITABLE
-namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
-{
-    public static partial class MaybeUtilExtensions
-    {
         /// <summary>
         /// Executes an action if the <see cref="Maybe{T}"/> has a value.
         /// </summary>
@@ -255,6 +243,7 @@ namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
                 await actionAwaitable();
             return m;
         }
+#endif
+
     }
 }
-#endif
