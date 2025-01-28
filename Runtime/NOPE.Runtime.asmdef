@@ -11,17 +11,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [
-        {
-            "name": "Unity",
-            "expression": "6000.0.0",
-            "define": "NOPE_AWAITABLE"
-        },
-        {
-            "name": "com.cysharp.unitask",
-            "expression": "2.0.0",
-            "define": "NOPE_UNITASK"
-        }
-    ],
+    "versionDefines": [],
     "noEngineReferences": false
 }
