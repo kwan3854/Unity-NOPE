@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NOPE.Runtime;
-using NOPE.Runtime.Collection;
 using NOPE.Runtime.Core;
+using NOPE.Runtime.Core.Maybe;
 using NUnit.Framework;
 
 namespace NOPE.Tests
@@ -196,11 +196,5 @@ namespace NOPE.Tests
             maybe.ExecuteNoValue(() => count++);
             Assert.AreEqual(1, count);
         }
-        
-        
     }
-}
-
-namespace NOPE.Tests
-{
 }
