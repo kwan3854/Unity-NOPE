@@ -1,6 +1,10 @@
 
+[![openupm](https://img.shields.io/npm/v/com.kwanjoong.nope?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.kwanjoong.nope/)
+[![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE.md)
 
 # NOPE (No Overused Possibly Evil Exceptions)
+
+![Image 1](Documentation~/NOPE.png)
 
 A lightweight, **zero-allocation** functional extensions library for Unity, inspired by **CSharpFunctionalExtensions**.  
 Focuses on **explicitly handling success/failure** without throwing exceptions and **optional values** without null, using `Result<T,E>` and `Maybe<T>` types.
