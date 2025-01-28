@@ -1,6 +1,7 @@
 // NUnit
 using System;
 using System.Threading.Tasks;
+using NOPE.Runtime.Core;
 using NOPE.Runtime.Core.Result;
 using NUnit.Framework;
 
@@ -78,7 +79,7 @@ namespace NOPE.Tests
         [Test]
         public void Result_NoValue_Success()
         {
-            var r = Result<string>.Success();
+            var r = Result<Unit, string>.Success(new Unit());
 
             Assert.IsTrue(r.IsSuccess);
             Assert.IsFalse(r.IsFailure);
@@ -93,7 +94,7 @@ namespace NOPE.Tests
         [Test]
         public void Result_NoValue_Failure()
         {
-            var r = Result<string>.Failure("FAIL");
+            var r = Result<Unit, string>.Failure("FAIL");
 
             Assert.IsTrue(r.IsFailure);
             Assert.AreEqual("FAIL", r.Error);
