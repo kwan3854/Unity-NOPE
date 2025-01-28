@@ -64,14 +64,14 @@ Thus you can chain safe transformations (`Map`, `Bind`, `Tap`), or handle outcom
    ```json
    {
      "dependencies": {
-       "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git#1.0.0"
+       "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0"
      }
    }
    ```
 2. **Unity Package Manager (Git)**:
     1) `Window → Package Manager`
     2) “+” → “Add package from git URL…”
-    3) Paste `https://github.com/kwan3854/Unity-NOPE.git#1.0.0`
+    3) Paste `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0`
 
 3. **Manual Download**:  
    Clone or download, then place in `Packages/` or `Assets/Plugins`.
