@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NOPE.Runtime;
-using NOPE.Runtime.Collection;
 using NOPE.Runtime.Core;
 using NOPE.Runtime.Core.Maybe;
 using NUnit.Framework;

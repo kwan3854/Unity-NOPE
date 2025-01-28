@@ -6,13 +6,25 @@ using Cysharp.Threading.Tasks;
 
 namespace NOPE.Runtime.Core.Maybe
 {
-    public static partial class MaybeAsyncExtensions
+    public static partial class MaybeExtensions
     {
+        /// <summary>
+        /// Projects the inner value to a new form if present; otherwise returns None.
+        /// </summary>
+        public static Maybe<TNew> Map<TOriginal, TNew>(
+            this Maybe<TOriginal> maybe,
+            Func<TOriginal, TNew> selector)
+        {
+            return maybe.HasValue
+                ? Maybe<TNew>.From(selector(maybe.Value))
+                : Maybe<TNew>.None;
+        }
+        
 #if NOPE_UNITASK
         // ------------------- UniTask-based Async Methods (MAP) -------------------
 
         /// <summary>
-        /// (A) Sync Maybe<T> -> Async selector -> returns UniTask<Maybe<TNew>>
+        /// Projects the inner value to a new form if present; otherwise returns None.
         /// </summary>
         public static async UniTask<Maybe<TNew>> Map<T, TNew>(
             this Maybe<T> maybe,
@@ -25,7 +37,7 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (B) Async UniTask<Maybe<T>> -> Sync selector -> returns UniTask<Maybe<TNew>>
+        /// Projects the inner value to a new form if present; otherwise returns None.
         /// </summary>
         public static async UniTask<Maybe<TNew>> Map<T, TNew>(
             this UniTask<Maybe<T>> asyncMaybe,
@@ -38,7 +50,7 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (C) Async UniTask<Maybe<T>> -> Async selector -> returns UniTask<Maybe<TNew>>
+        /// Projects the inner value to a new form if present; otherwise returns None.
         /// </summary>
         public static async UniTask<Maybe<TNew>> Map<T, TNew>(
             this UniTask<Maybe<T>> asyncMaybe,
@@ -57,7 +69,7 @@ namespace NOPE.Runtime.Core.Maybe
         // ------------------- Awaitable-based Async Methods (MAP) -------------------
 
         /// <summary>
-        /// (A) Sync Maybe<T> -> Async selector -> returns Awaitable<Maybe<TNew>>
+        /// Projects the inner value to a new form if present; otherwise returns None.
         /// </summary>
         public static async Awaitable<Maybe<TNew>> Map<T, TNew>(
             this Maybe<T> maybe,
@@ -71,7 +83,7 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (B) Async Awaitable<Maybe<T>> -> Sync selector -> returns Awaitable<Maybe<TNew>>
+        /// Projects the inner value to a new form if present; otherwise returns None.
         /// </summary>
         public static async Awaitable<Maybe<TNew>> Map<T, TNew>(
             this Awaitable<Maybe<T>> asyncMaybe,
@@ -84,7 +96,7 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (C) Async Awaitable<Maybe<T>> -> Async selector -> returns Awaitable<Maybe<TNew>>
+        /// Projects the inner value to a new form if present; otherwise returns None.
         /// </summary>
         public static async Awaitable<Maybe<TNew>> Map<T, TNew>(
             this Awaitable<Maybe<T>> asyncMaybe,
