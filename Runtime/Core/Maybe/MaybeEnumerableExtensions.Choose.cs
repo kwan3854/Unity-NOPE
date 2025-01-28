@@ -20,7 +20,7 @@ namespace NOPE.Runtime.Core.Maybe
         public static IEnumerable<T> Choose<T>(
             this IEnumerable<Maybe<T>> source)
         {
-            if (source == null) 
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             foreach (var maybe in source)
@@ -41,7 +41,7 @@ namespace NOPE.Runtime.Core.Maybe
             this IEnumerable<Maybe<T>> source,
             Func<T, TResult> selector)
         {
-            if (source == null) 
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
@@ -50,8 +50,14 @@ namespace NOPE.Runtime.Core.Maybe
                 if (maybe.HasValue)
                     yield return selector(maybe.Value);
         }
+    }
+}
 
 #if NOPE_UNITASK
+namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
+{
+    public static partial class MaybeEnumerableExtensions
+    {
         /// <summary>
         /// Filters a sequence of <see cref="Maybe{T}"/> values, projects each value into a new form, and returns only those that have a value.
         /// </summary>
@@ -65,7 +71,7 @@ namespace NOPE.Runtime.Core.Maybe
             this IEnumerable<Maybe<T>> source,
             Func<T, UniTask<TResult>> selectorAsync)
         {
-            if (source == null) 
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selectorAsync == null)
                 throw new ArgumentNullException(nameof(selectorAsync));
@@ -79,11 +85,18 @@ namespace NOPE.Runtime.Core.Maybe
                     results.Add(transformed);
                 }
             }
+
             return results;
         }
+    }
+}
 #endif
 
 #if NOPE_AWAITABLE
+namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
+{
+    public static partial class MaybeEnumerableExtensions
+    {
         /// <summary>
         /// Filters a sequence of <see cref="Maybe{T}"/> values, projects each value into a new form, and returns only those that have a value.
         /// </summary>
@@ -97,7 +110,7 @@ namespace NOPE.Runtime.Core.Maybe
             this IEnumerable<Maybe<T>> source,
             Func<T, Awaitable<TResult>> selectorAwaitable)
         {
-            if (source == null) 
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selectorAwaitable == null)
                 throw new ArgumentNullException(nameof(selectorAwaitable));
@@ -111,11 +124,18 @@ namespace NOPE.Runtime.Core.Maybe
                     results.Add(transformed);
                 }
             }
+
             return results;
         }
+    }
+}
 #endif
         
 #if NOPE_UNITASK
+namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
+{
+    public static partial class MaybeEnumerableExtensions
+    {
         /// <summary>
         /// Filters a sequence of <see cref="Maybe{T}"/> values and returns only those that have a value.
         /// </summary>
@@ -192,11 +212,18 @@ namespace NOPE.Runtime.Core.Maybe
                     results.Add(transformed);
                 }
             }
+
             return results;
         }
+    }
+}
 #endif
 
 #if NOPE_AWAITABLE
+namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
+{
+    public static partial class MaybeEnumerableExtensions
+    {
         /// <summary>
         /// Filters a sequence of <see cref="Maybe{T}"/> values and returns only those that have a value.
         /// </summary>
@@ -275,6 +302,6 @@ namespace NOPE.Runtime.Core.Maybe
             }
             return results;
         }
-#endif
     }
 }
+#endif

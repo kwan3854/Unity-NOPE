@@ -22,8 +22,14 @@ namespace NOPE.Runtime.Core.Maybe
         {
             return maybe.Map(selector);
         }
+    }
+}
 
 #if NOPE_UNITASK
+namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
+{
+    public static partial class MaybeSelectExtensions
+    {
         /// <summary>
         /// For LINQ comprehension: same as Map().
         /// </summary>
@@ -53,9 +59,15 @@ namespace NOPE.Runtime.Core.Maybe
         {
             return await asyncMaybe.Map(selectorAsync);
         }
+    }
+}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
+namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
+{
+    public static partial class MaybeSelectExtensions
+    {
         /// <summary>
         /// For LINQ comprehension: same as Map().
         /// </summary>
@@ -85,7 +97,6 @@ namespace NOPE.Runtime.Core.Maybe
         {
             return await asyncMaybe.Map(selectorAwaitable);
         }
-#endif // NOPE_AWAITABLE
-
     }
 }
+#endif // NOPE_AWAITABLE

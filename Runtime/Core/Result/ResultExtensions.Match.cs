@@ -22,8 +22,14 @@ namespace NOPE.Runtime.Core.Result
                 ? onSuccess(result.Value)
                 : onFailure(result.Error);
         }
+    }
+}
 
 #if NOPE_UNITASK
+namespace NOPE.Runtime.Core.Result.UniTaskAsync
+{
+    public static partial class ResultExtensions
+    {
         /// <summary>
         /// Transforms a Result into a single value by providing two functions:
         /// one for handling success, and one for handling failure.
@@ -122,9 +128,15 @@ namespace NOPE.Runtime.Core.Result
                 ? await onSuccessAsync(result.Value)
                 : await onFailureAsync(result.Error);
         }
+    }
+}
 #endif
 
 #if NOPE_AWAITABLE
+namespace NOPE.Runtime.Core.Result.AwaitableAsync
+{
+    public static partial class ResultExtensions
+    {
         /// <summary>
         /// Transforms a Result into a single value by providing two functions:
         /// one for handling success, and one for handling failure.
@@ -226,7 +238,6 @@ namespace NOPE.Runtime.Core.Result
                 return await onSuccessAwaitable(result.Value);
             return await onFailureAwaitable(result.Error);
         }
-#endif
-    
     }
 }
+#endif

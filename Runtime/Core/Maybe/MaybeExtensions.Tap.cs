@@ -20,12 +20,17 @@ namespace NOPE.Runtime.Core.Maybe
             {
                 action(maybe.Value);
             }
+
             return maybe;
         }
-        
-#if NOPE_UNITASK
-        // ------------------- UniTask-based Async Methods (TAP) -------------------
+    }
+}
 
+#if NOPE_UNITASK
+namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
+{
+    public static partial class MaybeExtensions
+    {
         /// <summary>
         /// Executes the given action if there is a value; otherwise does nothing.
         /// Returns the original maybe unmodified.
@@ -66,11 +71,15 @@ namespace NOPE.Runtime.Core.Maybe
                 await asyncAction(maybe.Value);
             return maybe;
         }
+    }
+}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-        // ------------------- Awaitable-based Async Methods (TAP) -------------------
-
+namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
+{
+    public static partial class MaybeExtensions
+    {
         /// <summary>
         /// Executes the given action if there is a value; otherwise does nothing.
         /// Returns the original maybe unmodified.
@@ -111,7 +120,6 @@ namespace NOPE.Runtime.Core.Maybe
                 await asyncAction(maybe.Value);
             return maybe;
         }
-#endif // NOPE_AWAITABLE
-
     }
 }
+#endif // NOPE_AWAITABLE

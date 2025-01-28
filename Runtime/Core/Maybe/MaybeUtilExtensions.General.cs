@@ -58,9 +58,14 @@ namespace NOPE.Runtime.Core.Maybe
         {
             return maybe.HasValue ? maybe : Maybe<T>.From(fallbackValue);
         }
+    }
+}
 
 #if NOPE_UNITASK
-
+namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
+{
+    public static partial class MaybeUtilExtensions
+    {
         /// <summary>
         /// Awaits an async Maybe and returns its value, or throws an exception if it has no value.
         /// </summary>
@@ -110,10 +115,15 @@ namespace NOPE.Runtime.Core.Maybe
             var maybe = await asyncMaybe;
             return maybe.HasValue ? maybe : Maybe<T>.From(fallbackValue);
         }
+    }
+}
 #endif
 
 #if NOPE_AWAITABLE
-
+namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
+{
+    public static partial class MaybeUtilExtensions
+    {
         /// <summary>
         /// Awaits an async Maybe (Awaitable) and returns its value, or throws if no value.
         /// </summary>
@@ -162,6 +172,6 @@ namespace NOPE.Runtime.Core.Maybe
             var maybe = await asyncMaybe;
             return maybe.HasValue ? maybe : Maybe<T>.From(fallbackValue);
         }
-#endif
     }
 }
+#endif

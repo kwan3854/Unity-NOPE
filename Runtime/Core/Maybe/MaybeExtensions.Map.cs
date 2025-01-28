@@ -19,10 +19,14 @@ namespace NOPE.Runtime.Core.Maybe
                 ? Maybe<TNew>.From(selector(maybe.Value))
                 : Maybe<TNew>.None;
         }
-        
-#if NOPE_UNITASK
-        // ------------------- UniTask-based Async Methods (MAP) -------------------
+    }
+}
 
+#if NOPE_UNITASK
+namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
+{
+    public static partial class MaybeExtensions
+    {
         /// <summary>
         /// Projects the inner value to a new form if present; otherwise returns None.
         /// </summary>
@@ -63,11 +67,15 @@ namespace NOPE.Runtime.Core.Maybe
             var newValue = await asyncSelector(maybe.Value);
             return Maybe<TNew>.From(newValue);
         }
+    }
+}
 #endif // NOPE_UNITASK
 
 #if NOPE_AWAITABLE
-        // ------------------- Awaitable-based Async Methods (MAP) -------------------
-
+namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
+{
+    public static partial class MaybeExtensions
+    {
         /// <summary>
         /// Projects the inner value to a new form if present; otherwise returns None.
         /// </summary>
@@ -109,7 +117,6 @@ namespace NOPE.Runtime.Core.Maybe
             var newValue = await asyncSelector(maybe.Value);
             return Maybe<TNew>.From(newValue);
         }
-#endif // NOPE_AWAITABLE
-
     }
 }
+#endif // NOPE_AWAITABLE

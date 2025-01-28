@@ -30,6 +30,7 @@ namespace NOPE.Runtime.Core.Maybe
                 found = true;
                 last = item;
             }
+
             return found ? Maybe<T>.From(last) : Maybe<T>.None;
         }
 
@@ -54,8 +55,14 @@ namespace NOPE.Runtime.Core.Maybe
                     result = Maybe<T>.From(item);
             return result;
         }
+    }
+}
 
 #if NOPE_UNITASK
+namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
+{
+    public static partial class MaybeEnumerableExtensions
+    {
         /// <summary>
         /// Tries to get the last element of the sequence that satisfies a condition.
         /// </summary>
@@ -77,11 +84,18 @@ namespace NOPE.Runtime.Core.Maybe
                 if (await predicateAsync(item))
                     result = Maybe<T>.From(item);
             }
+
             return result;
         }
+    }
+}
 #endif
 
 #if NOPE_AWAITABLE
+namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
+{
+    public static partial class MaybeEnumerableExtensions
+    {
         /// <summary>
         /// Tries to get the last element of the sequence that satisfies a condition.
         /// </summary>
@@ -103,13 +117,19 @@ namespace NOPE.Runtime.Core.Maybe
                 if (await predicateAwaitable(item))
                     result = Maybe<T>.From(item);
             }
+
             return result;
         }
+    }
+}
 #endif
 
 
 #if NOPE_UNITASK
-
+namespace NOPE.Runtime.Core.Maybe.UniTaskAsync
+{
+    public static partial class MaybeEnumerableExtensions
+    {
         /// <summary>
         /// Tries to get the last element of the sequence.
         /// </summary>
@@ -131,6 +151,7 @@ namespace NOPE.Runtime.Core.Maybe
                 found = true;
                 last = item;
             }
+
             return found ? Maybe<T>.From(last) : Maybe<T>.None;
         }
 
@@ -179,11 +200,18 @@ namespace NOPE.Runtime.Core.Maybe
                 if (await predicateAsync(item))
                     result = Maybe<T>.From(item);
             }
+
             return result;
         }
+    }
+}
 #endif
 
 #if NOPE_AWAITABLE
+namespace NOPE.Runtime.Core.Maybe.AwaitableAsync
+{
+    public static partial class MaybeEnumerableExtensions
+    {
         /// <summary>
         /// Tries to get the last element of the sequence.
         /// </summary>
@@ -255,6 +283,6 @@ namespace NOPE.Runtime.Core.Maybe
             }
             return result;
         }
-#endif
     }
 }
+#endif
