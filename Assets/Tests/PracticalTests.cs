@@ -184,25 +184,18 @@ namespace NOPE.Tests
         [Test]
         public void Readme_TestBed()
         {
-            // Initial Result with int value
-            var r1 = Result<int, string>.Success(10);
-    
-            // Map to change the value type from int to string
-            var r2 = r1.Map(x => $"Value is {x}");
+            // Basic creation
+            Maybe<int> m1 = 100; // => HasValue=true
+            Maybe<int> m2 = Maybe<int>.None; // => no value
 
-            // Verify the new Result has a string value
-            Assert.IsTrue(r2.IsSuccess);
-            Assert.AreEqual("Value is 10", r2.Value);
+            // From a nullable type
+            int? nullableInt = 10;
+            Maybe<int?> m3 = Maybe<int?>.From(nullableInt); // => HasValue=true
+            Assert.IsTrue(m3.HasValue);
 
-            // Initial Result with failure
-            var r3 = Result<int, string>.Failure("Initial failure");
-    
-            // Map should not change the failure state
-            var r4 = r3.Map(x => $"Value is {x}");
-
-            // Verify the failure state is preserved
-            Assert.IsTrue(r4.IsFailure);
-            Assert.AreEqual("Initial failure", r4.Error);
+            nullableInt = null;
+            Maybe<int?> m4 = Maybe<int?>.From(nullableInt); // => no value
+            Assert.IsFalse(m4.HasValue);
         }
         
 #if NOPE_UNITASK

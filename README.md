@@ -163,7 +163,7 @@ Here, each step returns a `Result<T>`, we do **Bind/Map/Ensure** to unify succes
 
 ## Features Overview
 
-- **Result<T,E>** or `Result<T>` (with `E=string`)
+- **Result<T,E>**
     - chainable methods: `Map`, `Bind`, `Tap`, `Ensure`, `MapError`, `Match`, `Finally`
     - combine multiple results with `Combine`(no value) or `CombineValues`(with new tuple/array)
 
@@ -189,8 +189,8 @@ Here, each step returns a `Result<T>`, we do **Bind/Map/Ensure** to unify succes
 
 ```csharp
 // Basic success/failure
-var r1 = Result<int>.Success(100);
-var r2 = Result<int>.Failure("Oops"); 
+var r1 = Result<int, string>.Success(100);
+var r2 = Result<int, string>.Failure("Oops"); 
 
 // Implicit conversion
 Result<int, string> r3 = 10;
@@ -443,10 +443,12 @@ Maybe<int> m2 = Maybe<int>.None; // => no value
 
 // From a nullable type
 int? nullableInt = 10;
-Maybe<int> m3 = Maybe<int>.From(nullableInt); // => HasValue=true
+Maybe<int?> m3 = Maybe<int?>.From(nullableInt); // => HasValue=true
+Assert.IsTrue(m3.HasValue);
 
 nullableInt = null;
-Maybe<int> m4 = Maybe<int>.From(nullableInt); // => no value
+Maybe<int?> m4 = Maybe<int?>.From(nullableInt); // => no value
+Assert.IsFalse(m4.HasValue);
 ```
 
 ### 2) Key Maybe Methods
@@ -488,19 +490,6 @@ Maybe<int> m4 = Maybe<int>.From(nullableInt); // => no value
   m2.Tap(x => Console.WriteLine($"Value = {x}")); // No output
   ```
 
-- **Ensure**: if the value exists but fails the predicate, become None.
-  ```csharp
-  Maybe<int> m1 = 10;
-  Maybe<int> m2 = m1.Ensure(x => x > 5);
-
-  Assert.IsTrue(m2.HasValue);
-
-  Maybe<int> m3 = 3;
-  Maybe<int> m4 = m3.Ensure(x => x > 5);
-
-  Assert.IsFalse(m4.HasValue);
-  ```
-
 - **Match**: convert a `Maybe<T>` into a single outcome.
   ```csharp
   Maybe<int> m1 = 10;
@@ -533,32 +522,28 @@ Maybe<int> m4 = Maybe<int>.From(nullableInt); // => no value
   Assert.IsFalse(m4.HasValue);
   ```
 
-- **Execute**: run side effects if the value exists or if no value.
+- **Execute**: run an action if the Maybe<T> has a value.
   ```csharp
-  Maybe<int> m1 = 10;
-  m1.Execute(
-      onValue: x => Console.WriteLine($"Value = {x}"),
-      onNone: () => Console.WriteLine("No value")
-  );
-
-  Maybe<int> m2 = Maybe<int>.None;
-  m2.Execute(
-      onValue: x => Console.WriteLine($"Value = {x}"),
-      onNone: () => Console.WriteLine("No value")
-  );
+    Maybe<int> m1 = 10;
+    m1.Execute(val => Console.WriteLine($"This will print: {val}"));
+    Assert.AreEqual(10, m1.Value);
+    
+    Maybe<int> m2 = Maybe<int>.None;
+    m2.Execute(val => Console.WriteLine($"This will not print: {val}"));
+    Assert.IsFalse(m2.HasValue);
   ```
 
 - **Or**: provide a fallback value if None.
   ```csharp
-  Maybe<int> m1 = 10;
-  int value1 = m1.Or(0);
+    Maybe<int> m1 = 10;
+    Maybe<int> maybeValue1 = m1.Or(0);
 
-  Assert.AreEqual(10, value1);
+    Assert.AreEqual(10, maybeValue1.Value);
 
-  Maybe<int> m2 = Maybe<int>.None;
-  int value2 = m2.Or(0);
+    Maybe<int> m2 = Maybe<int>.None;
+    var maybeValue2 = m2.Or(0);
 
-  Assert.AreEqual(0, value2);
+    Assert.AreEqual(0, maybeValue2.Value);
   ```
 
 - **GetValueOrThrow**, **GetValueOrDefault**: for direct extraction.
@@ -664,7 +649,7 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
 
 1. **Chaining multiple checks & async calls** with `Result<int>`:
    ```csharp
-   public async UniTask<Result<string>> ComplexOperation()
+   public async UniTask<Result<string, string>> ComplexOperation()
    {
        return Result.SuccessIf(CheckA(), 0, "CheckA failed!")
           .Bind(_ => FetchDataAsync()) // => UniTask<Result<string>>
@@ -694,13 +679,13 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
 
 3. **Combine / CombineValues**:
    ```csharp
-   var r1 = Result<int>.Success(2);
-   var r2 = Result<int>.Success(3);
-   var merged = Result.CombineValues(r1, r2);
-   // => Result<(int,int)>.Success((2,3))
+    var r1 = Result<int, string>.Success(2);
+    var r2 = Result<int, string>.Success(3);
+    var merged = Result.CombineValues(r1, r2);
+    // => Result<(int,int)>.Success((2,3))
 
-   var justCheck = Result.Combine(r1, r2);
-   // => Result.Success() or first error
+    var justCheck = Result.Combine(r1, r2);
+    // => Result.Success() or first error
    ```
 
 4. **LINQ with Maybe**:
