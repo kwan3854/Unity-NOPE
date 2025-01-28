@@ -31,9 +31,10 @@ Focuses on **explicitly handling success/failure** without throwing exceptions a
     - [SuccessIf, FailureIf, Of](#3-successif-failureif-of)
     - [Bind, Map, MapError, Tap, Ensure, Match, Finally](#4-bind-map-maperror-tap-ensure-match-finally)
 6. [Maybe\<T\> Usage](#maybet-usage)
-    - [Key Maybe Methods](#key-maybe-methods)
-    - [TryFind, Choose, TryFirst, TryLast, etc.](#tryfind-choose-tryfirst-trylast-etc)
-    - [LINQ Integration](#linq-integration)
+    - [Creating a Maybe](#1-creating-a-maybe)
+    - [Key Maybe Methods](#2-key-maybe-methods)
+    - [Collection Helpers](#3-collection-helpers)
+    - [LINQ Integration](#4-linq-integration)
 7. [Async Support](#async-support)
     - [NOPE_UNITASK or NOPE_AWAITABLE](#nope_unitask-or-nope_awaitable)
     - [Sync ↔ Async bridging](#sync--async-bridging)
@@ -409,23 +410,193 @@ Maybe<int> m1 = 100;         // => HasValue=true
 Maybe<int> m2 = Maybe<int>.None; // => no value
 ```
 
-### Key Maybe Methods
+### 1) Creating a Maybe
 
-- **`Map`, `Bind`, `Tap`, `Match`, `Ensure`** (similar concept as `Result`)
-- **`Where(predicate)`**: if `HasValue` but doesn’t satisfy `predicate`, becomes None.
-- **`Execute(action)`**: run side effect if has value / if no value.
-- **`Or(...)`**: fallback if None.
-- **`GetValueOrThrow`, `GetValueOrDefault`** for direct extraction.
+```csharp
+// Basic creation
+Maybe<int> m1 = 100;         // => HasValue=true
+Maybe<int> m2 = Maybe<int>.None; // => no value
 
-### TryFind, Choose, TryFirst, TryLast, etc
+// From a nullable type
+int? nullableInt = 10;
+Maybe<int> m3 = Maybe<int>.From(nullableInt); // => HasValue=true
+
+nullableInt = null;
+Maybe<int> m4 = Maybe<int>.From(nullableInt); // => no value
+```
+
+### 2) Key Maybe Methods
+
+- **Map**: transform the value if it exists.
+  ```csharp
+  Maybe<int> m1 = 10;
+  Maybe<string> m2 = m1.Map(x => $"Value is {x}");
+
+  Assert.IsTrue(m2.HasValue);
+  Assert.AreEqual("Value is 10", m2.Value);
+
+  Maybe<int> m3 = Maybe<int>.None;
+  Maybe<string> m4 = m3.Map(x => $"Value is {x}");
+
+  Assert.IsFalse(m4.HasValue);
+  ```
+
+- **Bind**: transform the value into another `Maybe<T>`.
+  ```csharp
+  Maybe<int> m1 = 10;
+  Maybe<string> m2 = m1.Bind(x => Maybe<string>.From($"Value is {x}"));
+
+  Assert.IsTrue(m2.HasValue);
+  Assert.AreEqual("Value is 10", m2.Value);
+
+  Maybe<int> m3 = Maybe<int>.None;
+  Maybe<string> m4 = m3.Bind(x => Maybe<string>.From($"Value is {x}"));
+
+  Assert.IsFalse(m4.HasValue);
+  ```
+
+- **Tap**: run a side effect if the value exists.
+  ```csharp
+  Maybe<int> m1 = 10;
+  m1.Tap(x => Console.WriteLine($"Value = {x}"));
+
+  Maybe<int> m2 = Maybe<int>.None;
+  m2.Tap(x => Console.WriteLine($"Value = {x}")); // No output
+  ```
+
+- **Ensure**: if the value exists but fails the predicate, become None.
+  ```csharp
+  Maybe<int> m1 = 10;
+  Maybe<int> m2 = m1.Ensure(x => x > 5);
+
+  Assert.IsTrue(m2.HasValue);
+
+  Maybe<int> m3 = 3;
+  Maybe<int> m4 = m3.Ensure(x => x > 5);
+
+  Assert.IsFalse(m4.HasValue);
+  ```
+
+- **Match**: convert a `Maybe<T>` into a single outcome.
+  ```csharp
+  Maybe<int> m1 = 10;
+  string result1 = m1.Match(
+      onValue: val => $"Value = {val}",
+      onNone: () => "No value"
+  );
+
+  Assert.AreEqual("Value = 10", result1);
+
+  Maybe<int> m2 = Maybe<int>.None;
+  string result2 = m2.Match(
+      onValue: val => $"Value = {val}",
+      onNone: () => "No value"
+  );
+
+  Assert.AreEqual("No value", result2);
+  ```
+
+- **Where**: if `HasValue` but doesn’t satisfy the predicate, becomes None.
+  ```csharp
+  Maybe<int> m1 = 10;
+  Maybe<int> m2 = m1.Where(x => x > 5);
+
+  Assert.IsTrue(m2.HasValue);
+
+  Maybe<int> m3 = 3;
+  Maybe<int> m4 = m3.Where(x => x > 5);
+
+  Assert.IsFalse(m4.HasValue);
+  ```
+
+- **Execute**: run side effects if the value exists or if no value.
+  ```csharp
+  Maybe<int> m1 = 10;
+  m1.Execute(
+      onValue: x => Console.WriteLine($"Value = {x}"),
+      onNone: () => Console.WriteLine("No value")
+  );
+
+  Maybe<int> m2 = Maybe<int>.None;
+  m2.Execute(
+      onValue: x => Console.WriteLine($"Value = {x}"),
+      onNone: () => Console.WriteLine("No value")
+  );
+  ```
+
+- **Or**: provide a fallback value if None.
+  ```csharp
+  Maybe<int> m1 = 10;
+  int value1 = m1.Or(0);
+
+  Assert.AreEqual(10, value1);
+
+  Maybe<int> m2 = Maybe<int>.None;
+  int value2 = m2.Or(0);
+
+  Assert.AreEqual(0, value2);
+  ```
+
+- **GetValueOrThrow**, **GetValueOrDefault**: for direct extraction.
+  ```csharp
+  Maybe<int> m1 = 10;
+  int value1 = m1.GetValueOrThrow();
+
+  Assert.AreEqual(10, value1);
+
+  Maybe<int> m2 = Maybe<int>.None;
+  int value2 = m2.GetValueOrDefault(0);
+
+  Assert.AreEqual(0, value2);
+  ```
+
+### 3) Collection Helpers
 
 We provide **collection** helpers returning a `Maybe<T>`:
 
 - `dict.TryFind(key) -> Maybe<TValue>`
-- `source.TryFirst()`, `source.TryLast()` → Maybe<T>
-- `Choose(...)` to filter out None from a sequence of `Maybe<T>`.
+  ```csharp
+  Dictionary<string, int> dict = new() { { "apple", 10 }, { "banana", 5 } };
+  Maybe<int> found = dict.TryFind("banana");
 
-### LINQ Integration
+  Assert.IsTrue(found.HasValue);
+  Assert.AreEqual(5, found.Value);
+
+  Maybe<int> notFound = dict.TryFind("cherry");
+
+  Assert.IsFalse(notFound.HasValue);
+  ```
+
+- `source.TryFirst()`, `source.TryLast()` → Maybe<T>
+  ```csharp
+  List<int> list = new() { 1, 2, 3 };
+  Maybe<int> first = list.TryFirst();
+
+  Assert.IsTrue(first.HasValue);
+  Assert.AreEqual(1, first.Value);
+
+  Maybe<int> last = list.TryLast();
+
+  Assert.IsTrue(last.HasValue);
+  Assert.AreEqual(3, last.Value);
+
+  List<int> emptyList = new();
+  Maybe<int> none = emptyList.TryFirst();
+
+  Assert.IsFalse(none.HasValue);
+  ```
+
+- `Choose(...)` to filter out None from a sequence of `Maybe<T>`.
+  ```csharp
+  List<Maybe<int>> list = new() { Maybe<int>.From(1), Maybe<int>.None, Maybe<int>.From(3) };
+  List<int> chosen = list.Choose().ToList();
+
+  Assert.AreEqual(2, chosen.Count);
+  Assert.AreEqual(1, chosen[0]);
+  Assert.AreEqual(3, chosen[1]);
+  ```
+
+### 4) LINQ Integration
 
 We have `Select`, `SelectMany`, `Where` so you can do:
 ```csharp
@@ -433,9 +604,11 @@ Maybe<int> maybeNum = 50;
 var query =
     from x in maybeNum
     where x > 10
-    select x*2;
+    select x * 2;
 // => Maybe(100)
 ```
+
+This detailed explanation should now be on par with the `Result<T,E>` section.
 
 ---
 
