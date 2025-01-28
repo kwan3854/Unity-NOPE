@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CSharpFunctionalExtensions</id>
+    <version>3.4.3</version>
+    <authors>Vladimir Khorikov</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://enterprisecraftsmanship.com/ps-func</projectUrl>
+    <description>CSharpFunctionalExtensions - functional extensions for C#</description>
+    <tags>C# Functional Result Maybe ValueObject</tags>
+    <repository type="git" url="https://github.com/vkhorikov/CSharpFunctionalExtensions/" />
+    <dependencies>
+      <group targetFramework="net6.0" />
+      <group targetFramework="net8.0" />
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+</package>

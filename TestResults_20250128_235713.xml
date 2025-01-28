@@ -1,0 +1,1506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="130" result="Passed" total="130" passed="130" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:56:56Z" duration="103.3013126">
+  <test-suite type="TestSuite" id="1155" name="UnityNope" fullname="UnityNope" runstate="Runnable" testcasecount="130" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:56:56Z" duration="103.301313" total="130" passed="130" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1147" name="NOPE.Tests.dll" fullname="/Users/kwanjoonglee/UnityProjects/UnityNope/Library/ScriptAssemblies/NOPE.Tests.dll" runstate="Runnable" testcasecount="130" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:56:56Z" duration="103.295011" total="130" passed="130" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="15937" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1148" name="NOPE" fullname="NOPE" runstate="Runnable" testcasecount="130" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:56:56Z" duration="103.294758" total="130" passed="130" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1149" name="Tests" fullname="NOPE.Tests" runstate="Runnable" testcasecount="130" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:56:56Z" duration="103.294595" total="130" passed="130" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="CollectionUtilitiesExtensionsTests" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.018430" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1016" name="Choose_EmptySequence_ReturnsEmptySequence" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.Choose_EmptySequence_ReturnsEmptySequence" methodname="Choose_EmptySequence_ReturnsEmptySequence" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="554324681" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.005691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="Choose_MixedValues_ReturnsOnlyValues" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.Choose_MixedValues_ReturnsOnlyValues" methodname="Choose_MixedValues_ReturnsOnlyValues" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="561898243" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.002586" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="Choose_NullSequence_ThrowsArgumentNullException" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.Choose_NullSequence_ThrowsArgumentNullException" methodname="Choose_NullSequence_ThrowsArgumentNullException" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="574766173" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="Choose_WithSelector_TransformsValues" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.Choose_WithSelector_TransformsValues" methodname="Choose_WithSelector_TransformsValues" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="632180174" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000380" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="Execute_HasValue_ExecutesAction" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.Execute_HasValue_ExecutesAction" methodname="Execute_HasValue_ExecutesAction" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="1029308497" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000087" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="Execute_NoValue_DoesNotExecuteAction" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.Execute_NoValue_DoesNotExecuteAction" methodname="Execute_NoValue_DoesNotExecuteAction" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="914075192" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000052" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="ExecuteNoValue_HasValue_DoesNotExecuteAction" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.ExecuteNoValue_HasValue_DoesNotExecuteAction" methodname="ExecuteNoValue_HasValue_DoesNotExecuteAction" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="105622877" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000064" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="ExecuteNoValue_NoValue_ExecutesAction" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.ExecuteNoValue_NoValue_ExecutesAction" methodname="ExecuteNoValue_NoValue_ExecutesAction" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="1144029570" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000057" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="TryFind_KeyDoesNotExist_ReturnsNone" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryFind_KeyDoesNotExist_ReturnsNone" methodname="TryFind_KeyDoesNotExist_ReturnsNone" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="405985906" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="TryFind_KeyExists_ReturnsMaybeWithValue" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryFind_KeyExists_ReturnsMaybeWithValue" methodname="TryFind_KeyExists_ReturnsMaybeWithValue" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="125348390" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000114" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="TryFind_NullDictionary_ThrowsArgumentNullException" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryFind_NullDictionary_ThrowsArgumentNullException" methodname="TryFind_NullDictionary_ThrowsArgumentNullException" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="491142282" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000054" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="TryFirst_EmptySequence_ReturnsNone" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryFirst_EmptySequence_ReturnsNone" methodname="TryFirst_EmptySequence_ReturnsNone" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="901812284" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000090" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="TryFirst_NullSequence_ThrowsArgumentNullException" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryFirst_NullSequence_ThrowsArgumentNullException" methodname="TryFirst_NullSequence_ThrowsArgumentNullException" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="812429526" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="TryFirst_SingleElement_ReturnsMaybeWithValue" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryFirst_SingleElement_ReturnsMaybeWithValue" methodname="TryFirst_SingleElement_ReturnsMaybeWithValue" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="183857231" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000040" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="TryFirst_WithPredicate_MatchExists_ReturnsMaybeWithValue" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryFirst_WithPredicate_MatchExists_ReturnsMaybeWithValue" methodname="TryFirst_WithPredicate_MatchExists_ReturnsMaybeWithValue" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="1636792279" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000131" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="TryFirst_WithPredicate_NoMatch_ReturnsNone" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryFirst_WithPredicate_NoMatch_ReturnsNone" methodname="TryFirst_WithPredicate_NoMatch_ReturnsNone" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="659801459" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000047" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="TryLast_EmptySequence_ReturnsNone" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryLast_EmptySequence_ReturnsNone" methodname="TryLast_EmptySequence_ReturnsNone" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="1358455067" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="TryLast_NullSequence_ThrowsArgumentNullException" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryLast_NullSequence_ThrowsArgumentNullException" methodname="TryLast_NullSequence_ThrowsArgumentNullException" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="12211119" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000049" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="TryLast_SingleElement_ReturnsMaybeWithValue" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryLast_SingleElement_ReturnsMaybeWithValue" methodname="TryLast_SingleElement_ReturnsMaybeWithValue" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="1290472596" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000037" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="TryLast_WithPredicate_MatchExists_ReturnsMaybeWithValue" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryLast_WithPredicate_MatchExists_ReturnsMaybeWithValue" methodname="TryLast_WithPredicate_MatchExists_ReturnsMaybeWithValue" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="556706544" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000108" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="TryLast_WithPredicate_NoMatch_ReturnsNone" fullname="NOPE.Tests.CollectionUtilitiesExtensionsTests.TryLast_WithPredicate_NoMatch_ReturnsNone" methodname="TryLast_WithPredicate_NoMatch_ReturnsNone" classname="NOPE.Tests.CollectionUtilitiesExtensionsTests" runstate="Runnable" seed="1041780891" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000048" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1023" name="MaybeAdvancedAsyncExtensionsUniTaskTests" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.037095" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1027" name="GetValueOrDefault_HasValue_ReturnsValue" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.GetValueOrDefault_HasValue_ReturnsValue" methodname="GetValueOrDefault_HasValue_ReturnsValue" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1751642782" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.003799" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1028" name="GetValueOrDefault_NoValue_ReturnsDefault" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.GetValueOrDefault_NoValue_ReturnsDefault" methodname="GetValueOrDefault_NoValue_ReturnsDefault" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="411990983" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001318" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="GetValueOrThrow_CustomException_ThrowsCustom" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.GetValueOrThrow_CustomException_ThrowsCustom" methodname="GetValueOrThrow_CustomException_ThrowsCustom" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1729752986" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.002969" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="GetValueOrThrow_HasValue_ReturnsValue" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.GetValueOrThrow_HasValue_ReturnsValue" methodname="GetValueOrThrow_HasValue_ReturnsValue" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1937434158" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001313" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="GetValueOrThrow_NoValue_ThrowsInvalidOperationException" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.GetValueOrThrow_NoValue_ThrowsInvalidOperationException" methodname="GetValueOrThrow_NoValue_ThrowsInvalidOperationException" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1045930169" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000326" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="Or_HasValue_ReturnsOriginal" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Or_HasValue_ReturnsOriginal" methodname="Or_HasValue_ReturnsOriginal" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="650352429" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001546" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="Or_NoValue_ReturnsFallback" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Or_NoValue_ReturnsFallback" methodname="Or_NoValue_ReturnsFallback" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1739535965" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001835" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="Or_ValueOverload_HasValue_ReturnsOriginal" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Or_ValueOverload_HasValue_ReturnsOriginal" methodname="Or_ValueOverload_HasValue_ReturnsOriginal" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="24357919" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001747" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="Or_ValueOverload_NoValue_ReturnsNew" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Or_ValueOverload_NoValue_ReturnsNew" methodname="Or_ValueOverload_NoValue_ReturnsNew" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="127468058" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001294" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="Select_HasValue_TransformsValue" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Select_HasValue_TransformsValue" methodname="Select_HasValue_TransformsValue" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1630740295" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001848" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="Select_NoValue_ReturnsNone" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Select_NoValue_ReturnsNone" methodname="Select_NoValue_ReturnsNone" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1246699559" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="SelectMany_HasValue_BindsValue" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.SelectMany_HasValue_BindsValue" methodname="SelectMany_HasValue_BindsValue" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="504907454" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001736" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1040" name="SelectMany_NoValue_ReturnsNone" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.SelectMany_NoValue_ReturnsNone" methodname="SelectMany_NoValue_ReturnsNone" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1576827660" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001309" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="Where_AsyncPredicate_Invalid" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Where_AsyncPredicate_Invalid" methodname="Where_AsyncPredicate_Invalid" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="897464096" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.004454" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="Where_AsyncPredicate_Valid" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Where_AsyncPredicate_Valid" methodname="Where_AsyncPredicate_Valid" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="1853999514" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.002660" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="Where_Predicate_Invalid" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Where_Predicate_Invalid" methodname="Where_Predicate_Invalid" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="130177744" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.002697" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="Where_Predicate_Valid" fullname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests.Where_Predicate_Valid" methodname="Where_Predicate_Valid" classname="NOPE.Tests.MaybeAdvancedAsyncExtensionsUniTaskTests" runstate="Runnable" seed="858231169" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1041" name="MaybeAdvancedExtensionsTests" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.002121" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1045" name="GetValueOrDefault_HasValue_ReturnsInnerValue" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.GetValueOrDefault_HasValue_ReturnsInnerValue" methodname="GetValueOrDefault_HasValue_ReturnsInnerValue" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="1506742829" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000182" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="GetValueOrDefault_NoValue_ReturnsDefault" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.GetValueOrDefault_NoValue_ReturnsDefault" methodname="GetValueOrDefault_NoValue_ReturnsDefault" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="1947228610" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000047" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="GetValueOrThrow_HasValue_ReturnsValue" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.GetValueOrThrow_HasValue_ReturnsValue" methodname="GetValueOrThrow_HasValue_ReturnsValue" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="1726640613" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000066" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1043" name="GetValueOrThrow_NoValue_ThrowsInvalidOperationException" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.GetValueOrThrow_NoValue_ThrowsInvalidOperationException" methodname="GetValueOrThrow_NoValue_ThrowsInvalidOperationException" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="189740648" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000086" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="GetValueOrThrow_NoValueWithCustomException_ThrowsCustom" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.GetValueOrThrow_NoValueWithCustomException_ThrowsCustom" methodname="GetValueOrThrow_NoValueWithCustomException_ThrowsCustom" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="966119672" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000198" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1047" name="Or_HasValue_ReturnsOriginalMaybe" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.Or_HasValue_ReturnsOriginalMaybe" methodname="Or_HasValue_ReturnsOriginalMaybe" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="2047694460" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="Or_NoValue_ReturnsFallbackMaybe" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.Or_NoValue_ReturnsFallbackMaybe" methodname="Or_NoValue_ReturnsFallbackMaybe" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="1149707533" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000055" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1049" name="Or_ValueOverload_HasValue_ReturnsOriginalMaybe" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.Or_ValueOverload_HasValue_ReturnsOriginalMaybe" methodname="Or_ValueOverload_HasValue_ReturnsOriginalMaybe" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="1184865836" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="Or_ValueOverload_NoValue_ReturnsNewMaybe" fullname="NOPE.Tests.MaybeAdvancedExtensionsTests.Or_ValueOverload_NoValue_ReturnsNewMaybe" methodname="Or_ValueOverload_NoValue_ReturnsNewMaybe" classname="NOPE.Tests.MaybeAdvancedExtensionsTests" runstate="Runnable" seed="764266118" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000043" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1051" name="MaybeAsyncExtensionsTests" fullname="NOPE.Tests.MaybeAsyncExtensionsTests" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.019870" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1055" name="Bind_UniTask_ShouldReturnNone_WhenMaybeHasNoValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Bind_UniTask_ShouldReturnNone_WhenMaybeHasNoValue" methodname="Bind_UniTask_ShouldReturnNone_WhenMaybeHasNoValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="1299552276" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000927" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="Bind_UniTask_ShouldReturnTransformedMaybe_WhenMaybeHasValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Bind_UniTask_ShouldReturnTransformedMaybe_WhenMaybeHasValue" methodname="Bind_UniTask_ShouldReturnTransformedMaybe_WhenMaybeHasValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="1285004849" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001253" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1063" name="Finally_UniTask_ShouldExecuteFinalAction_WhenMaybeHasNoValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Finally_UniTask_ShouldExecuteFinalAction_WhenMaybeHasNoValue" methodname="Finally_UniTask_ShouldExecuteFinalAction_WhenMaybeHasNoValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="1163559197" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001767" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1062" name="Finally_UniTask_ShouldExecuteFinalAction_WhenMaybeHasValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Finally_UniTask_ShouldExecuteFinalAction_WhenMaybeHasValue" methodname="Finally_UniTask_ShouldExecuteFinalAction_WhenMaybeHasValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="1037406577" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001351" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="Map_UniTask_ShouldReturnNone_WhenMaybeHasNoValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Map_UniTask_ShouldReturnNone_WhenMaybeHasNoValue" methodname="Map_UniTask_ShouldReturnNone_WhenMaybeHasNoValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="2126697029" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001314" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1052" name="Map_UniTask_ShouldTransformValue_WhenMaybeHasValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Map_UniTask_ShouldTransformValue_WhenMaybeHasValue" methodname="Map_UniTask_ShouldTransformValue_WhenMaybeHasValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="614359597" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001258" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1061" name="Match_UniTask_AsyncResult_AsyncHandlers_WhenHasValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Match_UniTask_AsyncResult_AsyncHandlers_WhenHasValue" methodname="Match_UniTask_AsyncResult_AsyncHandlers_WhenHasValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="183396439" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001652" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1060" name="Match_UniTask_AsyncResult_SyncHandlers_WhenHasValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Match_UniTask_AsyncResult_SyncHandlers_WhenHasValue" methodname="Match_UniTask_AsyncResult_SyncHandlers_WhenHasValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="597272341" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001399" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="Match_UniTask_ShouldReturnOnNoneResult_WhenMaybeHasNoValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Match_UniTask_ShouldReturnOnNoneResult_WhenMaybeHasNoValue" methodname="Match_UniTask_ShouldReturnOnNoneResult_WhenMaybeHasNoValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="1379481881" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001533" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="Match_UniTask_ShouldReturnOnValueResult_WhenMaybeHasValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Match_UniTask_ShouldReturnOnValueResult_WhenMaybeHasValue" methodname="Match_UniTask_ShouldReturnOnValueResult_WhenMaybeHasValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="291922649" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.002870" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="Tap_UniTask_ShouldExecuteAction_WhenMaybeHasValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Tap_UniTask_ShouldExecuteAction_WhenMaybeHasValue" methodname="Tap_UniTask_ShouldExecuteAction_WhenMaybeHasValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="2015785735" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001638" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="Tap_UniTask_ShouldNotExecuteAction_WhenMaybeHasNoValue" fullname="NOPE.Tests.MaybeAsyncExtensionsTests.Tap_UniTask_ShouldNotExecuteAction_WhenMaybeHasNoValue" methodname="Tap_UniTask_ShouldNotExecuteAction_WhenMaybeHasNoValue" classname="NOPE.Tests.MaybeAsyncExtensionsTests" runstate="Runnable" seed="1114733483" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001199" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1064" name="MaybeLinqTests" fullname="NOPE.Tests.MaybeLinqTests" classname="NOPE.Tests.MaybeLinqTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001672" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1067" name="LinqSyntax_SelectMany_ReturnsExpectedResult" fullname="NOPE.Tests.MaybeLinqTests.LinqSyntax_SelectMany_ReturnsExpectedResult" methodname="LinqSyntax_SelectMany_ReturnsExpectedResult" classname="NOPE.Tests.MaybeLinqTests" runstate="Runnable" seed="29178641" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000227" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1068" name="LinqSyntax_SelectMany_ReturnsNoneIfAnyNone" fullname="NOPE.Tests.MaybeLinqTests.LinqSyntax_SelectMany_ReturnsNoneIfAnyNone" methodname="LinqSyntax_SelectMany_ReturnsNoneIfAnyNone" classname="NOPE.Tests.MaybeLinqTests" runstate="Runnable" seed="1997173466" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000076" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1065" name="LinqSyntax_SimpleQuery_ReturnsExpectedResult" fullname="NOPE.Tests.MaybeLinqTests.LinqSyntax_SimpleQuery_ReturnsExpectedResult" methodname="LinqSyntax_SimpleQuery_ReturnsExpectedResult" classname="NOPE.Tests.MaybeLinqTests" runstate="Runnable" seed="830095579" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000166" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1066" name="LinqSyntax_WhereClause_ReturnsNoneIfConditionNotMet" fullname="NOPE.Tests.MaybeLinqTests.LinqSyntax_WhereClause_ReturnsNoneIfConditionNotMet" methodname="LinqSyntax_WhereClause_ReturnsNoneIfConditionNotMet" classname="NOPE.Tests.MaybeLinqTests" runstate="Runnable" seed="1100910044" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000062" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1069" name="NOPEPracticalTests" fullname="NOPE.Tests.NOPEPracticalTests" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.012829" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1079" name="Async_Chain_Result" fullname="NOPE.Tests.NOPEPracticalTests.Async_Chain_Result" methodname="Async_Chain_Result" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="1510103196" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.004169" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1070" name="CombineAndCombineValues_Sync" fullname="NOPE.Tests.NOPEPracticalTests.CombineAndCombineValues_Sync" methodname="CombineAndCombineValues_Sync" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="1842010444" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.001004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1077" name="CombineValues_Example" fullname="NOPE.Tests.NOPEPracticalTests.CombineValues_Example" methodname="CombineValues_Example" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="1901490207" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1080" name="Maybe_Async_Example" fullname="NOPE.Tests.NOPEPracticalTests.Maybe_Async_Example" methodname="Maybe_Async_Example" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="1189600831" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.004181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1073" name="Maybe_Collection_Utils" fullname="NOPE.Tests.NOPEPracticalTests.Maybe_Collection_Utils" methodname="Maybe_Collection_Utils" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="958465995" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000167" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1074" name="Maybe_Linq_Syntax" fullname="NOPE.Tests.NOPEPracticalTests.Maybe_Linq_Syntax" methodname="Maybe_Linq_Syntax" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="843974900" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000090" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1081" name="MixedScenario_Sync" fullname="NOPE.Tests.NOPEPracticalTests.MixedScenario_Sync" methodname="MixedScenario_Sync" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="2146785281" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000418" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1072" name="Of_WrapsExceptions" fullname="NOPE.Tests.NOPEPracticalTests.Of_WrapsExceptions" methodname="Of_WrapsExceptions" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="513720309" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000161" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1078" name="Readme_TestBed" fullname="NOPE.Tests.NOPEPracticalTests.Readme_TestBed" methodname="Readme_TestBed" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="1201583088" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000132" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1075" name="Result_Implicit_Conversion" fullname="NOPE.Tests.NOPEPracticalTests.Result_Implicit_Conversion" methodname="Result_Implicit_Conversion" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="793922885" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000123" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1076" name="Result_ValueLess_Combine" fullname="NOPE.Tests.NOPEPracticalTests.Result_ValueLess_Combine" methodname="Result_ValueLess_Combine" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="706634158" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000117" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1071" name="SuccessIf_And_FailureIf" fullname="NOPE.Tests.NOPEPracticalTests.SuccessIf_And_FailureIf" methodname="SuccessIf_And_FailureIf" classname="NOPE.Tests.NOPEPracticalTests" runstate="Runnable" seed="557857463" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:12Z" duration="0.000141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestSuite" id="1150" name="PerformanceBenchmarks" fullname="NOPE.Tests.PerformanceBenchmarks" runstate="Runnable" testcasecount="25" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:56:56Z" duration="103.171396" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1117" name="CSharpFunctionalExtensionsPerformanceTests" fullname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests" classname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:33Z" duration="20.309060" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1119" name="Bind_CSharpFunctionalExtensions" fullname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.Bind_CSharpFunctionalExtensions" methodname="Bind_CSharpFunctionalExtensions" classname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests" runstate="Runnable" seed="950906301" result="Passed" start-time="2025-01-28 14:55:12Z" end-time="2025-01-28 14:55:17Z" duration="4.213413" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CSharpFunctionalExtensions_Bind.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		359.50 
+Avg:		18.34 
+StdDev:		69.67 
+SampleCount:	25
+Sum:		458.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▁▁▁▁▁
+
+CSharpFunctionalExtensions_Bind in Milliseconds
+Min:		12.42 ms
+Median:		12.84 ms
+Max:		13.37 ms
+Avg:		12.84 ms
+StdDev:		0.23 ms
+SampleCount:	20
+Sum:		256.87 ms
+First samples:	▄▃▆▅▃▁▄▂▅▄▄▄▂▅█▅▄▃▂▇
+Histogram:	█▃▃▂▂▁
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.Bind_CSharpFunctionalExtensions","ClassName":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests","MethodName":"Bind_CSharpFunctionalExtensions","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"CSharpFunctionalExtensions_Bind.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[359.5,3.0,3.0,3.0,7.5,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0],"Min":3.0,"Max":359.5,"Median":3.0,"Average":18.34,"StandardDeviation":69.66515915434346,"Sum":458.5},{"Name":"CSharpFunctionalExtensions_Bind","Unit":2,"IncreaseIsBetter":false,"Samples":[12.862900000000082,12.754400000000033,13.063100000000077,13.027399999999944,12.643000000000029,12.423199999999952,12.777000000000044,12.539699999999812,12.935699999999997,12.856900000000224,12.80179999999973,12.853700000000118,12.60089999999991,12.943299999999909,13.372299999999996,12.995200000000296,12.826799999999821,12.725600000000214,12.558800000000247,13.303699999999936],"Min":12.423199999999952,"Max":13.372299999999996,"Median":12.840249999999969,"Average":12.843270000000019,"StandardDeviation":0.23376530987296258,"Sum":256.86540000000039}]}
+##performancetestruninfo2:{"TestSuite":"Editmode","Date":1738076112792,"Player":{"Development":true,"ScreenWidth":6016,"ScreenHeight":3384,"ScreenRefreshRate":60,"Fullscreen":false,"Vsync":0,"AntiAliasing":0,"Batchmode":false,"RenderThreadingMode":"MultiThreaded","GpuSkinning":true,"Platform":"OSXEditor","ColorSpace":"Linear","AnisotropicFiltering":"ForceEnable","BlendWeights":"FourBones","GraphicsApi":"Metal","ScriptingBackend":"Mono2x","AndroidTargetSdkVersion":"AndroidApiLevelAuto","AndroidBuildSystem":"Gradle","BuildTarget":"StandaloneOSX","StereoRenderingPath":"MultiPass"},"Hardware":{"OperatingSystem":"Mac OS X 15.1.0","DeviceModel":"Mac16,5","DeviceName":"Kwanjoong의 MacBook Pro","ProcessorType":"Apple M4 Max","ProcessorCount":16,"GraphicsDeviceName":"Apple M4 Max","SystemMemorySizeMB":65536},"Editor":{"Version":"6000.0.34f1","Branch":"6000.0/staging","Changeset":"5ab2d9ed9190","Date":1736176501},"Dependencies":["com.cysharp.unitask@2.5.10","com.github-glitchenzo.nugetforunity@4.2.0","com.unity.ai.navigation@2.0.5","com.unity.collab-proxy@2.6.0","com.unity.ide.rider@3.0.31","com.unity.ide.visualstudio@2.0.22","com.unity.inputsystem@1.11.2","com.unity.multiplayer.center@1.0.0","com.unity.render-pipelines.universal@17.0.3","com.unity.test-framework@1.4.5","com.unity.timeline@1.8.7","com.unity.ugui@2.0.0","com.unity.visualscripting@1.9.5","com.unity.modules.accessibility@1.0.0","com.unity.modules.ai@1.0.0","com.unity.modules.androidjni@1.0.0","com.unity.modules.animation@1.0.0","com.unity.modules.assetbundle@1.0.0","com.unity.modules.audio@1.0.0","com.unity.modules.cloth@1.0.0","com.unity.modules.director@1.0.0","com.unity.modules.imageconversion@1.0.0","com.unity.modules.imgui@1.0.0","com.unity.modules.jsonserialize@1.0.0","com.unity.modules.particlesystem@1.0.0","com.unity.modules.physics@1.0.0","com.unity.modules.physics2d@1.0.0","com.unity.modules.screencapture@1.0.0","com.unity.modules.terrain@1.0.0","com.unity.modules.terrainphysics@1.0.0","com.unity.modules.tilemap@1.0.0","com.unity.modules.ui@1.0.0","com.unity.modules.uielements@1.0.0","com.unity.modules.umbra@1.0.0","com.unity.modules.unityanalytics@1.0.0","com.unity.modules.unitywebrequest@1.0.0","com.unity.modules.unitywebrequestassetbundle@1.0.0","com.unity.modules.unitywebrequestaudio@1.0.0","com.unity.modules.unitywebrequesttexture@1.0.0","com.unity.modules.unitywebrequestwww@1.0.0","com.unity.modules.vehicles@1.0.0","com.unity.modules.video@1.0.0","com.unity.modules.vr@1.0.0","com.unity.modules.wind@1.0.0","com.unity.modules.xr@1.0.0","com.kwanjoong.nope@1.0.0","com.unity.modules.subsystems@1.0.0","com.unity.modules.hierarchycore@1.0.0","com.unity.ext.nunit@2.0.5","com.unity.render-pipelines.core@17.0.3","com.unity.shadergraph@17.0.3","com.unity.render-pipelines.universal-config@17.0.3","com.unity.searcher@4.9.2","com.unity.burst@1.8.18","com.unity.mathematics@1.3.2","com.unity.collections@2.5.1","com.unity.rendering.light-transport@1.0.1","com.unity.nuget.mono-cecil@1.11.4","com.unity.test-framework.performance@3.0.3"],"Results":[]}
+]]></output>
+              </test-case>
+              <test-case id="1118" name="CreateSuccess_Failure_CSharpFunctionalExtensions" fullname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.CreateSuccess_Failure_CSharpFunctionalExtensions" methodname="CreateSuccess_Failure_CSharpFunctionalExtensions" classname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests" runstate="Runnable" seed="1725432835" result="Passed" start-time="2025-01-28 14:55:17Z" end-time="2025-01-28 14:55:21Z" duration="4.099900" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CSharpFunctionalExtensions_CreateResult.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		7.50 
+Avg:		4.10 
+StdDev:		1.91 
+SampleCount:	25
+Sum:		102.50 
+First samples:	▂█▁▁▁█▁▁▁█▁▁▁█▁▁▁█▁▁▁█▁▁▁
+Histogram:	█▂▂▁▁▂
+
+CSharpFunctionalExtensions_CreateResult in Milliseconds
+Min:		8.14 ms
+Median:		8.61 ms
+Max:		10.00 ms
+Avg:		8.73 ms
+StdDev:		0.47 ms
+SampleCount:	20
+Sum:		174.51 ms
+First samples:	▂▃▂▃▇▁▃▃▇▃█▃▃▂▃▃▃▂▂▂
+Histogram:	█▄▂▂▁▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.CreateSuccess_Failure_CSharpFunctionalExtensions","ClassName":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests","MethodName":"CreateSuccess_Failure_CSharpFunctionalExtensions","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"CSharpFunctionalExtensions_CreateResult.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0],"Min":3.0,"Max":7.5,"Median":3.0,"Average":4.1,"StandardDeviation":1.9131126469708988,"Sum":102.5},{"Name":"CSharpFunctionalExtensions_CreateResult","Unit":2,"IncreaseIsBetter":false,"Samples":[8.359500000000026,8.552599999999984,8.529400000000124,8.649900000000116,9.726599999999963,8.137500000000046,8.596900000000005,8.721099999999979,9.616199999999936,8.674199999999928,9.997000000000299,8.60590000000002,8.74579999999969,8.48090000000002,8.770300000000134,8.615700000000289,8.63760000000002,8.347699999999805,8.423600000000079,8.324099999999817],"Min":8.137500000000046,"Max":9.997000000000299,"Median":8.610800000000154,"Average":8.725625000000014,"StandardDeviation":0.47310394933357977,"Sum":174.51250000000028}]}
+]]></output>
+              </test-case>
+              <test-case id="1122" name="Ensure_CSharpFunctionalExtensions" fullname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.Ensure_CSharpFunctionalExtensions" methodname="Ensure_CSharpFunctionalExtensions" classname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests" runstate="Runnable" seed="579845429" result="Passed" start-time="2025-01-28 14:55:21Z" end-time="2025-01-28 14:55:25Z" duration="3.946322" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CSharpFunctionalExtensions_Ensure.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		7.50 
+Avg:		4.12 
+StdDev:		1.91 
+SampleCount:	25
+Sum:		103.00 
+First samples:	▃▁▁█▁▁▁█▁▁▁█▁▁▁█▁▁▁█▁▁▁█▁
+Histogram:	█▃▂▁▁▂
+
+CSharpFunctionalExtensions_Ensure in Milliseconds
+Min:		2.26 ms
+Median:		2.36 ms
+Max:		2.43 ms
+Avg:		2.35 ms
+StdDev:		0.05 ms
+SampleCount:	20
+Sum:		47.04 ms
+First samples:	▆▅▅▅▄▄▇▇▃▆██▄▁▇▆▂▃▂▆
+Histogram:	█▄▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.Ensure_CSharpFunctionalExtensions","ClassName":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests","MethodName":"Ensure_CSharpFunctionalExtensions","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"CSharpFunctionalExtensions_Ensure.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[4.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0],"Min":3.0,"Max":7.5,"Median":3.0,"Average":4.12,"StandardDeviation":1.9093454375780197,"Sum":103.0},{"Name":"CSharpFunctionalExtensions_Ensure","Unit":2,"IncreaseIsBetter":false,"Samples":[2.3739000000000489,2.3532000000000155,2.360200000000077,2.3607999999999267,2.3397999999999685,2.320399999999836,2.4023999999999434,2.3950999999999569,2.3067000000000918,2.3816000000001624,2.4178000000001704,2.429399999999987,2.3234999999999674,2.2561000000000606,2.3943999999996778,2.382300000000214,2.291099999999915,2.2990999999997259,2.274199999999837,2.379699999999957],"Min":2.2561000000000606,"Max":2.429399999999987,"Median":2.360500000000002,"Average":2.3520849999999768,"StandardDeviation":0.04768210644469468,"Sum":47.04169999999954}]}
+]]></output>
+              </test-case>
+              <test-case id="1120" name="Map_CSharpFunctionalExtensions" fullname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.Map_CSharpFunctionalExtensions" methodname="Map_CSharpFunctionalExtensions" classname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests" runstate="Runnable" seed="1298319447" result="Passed" start-time="2025-01-28 14:55:25Z" end-time="2025-01-28 14:55:29Z" duration="4.103594" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CSharpFunctionalExtensions_Map.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		7.50 
+Avg:		4.10 
+StdDev:		1.91 
+SampleCount:	25
+Sum:		102.50 
+First samples:	▂█▁▁▁█▁▁▁█▁▁▁█▁▁▁█▁▁▁█▁▁▁
+Histogram:	█▃▂▂▁▃
+
+CSharpFunctionalExtensions_Map in Milliseconds
+Min:		9.34 ms
+Median:		9.54 ms
+Max:		10.05 ms
+Avg:		9.59 ms
+StdDev:		0.18 ms
+SampleCount:	20
+Sum:		191.70 ms
+First samples:	▄▁▇▄▃▂▃▂▄▁▃▂█▄▂▃▃▆▃▂
+Histogram:	█▄▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.Map_CSharpFunctionalExtensions","ClassName":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests","MethodName":"Map_CSharpFunctionalExtensions","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"CSharpFunctionalExtensions_Map.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0],"Min":3.0,"Max":7.5,"Median":3.0,"Average":4.1,"StandardDeviation":1.9131126469708988,"Sum":102.5},{"Name":"CSharpFunctionalExtensions_Map","Unit":2,"IncreaseIsBetter":false,"Samples":[9.611299999999915,9.387900000000173,9.971499999999879,9.646600000000035,9.516000000000077,9.459699999999885,9.514300000000049,9.466599999999972,9.65480000000025,9.339800000000196,9.555699999999888,9.415399999999864,10.047199999999976,9.666999999999917,9.477899999999864,9.56309999999985,9.496599999999944,9.878499999999804,9.592299999999796,9.4378999999999],"Min":9.339800000000196,"Max":10.047199999999976,"Median":9.535849999999983,"Average":9.585004999999962,"StandardDeviation":0.18367963271682687,"Sum":191.70009999999923}]}
+]]></output>
+              </test-case>
+              <test-case id="1121" name="Tap_CSharpFunctionalExtensions" fullname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.Tap_CSharpFunctionalExtensions" methodname="Tap_CSharpFunctionalExtensions" classname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests" runstate="Runnable" seed="120001239" result="Passed" start-time="2025-01-28 14:55:29Z" end-time="2025-01-28 14:55:33Z" duration="3.944975" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CSharpFunctionalExtensions_Tap.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		7.50 
+Avg:		4.10 
+StdDev:		1.91 
+SampleCount:	25
+Sum:		102.50 
+First samples:	▂▁▁█▁▁▁█▁▁▁█▁▁▁█▁▁▁█▁▁▁█▁
+Histogram:	█▃▂▂▁▃
+
+CSharpFunctionalExtensions_Tap in Milliseconds
+Min:		2.18 ms
+Median:		2.30 ms
+Max:		2.36 ms
+Avg:		2.29 ms
+StdDev:		0.05 ms
+SampleCount:	20
+Sum:		45.80 ms
+First samples:	▆▁▃▃▄▇▆▆▅▃▇▇▅▅█▄▇▆█▆
+Histogram:	█▄▂▂▂▃
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests.Tap_CSharpFunctionalExtensions","ClassName":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensionsPerformanceTests","MethodName":"Tap_CSharpFunctionalExtensions","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"CSharpFunctionalExtensions_Tap.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0],"Min":3.0,"Max":7.5,"Median":3.0,"Average":4.1,"StandardDeviation":1.9131126469708993,"Sum":102.5},{"Name":"CSharpFunctionalExtensions_Tap","Unit":2,"IncreaseIsBetter":false,"Samples":[2.2993999999999916,2.1813999999999398,2.2215000000001057,2.2244000000000598,2.262200000000121,2.3331000000000587,2.309400000000096,2.300999999999931,2.27599999999984,2.2354999999997746,2.329200000000128,2.333799999999883,2.2813999999998488,2.2807000000002519,2.3573999999998707,2.2674999999999274,2.328399999999874,2.3040000000000875,2.3578999999999725,2.315099999999802],"Min":2.1813999999999398,"Max":2.3578999999999725,"Median":2.300199999999961,"Average":2.2899649999999784,"StandardDeviation":0.04623174531638561,"Sum":45.79929999999956}]}
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1123" name="LanguageExtPerformanceTests" fullname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests" classname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-01-28 14:55:33Z" end-time="2025-01-28 14:55:52Z" duration="19.655669" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1125" name="Bind_LangExt" fullname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.Bind_LangExt" methodname="Bind_LangExt" classname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests" runstate="Runnable" seed="554584251" result="Passed" start-time="2025-01-28 14:55:33Z" end-time="2025-01-28 14:55:37Z" duration="3.939688" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[LanguageExt_Bind.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		5.00 
+Avg:		3.08 
+StdDev:		0.39 
+SampleCount:	25
+Sum:		77.00 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▃▂▂▁▂
+
+LanguageExt_Bind in Milliseconds
+Min:		0.83 ms
+Median:		0.87 ms
+Max:		0.91 ms
+Avg:		0.87 ms
+StdDev:		0.02 ms
+SampleCount:	20
+Sum:		17.40 ms
+First samples:	▁▂▆▆██▂▄▄▄▅▄▂▅▅▃▄▅▆▆
+Histogram:	█▃▃▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.Bind_LangExt","ClassName":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests","MethodName":"Bind_LangExt","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"LanguageExt_Bind.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[5.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":5.0,"Median":3.0,"Average":3.08,"StandardDeviation":0.39191835884530876,"Sum":77.0},{"Name":"LanguageExt_Bind","Unit":2,"IncreaseIsBetter":false,"Samples":[0.8315999999999804,0.84050000000002,0.8878999999999451,0.8890000000001237,0.9038000000000466,0.9071000000001277,0.842200000000048,0.8671999999999116,0.8657000000002881,0.858600000000024,0.8708999999998923,0.8679999999999382,0.847400000000107,0.8731000000002496,0.8726000000001477,0.857600000000275,0.8653999999996813,0.8789999999999054,0.8908999999998741,0.8836999999998625],"Min":0.8315999999999804,"Max":0.9071000000001277,"Median":0.8694499999999152,"Average":0.8701100000000224,"StandardDeviation":0.01985738905293606,"Sum":17.402200000000449}]}
+]]></output>
+              </test-case>
+              <test-case id="1124" name="CreateSuccess_Failure_LangExt" fullname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.CreateSuccess_Failure_LangExt" methodname="CreateSuccess_Failure_LangExt" classname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests" runstate="Runnable" seed="1859649567" result="Passed" start-time="2025-01-28 14:55:37Z" end-time="2025-01-28 14:55:41Z" duration="3.890618" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[LanguageExt_CreateResult.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.00 
+Avg:		3.00 
+StdDev:		0.00 
+SampleCount:	25
+Sum:		75.00 
+First samples:	▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▃▂▂▁▂
+
+LanguageExt_CreateResult in Milliseconds
+Min:		0.32 ms
+Median:		0.32 ms
+Max:		0.34 ms
+Avg:		0.32 ms
+StdDev:		0.01 ms
+SampleCount:	20
+Sum:		6.46 ms
+First samples:	▃█▁▁▁▅▄▁▅▇▂▁▁▁▅▇▂▂▃▃
+Histogram:	█▃▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.CreateSuccess_Failure_LangExt","ClassName":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests","MethodName":"CreateSuccess_Failure_LangExt","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"LanguageExt_CreateResult.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.0,"Median":3.0,"Average":3.0,"StandardDeviation":0.0,"Sum":75.0},{"Name":"LanguageExt_CreateResult","Unit":2,"IncreaseIsBetter":false,"Samples":[0.32170000000007806,0.3367000000000644,0.31750000000010916,0.31790000000000875,0.3164999999999054,0.32799999999997456,0.3247000000001208,0.3170000000000073,0.32780000000002476,0.33479999999963186,0.31870000000026268,0.31790000000000875,0.3168000000000575,0.3174999999996544,0.3269000000000233,0.3351999999999862,0.3180999999999585,0.3202000000001135,0.3220000000001164,0.32310000000006769],"Min":0.3164999999999054,"Max":0.3367000000000644,"Median":0.32095000000009579,"Average":0.3229500000000087,"StandardDeviation":0.006419151034183854,"Sum":6.459000000000174}]}
+]]></output>
+              </test-case>
+              <test-case id="1128" name="Ensure_LangExt" fullname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.Ensure_LangExt" methodname="Ensure_LangExt" classname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests" runstate="Runnable" seed="246216606" result="Passed" start-time="2025-01-28 14:55:41Z" end-time="2025-01-28 14:55:44Z" duration="3.945097" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[LanguageExt_Ensure.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.50 
+Avg:		3.02 
+StdDev:		0.10 
+SampleCount:	25
+Sum:		75.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▃▂▂▂▂
+
+LanguageExt_Ensure in Milliseconds
+Min:		0.27 ms
+Median:		0.28 ms
+Max:		0.30 ms
+Avg:		0.28 ms
+StdDev:		0.01 ms
+SampleCount:	20
+Sum:		5.57 ms
+First samples:	▄▂▂▃▂▁▄▅▁▂▁▃▅▃█▁▁▂▃▂
+Histogram:	█▃▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.Ensure_LangExt","ClassName":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests","MethodName":"Ensure_LangExt","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"LanguageExt_Ensure.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.5,"Median":3.0,"Average":3.02,"StandardDeviation":0.09797958971132719,"Sum":75.5},{"Name":"LanguageExt_Ensure","Unit":2,"IncreaseIsBetter":false,"Samples":[0.2841999999999416,0.27519999999981339,0.27289999999993599,0.2817000000000007,0.2766999999998916,0.2703999999998814,0.2828999999999269,0.2884999999998854,0.2701999999999316,0.2739999999998872,0.2701000000001841,0.2777000000000953,0.2880000000000109,0.28110000000015136,0.3038000000001375,0.27040000000033617,0.2701999999999316,0.2744999999999891,0.2816000000002532,0.27300000000013827],"Min":0.2701000000001841,"Max":0.3038000000001375,"Median":0.2759499999998525,"Average":0.2783550000000162,"StandardDeviation":0.008247937621016062,"Sum":5.567100000000323}]}
+]]></output>
+              </test-case>
+              <test-case id="1126" name="Map_LangExt" fullname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.Map_LangExt" methodname="Map_LangExt" classname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests" runstate="Runnable" seed="349851692" result="Passed" start-time="2025-01-28 14:55:44Z" end-time="2025-01-28 14:55:48Z" duration="3.961350" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[LanguageExt_Map.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.50 
+Avg:		3.02 
+StdDev:		0.10 
+SampleCount:	25
+Sum:		75.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▃▂▂▁▂
+
+LanguageExt_Map in Milliseconds
+Min:		0.55 ms
+Median:		0.58 ms
+Max:		0.63 ms
+Avg:		0.58 ms
+StdDev:		0.02 ms
+SampleCount:	20
+Sum:		11.63 ms
+First samples:	▃▄▁▂▃▄▅▄▂▅▅▁▄█▃▃▂▃▂▆
+Histogram:	█▃▂▂▁▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.Map_LangExt","ClassName":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests","MethodName":"Map_LangExt","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"LanguageExt_Map.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.5,"Median":3.0,"Average":3.02,"StandardDeviation":0.09797958971132719,"Sum":75.5},{"Name":"LanguageExt_Map","Unit":2,"IncreaseIsBetter":false,"Samples":[0.5794000000000779,0.5825999999999567,0.5571999999999662,0.5663999999999305,0.575800000000072,0.5878999999999905,0.5947000000001026,0.5860999999999876,0.5649999999995998,0.5961999999999534,0.5990999999999076,0.5543000000002394,0.5864000000001397,0.6295000000000073,0.5771999999997206,0.5774000000001252,0.5628999999998996,0.5715000000000146,0.570299999999861,0.6096000000002277],"Min":0.5543000000002394,"Max":0.6295000000000073,"Median":0.5784000000001015,"Average":0.581474999999989,"StandardDeviation":0.017825848507186587,"Sum":11.62949999999978}]}
+]]></output>
+              </test-case>
+              <test-case id="1127" name="Tap_LangExt" fullname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.Tap_LangExt" methodname="Tap_LangExt" classname="NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests" runstate="Runnable" seed="1688615413" result="Passed" start-time="2025-01-28 14:55:48Z" end-time="2025-01-28 14:55:52Z" duration="3.916979" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[LanguageExt_Tap.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.50 
+Avg:		3.02 
+StdDev:		0.10 
+SampleCount:	25
+Sum:		75.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▃▂▂▁▂
+
+LanguageExt_Tap in Milliseconds
+Min:		0.34 ms
+Median:		0.34 ms
+Max:		0.36 ms
+Avg:		0.34 ms
+StdDev:		0.01 ms
+SampleCount:	20
+Sum:		6.84 ms
+First samples:	▁▁▁▁▁▁▁▁▆▇▂▁▆▁▂▂▃▁▂█
+Histogram:	█▃▂▂▁▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests.Tap_LangExt","ClassName":"NOPE.Tests.PerformanceBenchmarks.LanguageExtPerformanceTests","MethodName":"Tap_LangExt","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"LanguageExt_Tap.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.5,"Median":3.0,"Average":3.02,"StandardDeviation":0.09797958971132719,"Sum":75.5},{"Name":"LanguageExt_Tap","Unit":2,"IncreaseIsBetter":false,"Samples":[0.33710000000007769,0.3367000000000644,0.3367000000000644,0.3369999999999891,0.3368000000000393,0.3369000000000142,0.3364999999998872,0.3369000000000142,0.3548000000000684,0.3580000000001746,0.34149999999999638,0.3369999999999891,0.35410000000001676,0.336699999999837,0.33930000000009388,0.33930000000009388,0.3427999999998974,0.3368000000000393,0.33969999999999347,0.36360000000013317],"Min":0.3364999999998872,"Max":0.36360000000013317,"Median":0.3370500000000334,"Average":0.3419100000000242,"StandardDeviation":0.008209866015996829,"Sum":6.838200000000484}]}
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1129" name="NOPEPerformanceTests_ValueTypeError" fullname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError" classname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-01-28 14:55:52Z" end-time="2025-01-28 14:56:12Z" duration="19.863352" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1131" name="Bind_NOPE_EnumError" fullname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.Bind_NOPE_EnumError" methodname="Bind_NOPE_EnumError" classname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError" runstate="Runnable" seed="1676817633" result="Passed" start-time="2025-01-28 14:55:52Z" end-time="2025-01-28 14:55:56Z" duration="3.960342" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NOPE_Bind_EnumError.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		4.50 
+Avg:		3.06 
+StdDev:		0.29 
+SampleCount:	25
+Sum:		76.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▃▂▂▁▂
+
+NOPE_Bind_EnumError in Milliseconds
+Min:		1.69 ms
+Median:		1.84 ms
+Max:		1.87 ms
+Avg:		1.82 ms
+StdDev:		0.04 ms
+SampleCount:	20
+Sum:		36.47 ms
+First samples:	▅▅▇▆▆▇▅█▅▇▆▇▇█▄█▇▅▇▁
+Histogram:	█▃▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.Bind_NOPE_EnumError","ClassName":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError","MethodName":"Bind_NOPE_EnumError","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"NOPE_Bind_EnumError.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[4.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":4.5,"Median":3.0,"Average":3.06,"StandardDeviation":0.2939387691339814,"Sum":76.5},{"Name":"NOPE_Bind_EnumError","Unit":2,"IncreaseIsBetter":false,"Samples":[1.800200000000018,1.7964999999999237,1.8361999999999626,1.8342999999999848,1.8309999999999037,1.8500000000001365,1.8063999999999397,1.8614999999999782,1.8027999999999338,1.8510999999998604,1.8240999999998167,1.8370999999997367,1.846900000000005,1.8713999999999942,1.7608000000000175,1.8730000000000474,1.8497000000002118,1.7946999999999208,1.847400000000107,1.69399999999996],"Min":1.69399999999996,"Max":1.8730000000000474,"Median":1.8352499999999737,"Average":1.823454999999973,"StandardDeviation":0.040927441588761149,"Sum":36.46909999999946}]}
+]]></output>
+              </test-case>
+              <test-case id="1130" name="CreateSuccess_Failure_NOPE_EnumError" fullname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.CreateSuccess_Failure_NOPE_EnumError" methodname="CreateSuccess_Failure_NOPE_EnumError" classname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError" runstate="Runnable" seed="52765854" result="Passed" start-time="2025-01-28 14:55:56Z" end-time="2025-01-28 14:56:00Z" duration="3.988631" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NOPE_CreateResult_EnumError.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.00 
+Avg:		3.00 
+StdDev:		0.00 
+SampleCount:	25
+Sum:		75.00 
+First samples:	▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▂▂▂▁▂
+
+NOPE_CreateResult_EnumError in Milliseconds
+Min:		1.43 ms
+Median:		1.50 ms
+Max:		1.54 ms
+Avg:		1.50 ms
+StdDev:		0.02 ms
+SampleCount:	20
+Sum:		30.04 ms
+First samples:	▅▁▆▅▆▆▆▅▇▇▄▅▆▅▇█▅▅▅▆
+Histogram:	█▂▂▂▁▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.CreateSuccess_Failure_NOPE_EnumError","ClassName":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError","MethodName":"CreateSuccess_Failure_NOPE_EnumError","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"NOPE_CreateResult_EnumError.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.0,"Median":3.0,"Average":3.0,"StandardDeviation":0.0,"Sum":75.0},{"Name":"NOPE_CreateResult_EnumError","Unit":2,"IncreaseIsBetter":false,"Samples":[1.489500000000021,1.4335999999998422,1.5140000000001238,1.4985000000001492,1.5075000000001638,1.5036000000000059,1.5153999999999997,1.5009999999999764,1.5246999999999389,1.5187000000000808,1.4834999999998218,1.4979000000002998,1.5079000000000634,1.499000000000251,1.5190999999999804,1.540400000000318,1.4869999999996253,1.4884000000001834,1.5001999999999499,1.5127999999999702],"Min":1.4335999999998422,"Max":1.540400000000318,"Median":1.502299999999991,"Average":1.5021350000000383,"StandardDeviation":0.020854166849885768,"Sum":30.042700000000765}]}
+]]></output>
+              </test-case>
+              <test-case id="1134" name="Ensure_NOPE_EnumError" fullname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.Ensure_NOPE_EnumError" methodname="Ensure_NOPE_EnumError" classname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError" runstate="Runnable" seed="1926203686" result="Passed" start-time="2025-01-28 14:56:00Z" end-time="2025-01-28 14:56:04Z" duration="3.973956" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NOPE_Ensure_EnumError.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.50 
+Avg:		3.02 
+StdDev:		0.10 
+SampleCount:	25
+Sum:		75.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▂▂▂▁▂
+
+NOPE_Ensure_EnumError in Milliseconds
+Min:		0.79 ms
+Median:		0.84 ms
+Max:		0.87 ms
+Avg:		0.84 ms
+StdDev:		0.02 ms
+SampleCount:	20
+Sum:		16.78 ms
+First samples:	▆▁▆▅▅▄▅▃▇▇▅▆▆▇▅▇█▆▅▄
+Histogram:	█▂▂▂▁▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.Ensure_NOPE_EnumError","ClassName":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError","MethodName":"Ensure_NOPE_EnumError","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"NOPE_Ensure_EnumError.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.5,"Median":3.0,"Average":3.02,"StandardDeviation":0.09797958971132719,"Sum":75.5},{"Name":"NOPE_Ensure_EnumError","Unit":2,"IncreaseIsBetter":false,"Samples":[0.8484999999999445,0.7904000000000906,0.8428999999998723,0.8346999999998843,0.8314000000000306,0.8206000000000131,0.837099999999964,0.8130000000001019,0.8521999999998116,0.8550000000000182,0.8369999999999891,0.8482999999996537,0.8488999999999578,0.8557000000000699,0.8371000000001914,0.8497000000002117,0.8657999999995809,0.8485999999998057,0.8326000000001841,0.82779999999957],"Min":0.7904000000000906,"Max":0.8657999999995809,"Median":0.8400000000000318,"Average":0.8388649999999472,"StandardDeviation":0.016664341421069336,"Sum":16.777299999998946}]}
+]]></output>
+              </test-case>
+              <test-case id="1132" name="Map_NOPE_EnumError" fullname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.Map_NOPE_EnumError" methodname="Map_NOPE_EnumError" classname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError" runstate="Runnable" seed="1302792058" result="Passed" start-time="2025-01-28 14:56:04Z" end-time="2025-01-28 14:56:08Z" duration="3.995105" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NOPE_Map_EnumError.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.50 
+Avg:		3.02 
+StdDev:		0.10 
+SampleCount:	25
+Sum:		75.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▂▂▂▁▂
+
+NOPE_Map_EnumError in Milliseconds
+Min:		1.33 ms
+Median:		1.41 ms
+Max:		1.45 ms
+Avg:		1.40 ms
+StdDev:		0.03 ms
+SampleCount:	20
+Sum:		27.93 ms
+First samples:	▆▂▂▅▆▆▅▂▆▆▅▅▁▄▂▇▆▇█▇
+Histogram:	█▂▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.Map_NOPE_EnumError","ClassName":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError","MethodName":"Map_NOPE_EnumError","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"NOPE_Map_EnumError.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.5,"Median":3.0,"Average":3.02,"StandardDeviation":0.09797958971132719,"Sum":75.5},{"Name":"NOPE_Map_EnumError","Unit":2,"IncreaseIsBetter":false,"Samples":[1.4185999999999695,1.3461999999999535,1.3449000000000524,1.402699999999868,1.4178999999999178,1.4157000000000153,1.3938000000000557,1.343599999999924,1.4183000000002722,1.4103000000000066,1.3992000000002918,1.4039999999999964,1.3315999999999804,1.3854999999998655,1.3414999999999964,1.4319000000000415,1.4074999999998,1.4339999999997418,1.445299999999861,1.434099999999944],"Min":1.3315999999999804,"Max":1.445299999999861,"Median":1.4057499999998982,"Average":1.3963299999999777,"StandardDeviation":0.03465116303963102,"Sum":27.926599999999554}]}
+]]></output>
+              </test-case>
+              <test-case id="1133" name="Tap_NOPE_EnumError" fullname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.Tap_NOPE_EnumError" methodname="Tap_NOPE_EnumError" classname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError" runstate="Runnable" seed="1557482908" result="Passed" start-time="2025-01-28 14:56:08Z" end-time="2025-01-28 14:56:12Z" duration="3.943167" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NOPE_Tap_EnumError.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.50 
+Avg:		3.02 
+StdDev:		0.10 
+SampleCount:	25
+Sum:		75.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▂▂▂▁▂
+
+NOPE_Tap_EnumError in Milliseconds
+Min:		0.82 ms
+Median:		0.87 ms
+Max:		0.89 ms
+Avg:		0.86 ms
+StdDev:		0.02 ms
+SampleCount:	20
+Sum:		17.25 ms
+First samples:	▁▂▆█▆▅▅▇▆▇▄▅▆▃▇▅█▆▇▅
+Histogram:	█▂▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError.Tap_NOPE_EnumError","ClassName":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_ValueTypeError","MethodName":"Tap_NOPE_EnumError","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"NOPE_Tap_EnumError.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.5,"Median":3.0,"Average":3.02,"StandardDeviation":0.09797958971132719,"Sum":75.5},{"Name":"NOPE_Tap_EnumError","Unit":2,"IncreaseIsBetter":false,"Samples":[0.8188000000000102,0.8288000000000011,0.8713999999999942,0.8829999999998108,0.8713999999999942,0.8588999999999487,0.8597999999999502,0.8811000000000604,0.8668999999999869,0.8764999999998508,0.8496000000000095,0.8589000000001761,0.8681000000001404,0.8355999999998858,0.8733000000001994,0.862699999999677,0.887300000000323,0.8670999999999367,0.8767000000002554,0.8571999999999207],"Min":0.8188000000000102,"Max":0.887300000000323,"Median":0.8669999999999618,"Average":0.8626550000000066,"StandardDeviation":0.017495841648836938,"Sum":17.25310000000013}]}
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1135" name="OneOfPerformanceTests" fullname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests" classname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-01-28 14:56:12Z" end-time="2025-01-28 14:56:35Z" duration="22.751273" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1137" name="Bind_OneOf" fullname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.Bind_OneOf" methodname="Bind_OneOf" classname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests" runstate="Runnable" seed="2138465019" result="Passed" start-time="2025-01-28 14:56:12Z" end-time="2025-01-28 14:56:17Z" duration="4.674880" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[OneOf_Bind.GC() in Undefineds
+Min:		200003.00 
+Median:		200003.00 
+Max:		200007.50 
+Avg:		200004.60 
+StdDev:		2.14 
+SampleCount:	25
+Sum:		5000115.00 
+First samples:	▇█▁▁█▁▁█▁▁█▁▁█▁▁█▁▁█▁▁█▁▁
+Histogram:	█▂▂▂▂▂
+
+OneOf_Bind in Milliseconds
+Min:		28.64 ms
+Median:		29.55 ms
+Max:		31.61 ms
+Avg:		29.58 ms
+StdDev:		0.68 ms
+SampleCount:	20
+Sum:		591.54 ms
+First samples:	▂▂▁▄▃▄▄▄▃█▆▃▄▃▂▁▂▃▄▁
+Histogram:	█▂▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.Bind_OneOf","ClassName":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests","MethodName":"Bind_OneOf","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"OneOf_Bind.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[200007.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0],"Min":200003.0,"Max":200007.5,"Median":200003.0,"Average":200004.6,"StandardDeviation":2.1354156504062629,"Sum":5000115.0},{"Name":"OneOf_Bind","Unit":2,"IncreaseIsBetter":false,"Samples":[28.99070000000006,29.0775000000001,28.63559999999984,29.91989999999987,29.49079999999981,29.946699999999966,29.86290000000008,29.854299999999968,29.599499999999808,31.609500000000027,30.600800000000164,29.66399999999976,30.039299999999913,29.29340000000002,29.049299999999677,28.735000000000129,29.234799999999724,29.43199999999979,29.751100000000407,28.757000000000518],"Min":28.63559999999984,"Max":31.609500000000027,"Median":29.545149999999809,"Average":29.57720499999998,"StandardDeviation":0.6785838278908525,"Sum":591.5440999999996}]}
+]]></output>
+              </test-case>
+              <test-case id="1136" name="CreateSuccess_Failure_OneOf" fullname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.CreateSuccess_Failure_OneOf" methodname="CreateSuccess_Failure_OneOf" classname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests" runstate="Runnable" seed="360579654" result="Passed" start-time="2025-01-28 14:56:17Z" end-time="2025-01-28 14:56:21Z" duration="3.979900" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[OneOf_CreateResult.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.00 
+Avg:		3.00 
+StdDev:		0.00 
+SampleCount:	25
+Sum:		75.00 
+First samples:	▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▂▂▂▂▂
+
+OneOf_CreateResult in Milliseconds
+Min:		1.41 ms
+Median:		1.52 ms
+Max:		1.53 ms
+Avg:		1.51 ms
+StdDev:		0.03 ms
+SampleCount:	20
+Sum:		30.18 ms
+First samples:	▅█▇▇▇▇▁▇▅▇▇█▇▇▆▆▇█▇█
+Histogram:	█▂▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.CreateSuccess_Failure_OneOf","ClassName":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests","MethodName":"CreateSuccess_Failure_OneOf","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"OneOf_CreateResult.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.0,"Median":3.0,"Average":3.0,"StandardDeviation":0.0,"Sum":75.0},{"Name":"OneOf_CreateResult","Unit":2,"IncreaseIsBetter":false,"Samples":[1.4868999999999915,1.5257999999998902,1.5208000000000084,1.5175999999999022,1.516800000000103,1.5093000000001667,1.4116999999998826,1.5160000000000765,1.487800000000334,1.5100999999999659,1.5217999999999848,1.5245999999997367,1.5205999999998313,1.5235999999999877,1.4897000000000845,1.4902000000001863,1.521600000000035,1.532799999999952,1.5236999999997352,1.5293000000001485],"Min":1.4116999999998826,"Max":1.532799999999952,"Median":1.5190999999998667,"Average":1.5090350000000002,"StandardDeviation":0.0263115236160701,"Sum":30.1807}]}
+]]></output>
+              </test-case>
+              <test-case id="1140" name="Ensure_OneOf" fullname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.Ensure_OneOf" methodname="Ensure_OneOf" classname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests" runstate="Runnable" seed="1021273957" result="Passed" start-time="2025-01-28 14:56:21Z" end-time="2025-01-28 14:56:26Z" duration="4.716398" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[OneOf_Ensure.GC() in Undefineds
+Min:		200003.00 
+Median:		200003.00 
+Max:		200007.50 
+Avg:		200004.58 
+StdDev:		2.12 
+SampleCount:	25
+Sum:		5000114.50 
+First samples:	▆█▁▁█▁▁█▁▁█▁▁█▁▁█▁▁█▁▁█▁▁
+Histogram:	█▂▂▂▂▂
+
+OneOf_Ensure in Milliseconds
+Min:		29.92 ms
+Median:		31.39 ms
+Max:		32.48 ms
+Avg:		31.35 ms
+StdDev:		0.59 ms
+SampleCount:	20
+Sum:		627.06 ms
+First samples:	▆▅▄▅▅▁▅▄▁▆▄▆▅▄█▅▅▅█▆
+Histogram:	█▂▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.Ensure_OneOf","ClassName":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests","MethodName":"Ensure_OneOf","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"OneOf_Ensure.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[200006.5,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0],"Min":200003.0,"Max":200007.5,"Median":200003.0,"Average":200004.58,"StandardDeviation":2.115088650624366,"Sum":5000114.5},{"Name":"OneOf_Ensure","Unit":2,"IncreaseIsBetter":false,"Samples":[31.70679999999993,31.33680000000004,31.144500000000109,31.417599999999994,31.323200000000044,29.921800000000077,31.360799999999928,31.053400000000239,30.101799999999913,31.652300000000197,31.135999999999969,31.56750000000011,31.414800000000015,31.058800000000248,32.47910000000002,31.41280000000006,31.260599999999614,31.42830000000049,32.447799999999919,31.83389999999963],"Min":29.921800000000077,"Max":32.47910000000002,"Median":31.386799999999995,"Average":31.352930000000027,"StandardDeviation":0.5859358190962319,"Sum":627.0586000000005}]}
+]]></output>
+              </test-case>
+              <test-case id="1138" name="Map_OneOf" fullname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.Map_OneOf" methodname="Map_OneOf" classname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests" runstate="Runnable" seed="1893224369" result="Passed" start-time="2025-01-28 14:56:26Z" end-time="2025-01-28 14:56:30Z" duration="4.686619" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[OneOf_Map.GC() in Undefineds
+Min:		200003.00 
+Median:		200003.00 
+Max:		200007.50 
+Avg:		200004.54 
+StdDev:		2.09 
+SampleCount:	25
+Sum:		5000113.50 
+First samples:	▅▁█▁▁█▁▁█▁▁█▁▁█▁▁█▁▁█▁▁█▁
+Histogram:	█▂▂▂▂▂
+
+OneOf_Map in Milliseconds
+Min:		28.92 ms
+Median:		29.95 ms
+Max:		30.46 ms
+Avg:		29.82 ms
+StdDev:		0.51 ms
+SampleCount:	20
+Sum:		596.32 ms
+First samples:	▄█▇▅▇█▂▇▆▂█▆▄▄▃▁▇█▁▄
+Histogram:	█▂▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.Map_OneOf","ClassName":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests","MethodName":"Map_OneOf","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"OneOf_Map.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[200005.5,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0],"Min":200003.0,"Max":200007.5,"Median":200003.0,"Average":200004.54,"StandardDeviation":2.087678136111982,"Sum":5000113.5},{"Name":"OneOf_Map","Unit":2,"IncreaseIsBetter":false,"Samples":[29.55359999999996,30.45609999999988,30.3279,29.823799999999893,30.27839999999992,30.376899999999979,29.17520000000013,30.147500000000038,30.10189999999966,29.09960000000001,30.36949999999979,30.06829999999991,29.599299999999859,29.4683,29.451000000000023,28.917699999999969,30.21140000000014,30.415399999999864,29.001100000000407,29.47230000000036],"Min":28.917699999999969,"Max":30.45609999999988,"Median":29.9460499999999,"Average":29.81575999999999,"StandardDeviation":0.5079588136846468,"Sum":596.3151999999998}]}
+]]></output>
+              </test-case>
+              <test-case id="1139" name="Tap_OneOf" fullname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.Tap_OneOf" methodname="Tap_OneOf" classname="NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests" runstate="Runnable" seed="1115116125" result="Passed" start-time="2025-01-28 14:56:30Z" end-time="2025-01-28 14:56:35Z" duration="4.691452" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[OneOf_Tap.GC() in Undefineds
+Min:		200003.00 
+Median:		200003.00 
+Max:		200010.50 
+Avg:		200004.74 
+StdDev:		2.39 
+SampleCount:	25
+Sum:		5000118.50 
+First samples:	█▁▁▅▁▁▅▁▁▅▁▁▅▁▁▅▁▁▅▁▁▅▁▁▅
+Histogram:	█▂▂▂▂▂
+
+OneOf_Tap in Milliseconds
+Min:		28.50 ms
+Median:		29.34 ms
+Max:		31.17 ms
+Avg:		29.43 ms
+StdDev:		0.59 ms
+SampleCount:	20
+Sum:		588.57 ms
+First samples:	▄▃▄▄▄█▃▃▅▃▂▅▃▂▄▂▂▃▁▄
+Histogram:	█▂▂▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests.Tap_OneOf","ClassName":"NOPE.Tests.PerformanceBenchmarks.OneOfPerformanceTests","MethodName":"Tap_OneOf","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"OneOf_Tap.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[200010.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5],"Min":200003.0,"Max":200010.5,"Median":200003.0,"Average":200004.74,"StandardDeviation":2.387969849055888,"Sum":5000118.5},{"Name":"OneOf_Tap","Unit":2,"IncreaseIsBetter":false,"Samples":[29.651299999999993,29.1429999999998,29.63220000000001,29.49149999999986,29.600599999999987,31.169200000000047,29.36070000000018,29.304699999999685,30.209199999999784,29.25669999999991,28.843199999999798,30.054000000000089,29.31989999999996,28.78740000000016,29.798499999999878,28.840999999999896,28.840299999999844,29.085000000000038,28.5029999999997,29.67489999999998],"Min":28.5029999999997,"Max":31.169200000000047,"Median":29.34030000000007,"Average":29.42831499999993,"StandardDeviation":0.5880101387519131,"Sum":588.5662999999986}]}
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1141" name="OptionalPerformanceTests" fullname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests" classname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-01-28 14:56:35Z" end-time="2025-01-28 14:56:56Z" duration="20.590804" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1143" name="Bind_Optional" fullname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.Bind_Optional" methodname="Bind_Optional" classname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests" runstate="Runnable" seed="1690728051" result="Passed" start-time="2025-01-28 14:56:35Z" end-time="2025-01-28 14:56:39Z" duration="3.975225" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Optional_Bind.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		7.50 
+Avg:		4.16 
+StdDev:		1.84 
+SampleCount:	25
+Sum:		104.00 
+First samples:	▆▁█▁▁▁█▁▁▁▄▃▁▁█▁▁▁█▁▁▁█▁▁
+Histogram:	█▂▂▂▂▂
+
+Optional_Bind in Milliseconds
+Min:		1.62 ms
+Median:		1.69 ms
+Max:		1.71 ms
+Avg:		1.69 ms
+StdDev:		0.02 ms
+SampleCount:	20
+Sum:		33.72 ms
+First samples:	▅█▆▇▁▅▇▅▆▇▅▃▅█▇▇▅▆▆▆
+Histogram:	█▂▂▃▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.Bind_Optional","ClassName":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests","MethodName":"Bind_Optional","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"Optional_Bind.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[6.5,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,5.0,4.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0,3.0,7.5,3.0,3.0],"Min":3.0,"Max":7.5,"Median":3.0,"Average":4.16,"StandardDeviation":1.8423897524682449,"Sum":104.0},{"Name":"Optional_Bind","Unit":2,"IncreaseIsBetter":false,"Samples":[1.6779999999999973,1.7125999999998385,1.685699999999997,1.6967999999999393,1.6236999999998716,1.6786999999999353,1.703899999999976,1.6809000000000652,1.6887000000001536,1.7074999999999819,1.6696000000001732,1.655999999999949,1.6777000000001863,1.7143000000000939,1.7062999999998283,1.6972000000000663,1.6795999999999368,1.6902000000000044,1.6846000000000459,1.6910000000002584],"Min":1.6236999999998716,"Max":1.7143000000000939,"Median":1.6872000000000754,"Average":1.686150000000015,"StandardDeviation":0.02037180649820105,"Sum":33.7230000000003}]}
+]]></output>
+              </test-case>
+              <test-case id="1142" name="CreateSuccess_Failure_Optional" fullname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.CreateSuccess_Failure_Optional" methodname="CreateSuccess_Failure_Optional" classname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests" runstate="Runnable" seed="606655180" result="Passed" start-time="2025-01-28 14:56:39Z" end-time="2025-01-28 14:56:43Z" duration="3.990409" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Optional_CreateResult.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		6.50 
+Avg:		3.14 
+StdDev:		0.69 
+SampleCount:	25
+Sum:		78.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▂▂▂▂▂
+
+Optional_CreateResult in Milliseconds
+Min:		1.49 ms
+Median:		1.52 ms
+Max:		1.54 ms
+Avg:		1.52 ms
+StdDev:		0.01 ms
+SampleCount:	20
+Sum:		30.40 ms
+First samples:	▅▇▁█▃▇▅▅▅▄▅▇▇▆█▃▇█▄▆
+Histogram:	█▂▂▃▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.CreateSuccess_Failure_Optional","ClassName":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests","MethodName":"CreateSuccess_Failure_Optional","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"Optional_CreateResult.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[6.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":6.5,"Median":3.0,"Average":3.14,"StandardDeviation":0.6858571279792902,"Sum":78.5},{"Name":"Optional_CreateResult","Unit":2,"IncreaseIsBetter":false,"Samples":[1.5144999999999982,1.5286999999998444,1.4855999999999768,1.5374000000001616,1.5022999999998775,1.5302999999998975,1.513400000000047,1.5132000000000972,1.5158999999998742,1.508100000000013,1.5192000000001827,1.531500000000051,1.5338000000001558,1.5237999999999375,1.5372000000002118,1.4992000000002009,1.5334000000002562,1.5401999999999135,1.5106000000000677,1.52370000000019],"Min":1.4855999999999768,"Max":1.5401999999999135,"Median":1.5214500000001863,"Average":1.5201000000000478,"StandardDeviation":0.014169262507294582,"Sum":30.402000000000954}]}
+]]></output>
+              </test-case>
+              <test-case id="1146" name="Ensure_Optional" fullname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.Ensure_Optional" methodname="Ensure_Optional" classname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests" runstate="Runnable" seed="1558128413" result="Passed" start-time="2025-01-28 14:56:43Z" end-time="2025-01-28 14:56:47Z" duration="3.966254" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Optional_Ensure.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.50 
+Avg:		3.02 
+StdDev:		0.10 
+SampleCount:	25
+Sum:		75.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▂▂▂▂▂
+
+Optional_Ensure in Milliseconds
+Min:		0.45 ms
+Median:		0.47 ms
+Max:		0.49 ms
+Avg:		0.47 ms
+StdDev:		0.01 ms
+SampleCount:	20
+Sum:		9.41 ms
+First samples:	▁▇▄▆█▅█▆▆▅▂▇▃▄▅▂▅▄▂▅
+Histogram:	█▂▃▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.Ensure_Optional","ClassName":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests","MethodName":"Ensure_Optional","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"Optional_Ensure.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.5,"Median":3.0,"Average":3.02,"StandardDeviation":0.09797958971132719,"Sum":75.5},{"Name":"Optional_Ensure","Unit":2,"IncreaseIsBetter":false,"Samples":[0.45270000000004986,0.4800999999999931,0.4669000000001233,0.47420000000010989,0.4858999999999014,0.4732000000001335,0.4857999999999265,0.47690000000011426,0.4760000000001128,0.47180000000025759,0.4592000000002372,0.48349999999982176,0.46319999999968788,0.4658999999996922,0.4703000000004067,0.4592999999999847,0.47149999999965078,0.46529999999984286,0.4580999999998312,0.470299999999952],"Min":0.45270000000004986,"Max":0.4858999999999014,"Median":0.47090000000002876,"Average":0.47050499999999148,"StandardDeviation":0.00912564929196696,"Sum":9.41009999999983}]}
+]]></output>
+              </test-case>
+              <test-case id="1144" name="Map_Optional" fullname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.Map_Optional" methodname="Map_Optional" classname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests" runstate="Runnable" seed="2027092113" result="Passed" start-time="2025-01-28 14:56:47Z" end-time="2025-01-28 14:56:52Z" duration="4.687946" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Optional_Map.GC() in Undefineds
+Min:		200003.00 
+Median:		200003.00 
+Max:		200013.00 
+Avg:		200004.86 
+StdDev:		2.65 
+SampleCount:	25
+Sum:		5000121.50 
+First samples:	█▁▁▄▁▁▄▁▁▄▁▁▄▁▁▄▁▁▄▁▁▄▁▁▄
+Histogram:	█▂▃▂▂▂
+
+Optional_Map in Milliseconds
+Min:		28.71 ms
+Median:		29.60 ms
+Max:		32.16 ms
+Avg:		29.90 ms
+StdDev:		0.94 ms
+SampleCount:	20
+Sum:		597.95 ms
+First samples:	▂▆▄▃▂▂█▃▄▁▂█▂▂▃▆▂▂▄▃
+Histogram:	█▂▃▂▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.Map_Optional","ClassName":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests","MethodName":"Map_Optional","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"Optional_Map.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[200013.0,200003.5,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5,200003.0,200003.0,200007.5],"Min":200003.0,"Max":200013.0,"Median":200003.0,"Average":200004.86,"StandardDeviation":2.6514901470682479,"Sum":5000121.5},{"Name":"Optional_Map","Unit":2,"IncreaseIsBetter":false,"Samples":[29.2496000000001,30.99459999999999,29.944600000000038,29.905899999999975,29.185799999999973,29.27520000000004,31.973500000000059,29.89070000000038,29.95139999999992,28.70640000000003,29.28989999999976,32.1583999999998,29.444299999999659,29.064700000000359,29.663300000000164,31.26949999999988,28.996500000000198,29.4407999999994,30.0045999999993,29.53729999999996],"Min":28.70640000000003,"Max":32.1583999999998,"Median":29.60030000000006,"Average":29.89734999999995,"StandardDeviation":0.941528778370549,"Sum":597.946999999999}]}
+]]></output>
+              </test-case>
+              <test-case id="1145" name="Tap_Optional" fullname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.Tap_Optional" methodname="Tap_Optional" classname="NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests" runstate="Runnable" seed="1822285938" result="Passed" start-time="2025-01-28 14:56:52Z" end-time="2025-01-28 14:56:56Z" duration="3.968965" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Optional_Tap.GC() in Undefineds
+Min:		3.00 
+Median:		3.00 
+Max:		3.50 
+Avg:		3.02 
+StdDev:		0.10 
+SampleCount:	25
+Sum:		75.50 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▂▃▂▂▂
+
+Optional_Tap in Milliseconds
+Min:		0.33 ms
+Median:		0.35 ms
+Max:		0.37 ms
+Avg:		0.35 ms
+StdDev:		0.01 ms
+SampleCount:	20
+Sum:		7.08 ms
+First samples:	▆▅▅▄▅▁▆▆▅▆▅▅▅▅▆█▅▇▂▆
+Histogram:	█▂▃▃▂▂
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests.Tap_Optional","ClassName":"NOPE.Tests.PerformanceBenchmarks.OptionalPerformanceTests","MethodName":"Tap_Optional","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"Optional_Tap.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[3.5,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0,3.0],"Min":3.0,"Max":3.5,"Median":3.0,"Average":3.02,"StandardDeviation":0.09797958971132719,"Sum":75.5},{"Name":"Optional_Tap","Unit":2,"IncreaseIsBetter":false,"Samples":[0.356200000000058,0.35369999999988979,0.3532000000000153,0.34960000000000948,0.35149999999998729,0.33159999999998038,0.35969999999997528,0.36000000000012735,0.3548000000000684,0.3560000000002219,0.3524999999999636,0.35459999999966387,0.3546000000001186,0.3536000000003696,0.3571999999999207,0.36799999999993818,0.3546999999998661,0.3627000000001317,0.33809999999994036,0.35669999999981885],"Min":0.33159999999998038,"Max":0.36799999999993818,"Median":0.35464999999999238,"Average":0.3539500000000032,"StandardDeviation":0.007588379273612196,"Sum":7.079000000000065}]}
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1103" name="ResultTests_AsyncExtensions" fullname="NOPE.Tests.ResultTests_AsyncExtensions" classname="NOPE.Tests.ResultTests_AsyncExtensions" runstate="Runnable" testcasecount="4" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.010039" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1104" name="Bind_AsyncResult_SyncBinder_Success" fullname="NOPE.Tests.ResultTests_AsyncExtensions.Bind_AsyncResult_SyncBinder_Success" methodname="Bind_AsyncResult_SyncBinder_Success" classname="NOPE.Tests.ResultTests_AsyncExtensions" runstate="Runnable" seed="141226455" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.001548" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1105" name="Bind_SyncResult_AsyncBinder_Failure" fullname="NOPE.Tests.ResultTests_AsyncExtensions.Bind_SyncResult_AsyncBinder_Failure" methodname="Bind_SyncResult_AsyncBinder_Failure" classname="NOPE.Tests.ResultTests_AsyncExtensions" runstate="Runnable" seed="150246334" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.001478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1106" name="MapError_AsyncOverloads" fullname="NOPE.Tests.ResultTests_AsyncExtensions.MapError_AsyncOverloads" methodname="MapError_AsyncOverloads" classname="NOPE.Tests.ResultTests_AsyncExtensions" runstate="Runnable" seed="91543776" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.003180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1107" name="Match_AsyncResult_Async_onFailure" fullname="NOPE.Tests.ResultTests_AsyncExtensions.Match_AsyncResult_Async_onFailure" methodname="Match_AsyncResult_Async_onFailure" classname="NOPE.Tests.ResultTests_AsyncExtensions" runstate="Runnable" seed="2107933953" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.002042" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1082" name="ResultTests_Basic" fullname="NOPE.Tests.ResultTests_Basic" classname="NOPE.Tests.ResultTests_Basic" runstate="Runnable" testcasecount="6" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.001828" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1088" name="Result_NoValue_Failure" fullname="NOPE.Tests.ResultTests_Basic.Result_NoValue_Failure" methodname="Result_NoValue_Failure" classname="NOPE.Tests.ResultTests_Basic" runstate="Runnable" seed="92339132" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000066" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1087" name="Result_NoValue_Success" fullname="NOPE.Tests.ResultTests_Basic.Result_NoValue_Success" methodname="Result_NoValue_Success" classname="NOPE.Tests.ResultTests_Basic" runstate="Runnable" seed="180013689" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1084" name="ResultT_Failure_BasicProperties" fullname="NOPE.Tests.ResultTests_Basic.ResultT_Failure_BasicProperties" methodname="ResultT_Failure_BasicProperties" classname="NOPE.Tests.ResultTests_Basic" runstate="Runnable" seed="793344474" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000084" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1086" name="ResultT_ImplicitFailure" fullname="NOPE.Tests.ResultTests_Basic.ResultT_ImplicitFailure" methodname="ResultT_ImplicitFailure" classname="NOPE.Tests.ResultTests_Basic" runstate="Runnable" seed="1129075625" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000043" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1085" name="ResultT_ImplicitSuccess" fullname="NOPE.Tests.ResultTests_Basic.ResultT_ImplicitSuccess" methodname="ResultT_ImplicitSuccess" classname="NOPE.Tests.ResultTests_Basic" runstate="Runnable" seed="756100887" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000044" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1083" name="ResultT_Success_BasicProperties" fullname="NOPE.Tests.ResultTests_Basic.ResultT_Success_BasicProperties" methodname="ResultT_Success_BasicProperties" classname="NOPE.Tests.ResultTests_Basic" runstate="Runnable" seed="1067783924" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1114" name="ResultTests_ChainingScenario" fullname="NOPE.Tests.ResultTests_ChainingScenario" classname="NOPE.Tests.ResultTests_ChainingScenario" runstate="Runnable" testcasecount="2" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.008693" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1116" name="Scenario_Chain_Async" fullname="NOPE.Tests.ResultTests_ChainingScenario.Scenario_Chain_Async" methodname="Scenario_Chain_Async" classname="NOPE.Tests.ResultTests_ChainingScenario" runstate="Runnable" seed="1471302935" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.007238" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1115" name="Scenario_Chain_Sync" fullname="NOPE.Tests.ResultTests_ChainingScenario.Scenario_Chain_Sync" methodname="Scenario_Chain_Sync" classname="NOPE.Tests.ResultTests_ChainingScenario" runstate="Runnable" seed="1065721016" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000273" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1108" name="ResultTests_Combine" fullname="NOPE.Tests.ResultTests_Combine" classname="NOPE.Tests.ResultTests_Combine" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.006763" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1111" name="Combine_Array" fullname="NOPE.Tests.ResultTests_Combine.Combine_Array" methodname="Combine_Array" classname="NOPE.Tests.ResultTests_Combine" runstate="Runnable" seed="991757812" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1112" name="CombineWith_2_Async_Success" fullname="NOPE.Tests.ResultTests_Combine.CombineWith_2_Async_Success" methodname="CombineWith_2_Async_Success" classname="NOPE.Tests.ResultTests_Combine" runstate="Runnable" seed="1899559085" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.002027" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1110" name="CombineWith_2_Failure" fullname="NOPE.Tests.ResultTests_Combine.CombineWith_2_Failure" methodname="CombineWith_2_Failure" classname="NOPE.Tests.ResultTests_Combine" runstate="Runnable" seed="1475249568" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000264" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1109" name="CombineWith_2_Success" fullname="NOPE.Tests.ResultTests_Combine.CombineWith_2_Success" methodname="CombineWith_2_Success" classname="NOPE.Tests.ResultTests_Combine" runstate="Runnable" seed="200157354" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000370" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1113" name="CombineWith_Array_Async_Failure" fullname="NOPE.Tests.ResultTests_Combine.CombineWith_Array_Async_Failure" methodname="CombineWith_Array_Async_Failure" classname="NOPE.Tests.ResultTests_Combine" runstate="Runnable" seed="2026457302" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.001817" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1089" name="ResultTests_SyncExtensions" fullname="NOPE.Tests.ResultTests_SyncExtensions" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" testcasecount="13" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.002739" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1093" name="Bind_WhenFailure_SkipsBinder" fullname="NOPE.Tests.ResultTests_SyncExtensions.Bind_WhenFailure_SkipsBinder" methodname="Bind_WhenFailure_SkipsBinder" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="740103600" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1092" name="Bind_WhenSuccess_BindsToNewResult" fullname="NOPE.Tests.ResultTests_SyncExtensions.Bind_WhenSuccess_BindsToNewResult" methodname="Bind_WhenSuccess_BindsToNewResult" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="1917664738" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000086" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1097" name="Ensure_WhenFailure_IgnorePredicate" fullname="NOPE.Tests.ResultTests_SyncExtensions.Ensure_WhenFailure_IgnorePredicate" methodname="Ensure_WhenFailure_IgnorePredicate" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="548866570" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1096" name="Ensure_WhenSuccess_AndPredicateFails_ThenFailure" fullname="NOPE.Tests.ResultTests_SyncExtensions.Ensure_WhenSuccess_AndPredicateFails_ThenFailure" methodname="Ensure_WhenSuccess_AndPredicateFails_ThenFailure" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="704465915" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1102" name="Finally_AlwaysCalled" fullname="NOPE.Tests.ResultTests_SyncExtensions.Finally_AlwaysCalled" methodname="Finally_AlwaysCalled" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="172921003" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000145" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1091" name="Map_WhenFailure_DoesNotCallSelector" fullname="NOPE.Tests.ResultTests_SyncExtensions.Map_WhenFailure_DoesNotCallSelector" methodname="Map_WhenFailure_DoesNotCallSelector" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="2058315368" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000055" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1090" name="Map_WhenSuccess_MapsValue" fullname="NOPE.Tests.ResultTests_SyncExtensions.Map_WhenSuccess_MapsValue" methodname="Map_WhenSuccess_MapsValue" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="1571995334" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000059" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1100" name="MapError_E1_To_E2_Test" fullname="NOPE.Tests.ResultTests_SyncExtensions.MapError_E1_To_E2_Test" methodname="MapError_E1_To_E2_Test" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="979915798" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000157" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1098" name="MapError_WhenFailure_TransformsError" fullname="NOPE.Tests.ResultTests_SyncExtensions.MapError_WhenFailure_TransformsError" methodname="MapError_WhenFailure_TransformsError" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="1545721612" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000108" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1099" name="MapError_WhenSuccess_NoChange" fullname="NOPE.Tests.ResultTests_SyncExtensions.MapError_WhenSuccess_NoChange" methodname="MapError_WhenSuccess_NoChange" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="1180770676" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1101" name="Match_ReturnsSuccessValueOrFailureValue" fullname="NOPE.Tests.ResultTests_SyncExtensions.Match_ReturnsSuccessValueOrFailureValue" methodname="Match_ReturnsSuccessValueOrFailureValue" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="1865120639" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000128" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1095" name="Tap_WhenFailure_SkipsAction" fullname="NOPE.Tests.ResultTests_SyncExtensions.Tap_WhenFailure_SkipsAction" methodname="Tap_WhenFailure_SkipsAction" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="370113128" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1094" name="Tap_WhenSuccess_ExecutesAction" fullname="NOPE.Tests.ResultTests_SyncExtensions.Tap_WhenSuccess_ExecutesAction" methodname="Tap_WhenSuccess_ExecutesAction" classname="NOPE.Tests.ResultTests_SyncExtensions" runstate="Runnable" seed="379481499" result="Passed" start-time="2025-01-28 14:56:56Z" end-time="2025-01-28 14:56:56Z" duration="0.000060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/kwanjoonglee/Library/Application Support/DefaultCompany/UnityNope/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
