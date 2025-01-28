@@ -91,6 +91,8 @@ The following performance measurements were taken in an environment where the NO
     2) “+” → “Add package from git URL…”
     3) Paste `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE` to specify a version, append version tag like `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0`.
 
+3. **OpenUPM**:  
+   On CLI, `openupm add com.kwanjoong.nope`.
 3. **Manual Download**:  
    Clone or download, then place in `Packages/` or `Assets/Plugins`.
 
