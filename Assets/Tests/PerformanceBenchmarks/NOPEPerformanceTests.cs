@@ -12,111 +12,47 @@ namespace NOPE.Tests.PerformanceBenchmarks
     }
 
     [TestFixture]
-    public class NOPEPerformanceTests_ValueTypeError
+    public class NOPEPerformanceTests_Composite
     {
-        const int N = 100_000;
+        private const int N = 100_000;
 
+        // ------------------ SYNC Composite Example ------------------
         [Test, Performance]
-        public void CreateSuccess_Failure_NOPE_EnumError()
+        public void SyncComposite_NOPE()
         {
             Measure.Method(() =>
                 {
                     for (int i = 0; i < N; i++)
                     {
-                        var rOk = Result<int, TestError>.Success(i);
-                        var rFail = Result<int, TestError>.Failure(TestError.General);
-                    }
-                })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
-                .GC()
-                .SampleGroup("NOPE_CreateResult_EnumError")
-                .Run();
-        }
+                        // 1) Create a success
+                        var r = Result<int, TestError>.Success(10);
 
-        [Test, Performance]
-        public void Bind_NOPE_EnumError()
-        {
-            var input = Result<int, TestError>.Success(10);
+                        // 2) Bind => if >5 => success, else fail
+                        r = r.Bind(x => x > 5
+                            ? Result<int, TestError>.Success(x + 100)
+                            : TestError.TooSmall);
 
-            Measure.Method(() =>
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        var r = input.Bind(x => x > 5
-                            ? Result<double, TestError>.Success(x * 2.0)
-                            : Result<double, TestError>.Failure(TestError.TooSmall));
-                    }
-                })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
-                .GC()
-                .SampleGroup("NOPE_Bind_EnumError")
-                .Run();
-        }
+                        // 3) Map => multiply
+                        r = r.Map(x => x * 2);
 
-        [Test, Performance]
-        public void Map_NOPE_EnumError()
-        {
-            var input = Result<int, TestError>.Success(10);
-
-            Measure.Method(() =>
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        var r = input.Map(x => x * 2);
-                    }
-                })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
-                .GC()
-                .SampleGroup("NOPE_Map_EnumError")
-                .Run();
-        }
-
-        [Test, Performance]
-        public void Tap_NOPE_EnumError()
-        {
-            var input = Result<int, TestError>.Success(10);
-
-            Measure.Method(() =>
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        input.Tap(x =>
+                        // 4) Tap => side effect
+                        r.Tap(x =>
                         {
-                            var y = x * 2;
+                            int dummy = x + 1;
                         });
+
+                        // 5) Ensure => must be > 0
+                        r = r.Ensure(x => x > 0, TestError.General);
+
+                        // Possibly Combine, or MapError, etc. 
+                        // Just pick whichever chain you want to represent "real usage."
                     }
                 })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
+                .WarmupCount(10)
+                .MeasurementCount(10)
+                .IterationsPerMeasurement(10)
                 .GC()
-                .SampleGroup("NOPE_Tap_EnumError")
-                .Run();
-        }
-
-        [Test, Performance]
-        public void Ensure_NOPE_EnumError()
-        {
-            var input = Result<int, TestError>.Success(10);
-
-            Measure.Method(() =>
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        var r = input.Ensure(x => x > 5, TestError.TooSmall);
-                    }
-                })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
-                .GC()
-                .SampleGroup("NOPE_Ensure_EnumError")
+                .SampleGroup("NOPE_SyncComposite")
                 .Run();
         }
     }

@@ -1,121 +1,51 @@
 using NUnit.Framework;
 using Unity.PerformanceTesting;
 using Optional;
+using Optional.Unsafe; // if needed
 
 namespace NOPE.Tests.PerformanceBenchmarks
 {
     public enum OptTestError { General=1, TooSmall=2 }
 
     [TestFixture]
-    public class OptionalPerformanceTests
+    public class Optional_CompositeTests
     {
         const int N = 100_000;
 
         [Test, Performance]
-        public void CreateSuccess_Failure_Optional()
+        public void SyncComposite_Optional()
         {
             Measure.Method(() =>
-            {
-                for (int i = 0; i < N; i++)
                 {
-                    var ok = Option.Some<int, OptTestError>(i);
-                    var fail = Option.None<int, OptTestError>(OptTestError.General);
-                }
-            })
-            .WarmupCount(5)
-            .MeasurementCount(20)
-            .IterationsPerMeasurement(2)
-            .GC()
-            .SampleGroup("Optional_CreateResult")
-            .Run();
-        }
+                    for (int i = 0; i < N; i++)
+                    {
+                        // 1) Create success
+                        var opt = Option.Some<int, OptTestError>(10);
 
-        [Test, Performance]
-        public void Bind_Optional()
-        {
-            // success input
-            var input = Option.Some<int, OptTestError>(10);
+                        // 2) Bind => if >5 => success, else fail
+                        opt = opt.FlatMap(x => x > 5
+                            ? Option.Some<int, OptTestError>(x + 100)
+                            : Option.None<int, OptTestError>(OptTestError.TooSmall));
 
-            Measure.Method(() =>
-            {
-                for (int i = 0; i < N; i++)
-                {
-                    var r = input.FlatMap(x =>
-                        x > 5
-                          ? Option.Some<double, OptTestError>(x * 2.0)
-                          : Option.None<double, OptTestError>(OptTestError.TooSmall)
-                    );
-                }
-            })
-            .WarmupCount(5)
-            .MeasurementCount(20)
-            .IterationsPerMeasurement(2)
-            .GC()
-            .SampleGroup("Optional_Bind")
-            .Run();
-        }
+                        // 3) Map => multiply
+                        opt = opt.Map(x => x * 2);
 
-        [Test, Performance]
-        public void Map_Optional()
-        {
-            var input = Option.Some<int, OptTestError>(10);
+                        // 4) "Tap" => We can do .MatchSome:
+                        opt.MatchSome(x =>
+                        {
+                            int dummy = x + 1;
+                        });
 
-            Measure.Method(() =>
-            {
-                for (int i=0; i<N; i++)
-                {
-                    var r = input.Map(x => x * 2);
-                }
-            })
-            .WarmupCount(5)
-            .MeasurementCount(20)
-            .IterationsPerMeasurement(2)
-            .GC()
-            .SampleGroup("Optional_Map")
-            .Run();
-        }
-
-        [Test, Performance]
-        public void Tap_Optional()
-        {
-            var input = Option.Some<int, OptTestError>(10);
-
-            Measure.Method(() =>
-            {
-                for (int i=0; i<N; i++)
-                {
-                    // No direct "Tap," but we can do a side effect in MatchSome
-                    input.MatchSome(x => { var y = x * 2; });
-                }
-            })
-            .WarmupCount(5)
-            .MeasurementCount(20)
-            .IterationsPerMeasurement(2)
-            .GC()
-            .SampleGroup("Optional_Tap")
-            .Run();
-        }
-
-        [Test, Performance]
-        public void Ensure_Optional()
-        {
-            var input = Option.Some<int, OptTestError>(10);
-
-            Measure.Method(() =>
-            {
-                for (int i=0; i<N; i++)
-                {
-                    // "Ensure" via Filter(predicate, exceptionVal)
-                    var r = input.Filter(x => x > 5, OptTestError.TooSmall);
-                }
-            })
-            .WarmupCount(5)
-            .MeasurementCount(20)
-            .IterationsPerMeasurement(2)
-            .GC()
-            .SampleGroup("Optional_Ensure")
-            .Run();
+                        // 5) Ensure => filter
+                        opt = opt.Filter(x => x > 0, OptTestError.General);
+                    }
+                })
+                .WarmupCount(10)
+                .MeasurementCount(10)
+                .IterationsPerMeasurement(10)
+                .GC()
+                .SampleGroup("Optional_SyncComposite")
+                .Run();
         }
     }
 }
-

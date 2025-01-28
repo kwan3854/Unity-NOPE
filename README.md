@@ -22,25 +22,26 @@ Focuses on **explicitly handling success/failure** without throwing exceptions a
 ## Table of Contents
 
 1. [Motivation & Identity](#motivation--identity)
-2. [Installation](#installation)
-3. [Quick “Before & After”](#quick-before--after)
-4. [Features Overview](#features-overview)
-5. [Result\<T,E\> Usage](#resultte-usage)
+2. [Performance Comparison](#performance-comparison)
+3. [Installation](#installation)
+4. [Quick “Before & After”](#quick-before--after)
+5. [Features Overview](#features-overview)
+6. [Result\<T,E\> Usage](#resultte-usage)
     - [Creating a Result](#1-creating-a-result)
     - [Combine / CombineValues](#2-combine--combinevalues)
     - [SuccessIf, FailureIf, Of](#3-successif-failureif-of)
     - [Bind, Map, MapError, Tap, Ensure, Match, Finally](#4-bind-map-maperror-tap-ensure-match-finally)
-6. [Maybe\<T\> Usage](#maybet-usage)
+7. [Maybe\<T\> Usage](#maybet-usage)
     - [Creating a Maybe](#1-creating-a-maybe)
     - [Key Maybe Methods](#2-key-maybe-methods)
     - [Collection Helpers](#3-collection-helpers)
     - [LINQ Integration](#4-linq-integration)
-7. [Async Support](#async-support)
+8. [Async Support](#async-support)
     - [NOPE_UNITASK or NOPE_AWAITABLE](#nope_unitask-or-nope_awaitable)
     - [Sync ↔ Async bridging](#sync--async-bridging)
-8. [Usage Examples](#usage-examples)
-9. [API Reference](#api-reference)
-10. [License](#license)
+9. [Usage Examples](#usage-examples)
+10. [API Reference](#api-reference)
+11. [License](#license)
 
 ---
 
@@ -57,6 +58,15 @@ Thus you can chain safe transformations (`Map`, `Bind`, `Tap`), or handle outcom
 
 ---
 
+## Performance Comparison
+The following performance measurements were taken in an environment where the NOPE library's features were used comprehensively. The tests include comparisons with `CSharpFunctionalExtensions`, `Optional`, `LanguageExt`, and `OneOf` libraries.
+
+> Please note that not all libraries support exactly the same features. In some cases, similar functions that produce equivalent results from the user's perspective were used for comparison.
+
+![Image 2](Documentation~/Bench_Memory.svg)
+![Image 1](Documentation~/Bench_Time.svg)
+
+
 ## Installation
 
 1. **Via Git (UPM)**:  
@@ -64,14 +74,22 @@ Thus you can chain safe transformations (`Map`, `Bind`, `Tap`), or handle outcom
    ```json
    {
      "dependencies": {
-       "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0"
+       "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE"
      }
    }
+   ```
+   To specify a version, use:
+   ```json
+    {
+      "dependencies": {
+        "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0"
+      }
+    }
    ```
 2. **Unity Package Manager (Git)**:
     1) `Window → Package Manager`
     2) “+” → “Add package from git URL…”
-    3) Paste `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0`
+    3) Paste `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE` to specify a version, append version tag like `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0`.
 
 3. **Manual Download**:  
    Clone or download, then place in `Packages/` or `Assets/Plugins`.

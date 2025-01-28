@@ -1,112 +1,56 @@
+using CSharpFunctionalExtensions;
 using NUnit.Framework;
 using Unity.PerformanceTesting;
-using CSharpFunctionalExtensions;
+using System.Threading.Tasks; // if doing an async version
+
 namespace NOPE.Tests.PerformanceBenchmarks
 {
     [TestFixture]
-    public class CSharpFunctionalExtensionsPerformanceTests
+    public class CSharpFunctionalExtensions_CompositeTests
     {
-        const int N = 100_000;
+        private const int N = 100_000;
 
         [Test, Performance]
-        public void CreateSuccess_Failure_CSharpFunctionalExtensions()
+        public void SyncComposite_CFE()
         {
             Measure.Method(() =>
                 {
                     for (int i = 0; i < N; i++)
                     {
-                        var rOk = Result.Success(i);
-                        var rFail = Result.Failure<int>("General error");
+                        // 1) Create success
+                        var r = Result.Success(10);
+
+                        // 2) Bind => if >5 => success, else fail
+                        r = r.Bind(x => x > 5
+                            ? Result.Success(x + 100)
+                            : Result.Failure<int>("TooSmall"));
+
+                        // 3) Map => multiply
+                        r = r.Map(x => x * 2);
+
+                        // 4) Tap => side effect
+                        r = r.Tap(x =>
+                        {
+                            int dummy = x + 1;
+                        });
+
+                        // 5) Ensure => must be > 0
+                        r = r.Ensure(x => x > 0, "GeneralError");
                     }
                 })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
+                .WarmupCount(10)
+                .MeasurementCount(10)
+                .IterationsPerMeasurement(10)
                 .GC()
-                .SampleGroup("CSharpFunctionalExtensions_CreateResult")
+                .SampleGroup("CFE_SyncComposite")
                 .Run();
         }
 
-        [Test, Performance]
-        public void Bind_CSharpFunctionalExtensions()
-        {
-            var input = Result.Success(10);
-
-            Measure.Method(() =>
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        var r = input.Bind(x => x > 5
-                            ? Result.Success(x * 2.0)
-                            : Result.Failure<double>("Too small"));
-                    }
-                })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
-                .GC()
-                .SampleGroup("CSharpFunctionalExtensions_Bind")
-                .Run();
-        }
-
-        [Test, Performance]
-        public void Map_CSharpFunctionalExtensions()
-        {
-            var input = Result.Success(10);
-
-            Measure.Method(() =>
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        var r = input.Map(x => x * 2);
-                    }
-                })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
-                .GC()
-                .SampleGroup("CSharpFunctionalExtensions_Map")
-                .Run();
-        }
-
-        [Test, Performance]
-        public void Tap_CSharpFunctionalExtensions()
-        {
-            var input = Result.Success(10);
-
-            Measure.Method(() =>
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        input.Tap(x => { var y = x * 2; });
-                    }
-                })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
-                .GC()
-                .SampleGroup("CSharpFunctionalExtensions_Tap")
-                .Run();
-        }
-
-        [Test, Performance]
-        public void Ensure_CSharpFunctionalExtensions()
-        {
-            var input = Result.Success(10);
-
-            Measure.Method(() =>
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        var r = input.Ensure(x => x > 5, "Too small");
-                    }
-                })
-                .WarmupCount(5)
-                .MeasurementCount(20)
-                .IterationsPerMeasurement(2)
-                .GC()
-                .SampleGroup("CSharpFunctionalExtensions_Ensure")
-                .Run();
-        }
+        // If you want an async test for C#FE:
+        //[Test, Performance]
+        //public void AsyncComposite_CFE()
+        //{
+        //    // Similar pattern but with tasks
+        //}
     }
 }

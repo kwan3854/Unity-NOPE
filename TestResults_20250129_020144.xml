@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-01-28 16:52:30Z" end-time="2025-01-28 16:53:06Z" duration="36.7890505">
+  <test-suite type="TestSuite" id="1135" name="UnityNope" fullname="UnityNope" runstate="Runnable" testcasecount="110" result="Passed" start-time="2025-01-28 16:52:30Z" end-time="2025-01-28 16:53:06Z" duration="36.789051" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1127" name="NOPE.Tests.dll" fullname="/Users/kwanjoonglee/UnityProjects/UnityNope/Library/ScriptAssemblies/NOPE.Tests.dll" runstate="Runnable" testcasecount="110" result="Passed" start-time="2025-01-28 16:52:30Z" end-time="2025-01-28 16:53:06Z" duration="36.778321" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="24707" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1128" name="NOPE" fullname="NOPE" runstate="Runnable" testcasecount="110" result="Passed" start-time="2025-01-28 16:52:30Z" end-time="2025-01-28 16:53:06Z" duration="36.778100" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1129" name="Tests" fullname="NOPE.Tests" runstate="Runnable" testcasecount="110" result="Passed" start-time="2025-01-28 16:52:30Z" end-time="2025-01-28 16:53:06Z" duration="36.777865" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1130" name="PerformanceBenchmarks" fullname="NOPE.Tests.PerformanceBenchmarks" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-01-28 16:52:30Z" end-time="2025-01-28 16:53:06Z" duration="36.777620" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1117" name="CSharpFunctionalExtensions_CompositeTests" fullname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensions_CompositeTests" classname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensions_CompositeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2025-01-28 16:52:30Z" end-time="2025-01-28 16:52:35Z" duration="5.740883" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1118" name="SyncComposite_CFE" fullname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensions_CompositeTests.SyncComposite_CFE" methodname="SyncComposite_CFE" classname="NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensions_CompositeTests" runstate="Runnable" seed="1135895928" result="Passed" start-time="2025-01-28 16:52:30Z" end-time="2025-01-28 16:52:35Z" duration="5.735164" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[CFE_SyncComposite.GC() in Undefineds
+Min:		0.50 
+Median:		0.95 
+Max:		73.40 
+Avg:		4.55 
+StdDev:		15.80 
+SampleCount:	20
+Sum:		91.00 
+First samples:	█▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+Histogram:	█▁▁▁▁
+
+CFE_SyncComposite in Milliseconds
+Min:		158.18 ms
+Median:		161.07 ms
+Max:		169.41 ms
+Avg:		161.62 ms
+StdDev:		2.93 ms
+SampleCount:	10
+Sum:		1616.24 ms
+First samples:	▂▄▁▂▃▃▄▂█▃
+(not enough samples for histogram)
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensions_CompositeTests.SyncComposite_CFE","ClassName":"NOPE.Tests.PerformanceBenchmarks.CSharpFunctionalExtensions_CompositeTests","MethodName":"SyncComposite_CFE","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"CFE_SyncComposite.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[73.4,0.5,1.4,0.5,1.4,0.5,1.4,0.5,1.4,0.5,1.4,0.5,1.4,0.5,1.4,0.5,1.4,0.5,1.4,0.5],"Min":0.5,"Max":73.4,"Median":0.95,"Average":4.5500000000000029,"StandardDeviation":15.801344879471494,"Sum":91.00000000000006},{"Name":"CFE_SyncComposite","Unit":2,"IncreaseIsBetter":false,"Samples":[159.2246,162.29199999999993,158.18399999999975,160.54149999999982,160.83870000000025,161.30509999999959,162.78629999999976,159.6295,169.40650000000006,162.02840000000016],"Min":158.18399999999975,"Max":169.40650000000006,"Median":161.0718999999999,"Average":161.62365999999992,"StandardDeviation":2.932353319502993,"Sum":1616.2365999999993}]}
+##performancetestruninfo2:{"TestSuite":"Editmode","Date":1738083150118,"Player":{"Development":true,"ScreenWidth":6016,"ScreenHeight":3384,"ScreenRefreshRate":60,"Fullscreen":false,"Vsync":0,"AntiAliasing":0,"Batchmode":false,"RenderThreadingMode":"MultiThreaded","GpuSkinning":true,"Platform":"OSXEditor","ColorSpace":"Linear","AnisotropicFiltering":"ForceEnable","BlendWeights":"FourBones","GraphicsApi":"Metal","ScriptingBackend":"Mono2x","AndroidTargetSdkVersion":"AndroidApiLevelAuto","AndroidBuildSystem":"Gradle","BuildTarget":"StandaloneOSX","StereoRenderingPath":"MultiPass"},"Hardware":{"OperatingSystem":"Mac OS X 15.1.0","DeviceModel":"Mac16,5","DeviceName":"Kwanjoong의 MacBook Pro","ProcessorType":"Apple M4 Max","ProcessorCount":16,"GraphicsDeviceName":"Apple M4 Max","SystemMemorySizeMB":65536},"Editor":{"Version":"6000.0.34f1","Branch":"6000.0/staging","Changeset":"5ab2d9ed9190","Date":1736176501},"Dependencies":["com.cysharp.unitask@2.5.10","com.github-glitchenzo.nugetforunity@4.2.0","com.unity.ai.navigation@2.0.5","com.unity.collab-proxy@2.6.0","com.unity.ide.rider@3.0.31","com.unity.ide.visualstudio@2.0.22","com.unity.inputsystem@1.11.2","com.unity.multiplayer.center@1.0.0","com.unity.render-pipelines.universal@17.0.3","com.unity.test-framework@1.4.5","com.unity.timeline@1.8.7","com.unity.ugui@2.0.0","com.unity.visualscripting@1.9.5","com.unity.modules.accessibility@1.0.0","com.unity.modules.ai@1.0.0","com.unity.modules.androidjni@1.0.0","com.unity.modules.animation@1.0.0","com.unity.modules.assetbundle@1.0.0","com.unity.modules.audio@1.0.0","com.unity.modules.cloth@1.0.0","com.unity.modules.director@1.0.0","com.unity.modules.imageconversion@1.0.0","com.unity.modules.imgui@1.0.0","com.unity.modules.jsonserialize@1.0.0","com.unity.modules.particlesystem@1.0.0","com.unity.modules.physics@1.0.0","com.unity.modules.physics2d@1.0.0","com.unity.modules.screencapture@1.0.0","com.unity.modules.terrain@1.0.0","com.unity.modules.terrainphysics@1.0.0","com.unity.modules.tilemap@1.0.0","com.unity.modules.ui@1.0.0","com.unity.modules.uielements@1.0.0","com.unity.modules.umbra@1.0.0","com.unity.modules.unityanalytics@1.0.0","com.unity.modules.unitywebrequest@1.0.0","com.unity.modules.unitywebrequestassetbundle@1.0.0","com.unity.modules.unitywebrequestaudio@1.0.0","com.unity.modules.unitywebrequesttexture@1.0.0","com.unity.modules.unitywebrequestwww@1.0.0","com.unity.modules.vehicles@1.0.0","com.unity.modules.video@1.0.0","com.unity.modules.vr@1.0.0","com.unity.modules.wind@1.0.0","com.unity.modules.xr@1.0.0","com.kwanjoong.nope@1.0.0","com.unity.modules.subsystems@1.0.0","com.unity.modules.hierarchycore@1.0.0","com.unity.ext.nunit@2.0.5","com.unity.render-pipelines.core@17.0.3","com.unity.shadergraph@17.0.3","com.unity.render-pipelines.universal-config@17.0.3","com.unity.searcher@4.9.2","com.unity.burst@1.8.18","com.unity.mathematics@1.3.2","com.unity.collections@2.5.1","com.unity.rendering.light-transport@1.0.1","com.unity.nuget.mono-cecil@1.11.4","com.unity.test-framework.performance@3.0.3"],"Results":[]}
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1119" name="LanguageExt_CompositeTests" fullname="NOPE.Tests.PerformanceBenchmarks.LanguageExt_CompositeTests" classname="NOPE.Tests.PerformanceBenchmarks.LanguageExt_CompositeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2025-01-28 16:52:35Z" end-time="2025-01-28 16:52:44Z" duration="8.787041" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1120" name="SyncComposite_LangExt" fullname="NOPE.Tests.PerformanceBenchmarks.LanguageExt_CompositeTests.SyncComposite_LangExt" methodname="SyncComposite_LangExt" classname="NOPE.Tests.PerformanceBenchmarks.LanguageExt_CompositeTests" runstate="Runnable" seed="1644594803" result="Passed" start-time="2025-01-28 16:52:35Z" end-time="2025-01-28 16:52:44Z" duration="8.781892" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[LangExt_SyncComposite.GC() in Undefineds
+Min:		400000.50 
+Median:		400001.40 
+Max:		400007.60 
+Avg:		400001.58 
+StdDev:		1.42 
+SampleCount:	20
+Sum:		8000031.50 
+First samples:	█▂▂▂▂▁▂▂▂▂▂▁▂▂▂▂▂▁▂▂
+Histogram:	█▆▁▁▂
+
+LangExt_SyncComposite in Milliseconds
+Min:		281.65 ms
+Median:		301.40 ms
+Max:		338.09 ms
+Avg:		304.70 ms
+StdDev:		13.59 ms
+SampleCount:	10
+Sum:		3046.99 ms
+First samples:	▃▃▃▃▃▄▄▅█▁
+(not enough samples for histogram)
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.LanguageExt_CompositeTests.SyncComposite_LangExt","ClassName":"NOPE.Tests.PerformanceBenchmarks.LanguageExt_CompositeTests","MethodName":"SyncComposite_LangExt","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"LangExt_SyncComposite.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[400007.6,400001.4,400001.4,400001.4,400001.4,400000.5,400001.4,400001.4,400001.4,400001.4,400001.4,400000.5,400001.4,400001.4,400001.4,400001.4,400001.4,400000.5,400001.4,400001.4],"Min":400000.5,"Max":400007.6,"Median":400001.4,"Average":400001.57500000009,"StandardDeviation":1.4187582598806093,"Sum":8000031.500000002},{"Name":"LangExt_SyncComposite","Unit":2,"IncreaseIsBetter":false,"Samples":[298.9326999999994,300.2430999999997,297.46140000000016,301.39599999999975,301.40939999999957,306.741,309.46139999999925,311.60199999999989,338.09220000000007,281.64960000000067],"Min":281.64960000000067,"Max":338.09220000000007,"Median":301.40269999999966,"Average":304.6988799999998,"StandardDeviation":13.594490298043457,"Sum":3046.9887999999983}]}
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1121" name="NOPEPerformanceTests_Composite" fullname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_Composite" classname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_Composite" runstate="Runnable" testcasecount="1" result="Passed" start-time="2025-01-28 16:52:44Z" end-time="2025-01-28 16:52:47Z" duration="3.138051" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1122" name="SyncComposite_NOPE" fullname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_Composite.SyncComposite_NOPE" methodname="SyncComposite_NOPE" classname="NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_Composite" runstate="Runnable" seed="775331782" result="Passed" start-time="2025-01-28 16:52:44Z" end-time="2025-01-28 16:52:47Z" duration="3.133058" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NOPE_SyncComposite.GC() in Undefineds
+Min:		0.50 
+Median:		0.50 
+Max:		2.00 
+Avg:		0.76 
+StdDev:		0.46 
+SampleCount:	20
+Sum:		15.10 
+First samples:	█▁▁▁▅▁▁▁▅▁▁▁▅▁▁▁▅▁▁▁
+Histogram:	█▄▂▁▂
+
+NOPE_SyncComposite in Milliseconds
+Min:		32.30 ms
+Median:		32.75 ms
+Max:		32.87 ms
+Avg:		32.67 ms
+StdDev:		0.20 ms
+SampleCount:	10
+Sum:		326.73 ms
+First samples:	▆▃██▇▁▂▆▇█
+(not enough samples for histogram)
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_Composite.SyncComposite_NOPE","ClassName":"NOPE.Tests.PerformanceBenchmarks.NOPEPerformanceTests_Composite","MethodName":"SyncComposite_NOPE","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"NOPE_SyncComposite.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[2.0,0.5,0.5,0.5,1.4,0.5,0.5,0.5,1.4,0.5,0.5,0.5,1.4,0.5,0.5,0.5,1.4,0.5,0.5,0.5],"Min":0.5,"Max":2.0,"Median":0.5,"Average":0.7550000000000001,"StandardDeviation":0.45768438907177069,"Sum":15.100000000000002},{"Name":"NOPE_SyncComposite","Unit":2,"IncreaseIsBetter":false,"Samples":[32.67009999999982,32.44659999999999,32.866199999999938,32.85940000000028,32.82300000000032,32.29940000000033,32.40070000000014,32.69959999999992,32.79639999999972,32.86989999999969],"Min":32.29940000000033,"Max":32.86989999999969,"Median":32.74799999999982,"Average":32.673130000000018,"StandardDeviation":0.20353510286917554,"Sum":326.73130000000017}]}
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1123" name="OneOf_CompositeTests" fullname="NOPE.Tests.PerformanceBenchmarks.OneOf_CompositeTests" classname="NOPE.Tests.PerformanceBenchmarks.OneOf_CompositeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2025-01-28 16:52:47Z" end-time="2025-01-28 16:53:01Z" duration="13.582487" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1124" name="SyncComposite_OneOf" fullname="NOPE.Tests.PerformanceBenchmarks.OneOf_CompositeTests.SyncComposite_OneOf" methodname="SyncComposite_OneOf" classname="NOPE.Tests.PerformanceBenchmarks.OneOf_CompositeTests" runstate="Runnable" seed="714609989" result="Passed" start-time="2025-01-28 16:52:47Z" end-time="2025-01-28 16:53:01Z" duration="13.577912" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[OneOf_SyncComposite.GC() in Undefineds
+Min:		800001.40 
+Median:		800001.40 
+Max:		800003.70 
+Avg:		800001.82 
+StdDev:		0.62 
+SampleCount:	20
+Sum:		16000036.40 
+First samples:	█▁▁▂▄▁▄▁▁▅▁▁▁▄▁▁▄▁▁▃
+Histogram:	█▄▂▁▂
+
+OneOf_SyncComposite in Milliseconds
+Min:		510.13 ms
+Median:		542.21 ms
+Max:		586.65 ms
+Avg:		542.93 ms
+StdDev:		23.25 ms
+SampleCount:	10
+Sum:		5429.31 ms
+First samples:	▃▂▁▃█▄▄▄▄▇
+(not enough samples for histogram)
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.OneOf_CompositeTests.SyncComposite_OneOf","ClassName":"NOPE.Tests.PerformanceBenchmarks.OneOf_CompositeTests","MethodName":"SyncComposite_OneOf","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"OneOf_SyncComposite.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[800003.7,800001.4,800001.4,800001.8,800002.5,800001.4,800002.3,800001.4,800001.4,800002.8,800001.4,800001.4,800001.4,800002.3,800001.4,800001.4,800002.3,800001.4,800001.4,800001.9],"Min":800001.4,"Max":800003.7,"Median":800001.4,"Average":800001.8200000002,"StandardDeviation":0.6233778950130277,"Sum":16000036.400000005},{"Name":"OneOf_SyncComposite","Unit":2,"IncreaseIsBetter":false,"Samples":[528.8316999999997,517.1287999999995,510.1330000000007,529.789499999999,586.6456999999991,545.9528000000009,543.6684000000005,546.7176,540.7540000000008,579.6896000000015],"Min":510.1330000000007,"Max":586.6456999999991,"Median":542.2112000000006,"Average":542.9311100000002,"StandardDeviation":23.24623406934777,"Sum":5429.311100000002}]}
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1125" name="Optional_CompositeTests" fullname="NOPE.Tests.PerformanceBenchmarks.Optional_CompositeTests" classname="NOPE.Tests.PerformanceBenchmarks.Optional_CompositeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2025-01-28 16:53:01Z" end-time="2025-01-28 16:53:06Z" duration="5.528376" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1126" name="SyncComposite_Optional" fullname="NOPE.Tests.PerformanceBenchmarks.Optional_CompositeTests.SyncComposite_Optional" methodname="SyncComposite_Optional" classname="NOPE.Tests.PerformanceBenchmarks.Optional_CompositeTests" runstate="Runnable" seed="760832787" result="Passed" start-time="2025-01-28 16:53:01Z" end-time="2025-01-28 16:53:06Z" duration="5.522146" asserts="0">
+                <properties>
+                  <property name="Category" value="Performance" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Optional_SyncComposite.GC() in Undefineds
+Min:		200000.50 
+Median:		200000.95 
+Max:		200002.40 
+Avg:		200001.00 
+StdDev:		0.54 
+SampleCount:	20
+Sum:		4000020.00 
+First samples:	█▁▄▁▄▁▄▁▄▁▄▁▄▁▄▁▄▁▄▁
+Histogram:	█▃▃▁▂
+
+Optional_SyncComposite in Milliseconds
+Min:		133.43 ms
+Median:		141.22 ms
+Max:		190.97 ms
+Avg:		144.82 ms
+StdDev:		16.00 ms
+SampleCount:	10
+Sum:		1448.19 ms
+First samples:	▂▁▁▂▁▂▃▁▂█
+(not enough samples for histogram)
+
+
+##performancetestresult2:{"Name":"NOPE.Tests.PerformanceBenchmarks.Optional_CompositeTests.SyncComposite_Optional","ClassName":"NOPE.Tests.PerformanceBenchmarks.Optional_CompositeTests","MethodName":"SyncComposite_Optional","Version":"1","Categories":["Performance"],"SampleGroups":[{"Name":"Optional_SyncComposite.GC()","Unit":8,"IncreaseIsBetter":false,"Samples":[200002.4,200000.5,200001.4,200000.5,200001.4,200000.5,200001.4,200000.5,200001.4,200000.5,200001.4,200000.5,200001.4,200000.5,200001.4,200000.5,200001.4,200000.5,200001.4,200000.5],"Min":200000.5,"Max":200002.4,"Median":200000.95,"Average":200000.99999999998,"StandardDeviation":0.5431390245573315,"Sum":4000019.9999999997},{"Name":"Optional_SyncComposite","Unit":2,"IncreaseIsBetter":false,"Samples":[140.89589999999999,133.43200000000025,133.5300000000002,143.90880000000016,136.07140000000028,141.54739999999948,145.78760000000058,136.58400000000075,145.46839999999976,190.96770000000016],"Min":133.43200000000025,"Max":190.96770000000016,"Median":141.22164999999974,"Average":144.81932000000016,"StandardDeviation":15.99820609304678,"Sum":1448.1932000000015}]}
+Saving results to: /Users/kwanjoonglee/Library/Application Support/DefaultCompany/UnityNope/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
