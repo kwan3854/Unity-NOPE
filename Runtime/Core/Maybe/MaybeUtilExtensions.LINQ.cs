@@ -1,45 +1,57 @@
 using System;
-using Cysharp.Threading.Tasks;
-using NOPE.Runtime.Core;
-using NOPE.Runtime.Core.Maybe;
 using UnityEngine;
 
-namespace NOPE.Runtime.AdvancedExtensions
-{
-    /// <summary>
-    /// Provides async extension methods for Maybe types using UniTask or Awaitable
-    /// (depending on compilation symbols).
-    /// </summary>
-    public static class MaybeAdvancedAsyncExtensions
-    {
 #if NOPE_UNITASK
+using Cysharp.Threading.Tasks;
+#endif
 
+namespace NOPE.Runtime.Core.Maybe
+{
+    public static partial class MaybeUtilExtensions
+    {
         /// <summary>
-        /// Awaits an async Maybe and returns its value, or throws an exception if it has no value.
+        /// Returns this Maybe if the predicate is true; otherwise returns None.
+        /// (If the Maybe is already None, it just remains None.)
         /// </summary>
-        public static async UniTask<T> GetValueOrThrow<T>(
-            this UniTask<Maybe<T>> asyncMaybe,
-            Exception customException = null)
+        public static Maybe<T> Where<T>(
+            this Maybe<T> maybe,
+            Func<T, bool> predicate)
         {
-            var maybe = await asyncMaybe;
-            if (maybe.HasValue)
-                return maybe.Value;
-            if (customException != null)
-                throw customException;
-            throw new InvalidOperationException("No value present in Maybe.");
+            if (maybe.HasValue && !predicate(maybe.Value))
+            {
+                return Maybe<T>.None;
+            }
+            return maybe;
         }
 
         /// <summary>
-        /// Awaits an async Maybe and returns its value, or a provided default if no value.
+        /// For LINQ comprehension: same as Map().
         /// </summary>
-        public static async UniTask<T> GetValueOrDefault<T>(
-            this UniTask<Maybe<T>> asyncMaybe,
-            T defaultValue = default)
+        public static Maybe<TResult> Select<T, TResult>(
+            this Maybe<T> maybe,
+            Func<T, TResult> selector)
         {
-            var maybe = await asyncMaybe;
-            return maybe.HasValue ? maybe.Value : defaultValue;
+            return maybe.Map(selector);
         }
 
+        /// <summary>
+        /// For LINQ comprehension: same as Bind().
+        /// </summary>
+        public static Maybe<TResult> SelectMany<T, TResult>(
+            this Maybe<T> maybe,
+            Func<T, Maybe<TResult>> binder,
+            Func<T, TResult, TResult> resultSelector)
+        {
+            if (maybe.HasNoValue)
+                return Maybe<TResult>.None;
+
+            var intermediate = binder(maybe.Value);
+            return intermediate.HasValue
+                ? Maybe<TResult>.From(resultSelector(maybe.Value, intermediate.Value))
+                : Maybe<TResult>.None;
+        }
+
+#if NOPE_UNITASK
         /// <summary>
         /// Awaits an async Maybe and applies a predicate function; returns None if it fails.
         /// </summary>
@@ -68,29 +80,7 @@ namespace NOPE.Runtime.AdvancedExtensions
                 return Maybe<T>.None;
             return maybe;
         }
-
-        /// <summary>
-        /// Asynchronously returns this Maybe if it has a value; if None, returns the fallback Maybe.
-        /// </summary>
-        public static async UniTask<Maybe<T>> Or<T>(
-            this UniTask<Maybe<T>> asyncMaybe,
-            Maybe<T> fallbackMaybe)
-        {
-            var maybe = await asyncMaybe;
-            return maybe.HasValue ? maybe : fallbackMaybe;
-        }
-
-        /// <summary>
-        /// Asynchronously returns this Maybe if it has a value; if None, creates a new Maybe from the fallbackValue.
-        /// </summary>
-        public static async UniTask<Maybe<T>> Or<T>(
-            this UniTask<Maybe<T>> asyncMaybe,
-            T fallbackValue)
-        {
-            var maybe = await asyncMaybe;
-            return maybe.HasValue ? maybe : Maybe<T>.From(fallbackValue);
-        }
-
+        
         /// <summary>
         /// Asynchronously applies a selector function if the Maybe is not None.
         /// Returns a new Maybe of the transformed value.
@@ -124,34 +114,6 @@ namespace NOPE.Runtime.AdvancedExtensions
 #endif
 
 #if NOPE_AWAITABLE
-
-        /// <summary>
-        /// Awaits an async Maybe (Awaitable) and returns its value, or throws if no value.
-        /// </summary>
-        public static async Awaitable<T> GetValueOrThrow<T>(
-            this Awaitable<Maybe<T>> asyncMaybe,
-            Exception customException = null)
-        {
-            var maybe = await asyncMaybe;
-            if (maybe.HasValue)
-                return maybe.Value;
-            if (customException != null)
-                throw customException;
-            throw new InvalidOperationException("No value present in Maybe.");
-        }
-
-        /// <summary>
-        /// Awaits an async Maybe (Awaitable) and returns its value, or a default if no value.
-        /// </summary>
-        public static async Awaitable<T> GetValueOrDefault<T>(
-            this Awaitable<Maybe<T>> asyncMaybe,
-            T defaultValue = default)
-        {
-            var maybe = await asyncMaybe;
-            return maybe.HasValue ? maybe.Value : defaultValue;
-        }
-
-
         /// <summary>
         /// Awaits an async Maybe (Awaitable) and filters it by a predicate function.
         /// </summary>
@@ -180,29 +142,7 @@ namespace NOPE.Runtime.AdvancedExtensions
                 return Maybe<T>.None;
             return maybe;
         }
-
-        /// <summary>
-        /// Asynchronously returns this Maybe if it has a value; if None, returns the fallback Maybe.
-        /// </summary>
-        public static async Awaitable<Maybe<T>> Or<T>(
-            this Awaitable<Maybe<T>> asyncMaybe,
-            Maybe<T> fallbackMaybe)
-        {
-            var maybe = await asyncMaybe;
-            return maybe.HasValue ? maybe : fallbackMaybe;
-        }
-
-        /// <summary>
-        /// Asynchronously returns this Maybe if it has a value; if None, creates a new Maybe from the fallbackValue.
-        /// </summary>
-        public static async Awaitable<Maybe<T>> Or<T>(
-            this Awaitable<Maybe<T>> asyncMaybe,
-            T fallbackValue)
-        {
-            var maybe = await asyncMaybe;
-            return maybe.HasValue ? maybe : Maybe<T>.From(fallbackValue);
-        }
-
+        
         /// <summary>
         /// Asynchronously applies a selector function if the Maybe is not None.
         /// Returns a new Maybe of the transformed value.

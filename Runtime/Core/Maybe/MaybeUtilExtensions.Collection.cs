@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using NOPE.Runtime.Core;
-using NOPE.Runtime.Core.Maybe;
 
-namespace NOPE.Runtime.Collection
+namespace NOPE.Runtime.Core.Maybe
 {
-    public static class CollectionUtilitiesExtensions
+    public static partial class MaybeUtilExtensions
     {
         /// <summary>
         /// Tries to find a value in the dictionary by the specified key.

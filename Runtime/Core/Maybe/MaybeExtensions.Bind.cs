@@ -1,18 +1,33 @@
 using System;
 using UnityEngine;
+
 #if NOPE_UNITASK
 using Cysharp.Threading.Tasks;
 #endif
 
 namespace NOPE.Runtime.Core.Maybe
 {
-    public static partial class MaybeAsyncExtensions
+    public static partial class MaybeExtensions
     {
+        /// <summary>
+        /// Converts the inner value into another Maybe if present; otherwise returns None.
+        /// (similar to Bind/flatMap)
+        /// </summary>
+        public static Maybe<TNew> Bind<TOriginal, TNew>(
+            this Maybe<TOriginal> maybe,
+            Func<TOriginal, Maybe<TNew>> binder)
+        {
+            return maybe.HasValue
+                ? binder(maybe.Value)
+                : Maybe<TNew>.None;
+        }
+        
 #if NOPE_UNITASK
         // ------------------- UniTask-based Async Methods (BIND) -------------------
 
         /// <summary>
-        /// (A) Sync Maybe<T> -> Async binder -> returns UniTask<Maybe<TNew>>
+        /// Converts the inner value into another Maybe if present; otherwise returns None.
+        /// (similar to Bind/flatMap)
         /// </summary>
         public static async UniTask<Maybe<TNew>> Bind<T, TNew>(
             this Maybe<T> maybe,
@@ -25,7 +40,8 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (B) Async UniTask<Maybe<T>> -> Sync binder -> returns UniTask<Maybe<TNew>>
+        /// Converts the inner value into another Maybe if present; otherwise returns None.
+        /// (similar to Bind/flatMap)
         /// </summary>
         public static async UniTask<Maybe<TNew>> Bind<T, TNew>(
             this UniTask<Maybe<T>> asyncMaybe,
@@ -36,7 +52,8 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (C) Async UniTask<Maybe<T>> -> Async binder -> returns UniTask<Maybe<TNew>>
+        /// Converts the inner value into another Maybe if present; otherwise returns None.
+        /// (similar to Bind/flatMap)
         /// </summary>
         public static async UniTask<Maybe<TNew>> Bind<T, TNew>(
             this UniTask<Maybe<T>> asyncMaybe,
@@ -54,7 +71,8 @@ namespace NOPE.Runtime.Core.Maybe
         // ------------------- Awaitable-based Async Methods (BIND) -------------------
 
         /// <summary>
-        /// (A) Sync Maybe<T> -> Async binder -> returns Awaitable<Maybe<TNew>>
+        /// Converts the inner value into another Maybe if present; otherwise returns None.
+        /// (similar to Bind/flatMap)
         /// </summary>
         public static async Awaitable<Maybe<TNew>> Bind<T, TNew>(
             this Maybe<T> maybe,
@@ -67,7 +85,8 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (B) Async Awaitable<Maybe<T>> -> Sync binder -> returns Awaitable<Maybe<TNew>>
+        /// Converts the inner value into another Maybe if present; otherwise returns None.
+        /// (similar to Bind/flatMap)
         /// </summary>
         public static async Awaitable<Maybe<TNew>> Bind<T, TNew>(
             this Awaitable<Maybe<T>> asyncMaybe,
@@ -78,7 +97,8 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (C) Async Awaitable<Maybe<T>> -> Async binder -> returns Awaitable<Maybe<TNew>>
+        /// Converts the inner value into another Maybe if present; otherwise returns None.
+        /// (similar to Bind/flatMap)
         /// </summary>
         public static async Awaitable<Maybe<TNew>> Bind<T, TNew>(
             this Awaitable<Maybe<T>> asyncMaybe,

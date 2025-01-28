@@ -6,14 +6,26 @@ using Cysharp.Threading.Tasks;
 
 namespace NOPE.Runtime.Core.Maybe
 {
-    public static partial class MaybeAsyncExtensions
+    public static partial class MaybeExtensions
     {
+        /// <summary>
+        /// Executes an action regardless of whether the Maybe has a value or not.
+        /// Returns the original Maybe.
+        /// </summary>
+        public static Maybe<T> Finally<T>(
+            this Maybe<T> maybe,
+            Action<Maybe<T>> finalAction)
+        {
+            finalAction(maybe);
+            return maybe;
+        }
+        
 #if NOPE_UNITASK
         // ------------------- UniTask-based Async Methods (FINALLY) -------------------
 
         /// <summary>
-        /// (A) Sync Maybe<T> -> async action -> returns UniTask<Maybe<T>>
-        ///    (equivalent to "Tap" but executed even if None?)
+        /// Executes an action regardless of whether the Maybe has a value or not.
+        /// Returns the original Maybe.
         /// </summary>
         public static async UniTask<Maybe<T>> Finally<T>(
             this Maybe<T> maybe,
@@ -24,7 +36,8 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (B) Async UniTask<Maybe<T>> -> sync action -> returns UniTask<Maybe<T>>
+        /// Executes an action regardless of whether the Maybe has a value or not.
+        /// Returns the original Maybe.
         /// </summary>
         public static async UniTask<Maybe<T>> Finally<T>(
             this UniTask<Maybe<T>> asyncMaybe,
@@ -36,7 +49,8 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (C) Async UniTask<Maybe<T>> -> async action -> returns UniTask<Maybe<T>>
+        /// Executes an action regardless of whether the Maybe has a value or not.
+        /// Returns the original Maybe.
         /// </summary>
         public static async UniTask<Maybe<T>> Finally<T>(
             this UniTask<Maybe<T>> asyncMaybe,
@@ -52,7 +66,8 @@ namespace NOPE.Runtime.Core.Maybe
         // ------------------- Awaitable-based Async Methods (FINALLY) -------------------
 
         /// <summary>
-        /// (A) Sync Maybe<T> -> async action -> returns Awaitable<Maybe<T>>
+        /// Executes an action regardless of whether the Maybe has a value or not.
+        /// Returns the original Maybe.
         /// </summary>
         public static async Awaitable<Maybe<T>> Finally<T>(
             this Maybe<T> maybe,
@@ -63,7 +78,8 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (B) Async Awaitable<Maybe<T>> -> sync action -> returns Awaitable<Maybe<T>>
+        /// Executes an action regardless of whether the Maybe has a value or not.
+        /// Returns the original Maybe.
         /// </summary>
         public static async Awaitable<Maybe<T>> Finally<T>(
             this Awaitable<Maybe<T>> asyncMaybe,
@@ -75,7 +91,8 @@ namespace NOPE.Runtime.Core.Maybe
         }
 
         /// <summary>
-        /// (C) Async Awaitable<Maybe<T>> -> async action -> returns Awaitable<Maybe<T>>
+        /// Executes an action regardless of whether the Maybe has a value or not.
+        /// Returns the original Maybe.
         /// </summary>
         public static async Awaitable<Maybe<T>> Finally<T>(
             this Awaitable<Maybe<T>> asyncMaybe,
