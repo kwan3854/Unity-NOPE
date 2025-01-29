@@ -67,8 +67,8 @@ The following performance measurements were taken in an environment where the NO
 
 > Please note that not all libraries support exactly the same features. In some cases, similar functions that produce equivalent results from the user's perspective were used for comparison.
 
-![Image 2](Documentation~/Bench_Memory.svg)
-![Image 1](Documentation~/Bench_Time.svg)
+![Image 2](Documentation~/Bench_Memory_250129.svg)
+![Image 1](Documentation~/Bench_Time_250129.svg)
 
 
 ## Installation
