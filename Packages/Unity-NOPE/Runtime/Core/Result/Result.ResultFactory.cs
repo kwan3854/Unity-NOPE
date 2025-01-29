@@ -10,29 +10,29 @@ namespace NOPE.Runtime.Core.Result
     public readonly partial struct Result
     {
         /// <summary>
-        /// Returns Success(resultValue) if condition is true; otherwise Failure(error).
+        /// Returns Success(successValue) if condition is true; otherwise Failure(error).
         /// </summary>
         public static Result<T, E> SuccessIf<T, E>(
             bool condition,
-            T resultValue,
+            T successValue,
             E error)
         {
             return condition
-                ? Result<T, E>.Success(resultValue)
+                ? Result<T, E>.Success(successValue)
                 : Result<T, E>.Failure(error);
         }
 
         /// <summary>
-        /// Returns Success(resultValue) if condition() is true; otherwise Failure(error).
+        /// Returns Success(successValue) if condition() is true; otherwise Failure(error).
         /// Lazy-evaluated predicate.
         /// </summary>
         public static Result<T, E> SuccessIf<T, E>(
             Func<bool> condition,
-            T resultValue,
+            T successValue,
             E error)
         {
             return condition()
-                ? Result<T, E>.Success(resultValue)
+                ? Result<T, E>.Success(successValue)
                 : Result<T, E>.Failure(error);
         }
 
@@ -61,7 +61,7 @@ namespace NOPE.Runtime.Core.Result
                 ? Result<T, E>.Failure(error)
                 : Result<T, E>.Success(successValue);
         }
-
+        
         /// <summary>
         /// Wraps a function call that may throw and returns:
         /// - Success(result) if no exception
@@ -81,17 +81,17 @@ namespace NOPE.Runtime.Core.Result
                 return errorConverter(ex);
             }
         }
-        
+
 #if NOPE_UNITASK
         /// <summary>
         /// Returns Success(successValue) if conditionAsync is true; otherwise Failure(error).
         /// </summary>
         public static async UniTask<Result<T, E>> SuccessIf<T, E>(
-            UniTask<bool> conditionAsync,
+            Func<UniTask<bool>> conditionAsync,
             T successValue,
             E error)
         {
-            bool cond = await conditionAsync;
+            bool cond = await conditionAsync();
             return cond
                 ? Result<T, E>.Success(successValue)
                 : Result<T, E>.Failure(error);
@@ -101,26 +101,26 @@ namespace NOPE.Runtime.Core.Result
         /// Returns Failure(error) if conditionAsync is true; otherwise Success(successValue).
         /// </summary>
         public static async UniTask<Result<T, E>> FailureIf<T, E>(
-            UniTask<bool> conditionAsync,
+            Func<UniTask<bool>> conditionAsync,
             T successValue,
             E error)
         {
-            bool cond = await conditionAsync;
+            bool cond = await conditionAsync();
             return cond
                 ? Result<T, E>.Failure(error)
                 : Result<T, E>.Success(successValue);
         }
-
+        
         /// <summary>
         /// Asynchronously wraps a function that may throw, returning Success or Failure.
         /// </summary>
         public static async UniTask<Result<T, E>> Of<T, E>(
-            UniTask<T> asyncFunc,
+            Func<UniTask<T>> asyncFunc,
             Func<Exception, E> errorConverter)
         {
             try
             {
-                T value = await asyncFunc;
+                T value = await asyncFunc();
                 return value;
             }
             catch (Exception ex)
@@ -135,11 +135,11 @@ namespace NOPE.Runtime.Core.Result
         /// Returns Success(successValue) if conditionAwaitable is true; otherwise Failure(error).
         /// </summary>
         public static async Awaitable<Result<T, E>> SuccessIf<T, E>(
-            Awaitable<bool> conditionAwaitable,
+            Func<Awaitable<bool>> conditionAwaitable,
             T successValue,
             E error)
         {
-            bool cond = await conditionAwaitable;
+            bool cond = await conditionAwaitable();
             return cond
                 ? Result<T, E>.Success(successValue)
                 : Result<T, E>.Failure(error);
@@ -149,11 +149,11 @@ namespace NOPE.Runtime.Core.Result
         /// Returns Failure(error) if conditionAwaitable is true; otherwise Success(successValue).
         /// </summary>
         public static async Awaitable<Result<T, E>> FailureIf<T, E>(
-            Awaitable<bool> conditionAwaitable,
+            Func<Awaitable<bool>> conditionAwaitable,
             T successValue,
             E error)
         {
-            bool cond = await conditionAwaitable;
+            bool cond = await conditionAwaitable();
             return cond
                 ? Result<T, E>.Failure(error)
                 : Result<T, E>.Success(successValue);
@@ -163,12 +163,12 @@ namespace NOPE.Runtime.Core.Result
         /// Asynchronously wraps a function that may throw, returning Success or Failure.
         /// </summary>
         public static async Awaitable<Result<T, E>> Of<T, E>(
-            Awaitable<T> awaitedFunc,
+            Func<Awaitable<T>> awaitedFunc,
             Func<Exception, E> errorConverter)
         {
             try
             {
-                T value = await awaitedFunc;
+                T value = await awaitedFunc();
                 return value;
             }
             catch (Exception ex)

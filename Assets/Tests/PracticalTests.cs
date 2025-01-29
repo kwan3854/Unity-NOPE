@@ -46,20 +46,24 @@ namespace NOPE.Tests
         public void SuccessIf_And_FailureIf()
         {
             var r = Result.SuccessIf(condition: () => DateTime.Now.Year > 2000,
-                                     resultValue: 999,
-                                     error: "Year <= 2000?");
+                                     999,
+                                     "Year <= 2000?");
             Assert.IsTrue(r.IsSuccess); 
 
             var r2 = Result.FailureIf(true, 123, "Condition triggered fail");
             Assert.IsTrue(r2.IsFailure);
             Assert.AreEqual("Condition triggered fail", r2.Error);
         }
-
+        
         [Test]
         public void Of_WrapsExceptions()
         {
-            var res = Result.Of<int,string>(
-                () => throw new InvalidOperationException("IOEx"),
+            var res = Result.Of(
+                () =>
+                {
+                    throw new InvalidOperationException("IOEx");
+                    return 100;
+                },
                 ex => $"Ex: {ex.Message}");
             Assert.IsTrue(res.IsFailure);
             Assert.AreEqual("Ex: IOEx", res.Error);
@@ -199,6 +203,19 @@ namespace NOPE.Tests
         }
         
 #if NOPE_UNITASK
+        [Test]
+        public async Task Async_SuccessIf()
+        {
+            var r = await Result.SuccessIf(conditionAsync: async () =>
+                {
+                    await UniTask.Delay(1);
+                    return DateTime.Now.Year > 2000;
+                },
+                999,
+                "Year <= 2000?");
+            Assert.IsTrue(r.IsSuccess);
+        }
+        
         // 5) Async usage (UniTask)
         [Test]
         public async Task Async_Chain_Result()
