@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using NOPE.Runtime;
 using NOPE.Runtime.Core;
 using NOPE.Runtime.Core.Maybe;
@@ -196,5 +198,20 @@ namespace NOPE.Tests
             maybe.ExecuteNoValue(() => count++);
             Assert.AreEqual(1, count);
         }
+        
+#if NOPE_UNITASK
+        [Test]
+        public async Task TryFindAsync_UniTask()
+        {
+            var unAwaitedDict = GetAsyncUniTaskDictionary();
+            var maybe = await unAwaitedDict.TryFind("test");
+        }
+
+        private async UniTask<IDictionary<string, int>> GetAsyncUniTaskDictionary()
+        {
+            await UniTask.Yield();
+            return new Dictionary<string, int> { { "test", 42 } };
+        }
+#endif
     }
 }

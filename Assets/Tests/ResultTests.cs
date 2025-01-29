@@ -100,6 +100,151 @@ namespace NOPE.Tests
             Assert.AreEqual("FAIL", r.Error);
         }
     }
+    
+    [TestFixture]
+    public class ResultTests_FactoryMethods
+    {
+        [Test]
+        public void SuccessFactoryMethod()
+        {
+            var r = Result<int, string>.Success(123);
+
+            Assert.IsTrue(r.IsSuccess);
+            Assert.AreEqual(123, r.Value);
+        }
+
+        [Test]
+        public void FailureFactoryMethod()
+        {
+            var r = Result<int, string>.Failure("ERR");
+
+            Assert.IsTrue(r.IsFailure);
+            Assert.AreEqual("ERR", r.Error);
+        }
+
+        [Test]
+        public void ImplicitSuccessFactoryMethod()
+        {
+            Result<int, string> r = 999;
+
+            Assert.IsTrue(r.IsSuccess);
+            Assert.AreEqual(999, r.Value);
+        }
+
+        [Test]
+        public void ImplicitFailureFactoryMethod()
+        {
+            Result<int, string> r = "ERR";
+
+            Assert.IsTrue(r.IsFailure);
+            Assert.AreEqual("ERR", r.Error);
+        }
+        
+        [Test]
+        public void SuccessIfFactoryMethod_Success()
+        {
+            var r = Result.SuccessIf(123 > 100, 123, "ERR");
+
+            Assert.IsTrue(r.IsSuccess);
+            Assert.AreEqual(123, r.Value);
+        }
+        
+        [Test]
+        public void SuccessIfFactoryMethod_Failure()
+        {
+            var r = Result.SuccessIf(123 < 100, 123, "ERR");
+
+            Assert.IsTrue(r.IsFailure);
+            Assert.AreEqual("ERR", r.Error);
+        }
+        
+        [Test]
+        public void FailureIfFactoryMethod_Success()
+        {
+            var r = Result.FailureIf(123 < 100, 123, "ERR");
+
+            Assert.IsTrue(r.IsSuccess);
+            Assert.AreEqual(123, r.Value);
+        }
+        
+        [Test]
+        public void FailureIfFactoryMethod_Failure()
+        {
+            var r = Result.FailureIf(123 > 100, 123, "ERR");
+
+            Assert.IsTrue(r.IsFailure);
+            Assert.AreEqual("ERR", r.Error);
+        }
+
+#if NOPE_UNITASK
+        [Test]
+        public async Task SuccessIfFactoryMethod_Async()
+        {
+            var r = await Result.SuccessIf(async () =>
+            {
+                await UniTask.Delay(1);
+                return 123 > 100;
+            }, 123, "ERR");
+
+            Assert.IsTrue(r.IsSuccess);
+            Assert.AreEqual(123, r.Value);
+            
+            var r2 = await Result.SuccessIf(async () =>
+            {
+                await UniTask.Delay(1);
+                return 123 < 100;
+            }, 123, "ERR");
+            
+            Assert.IsTrue(r2.IsFailure);
+            Assert.AreEqual("ERR", r2.Error);
+        }
+        
+        [Test]
+        public async Task FailureIfFactoryMethod_Async()
+        {
+            var r = await Result.FailureIf(async () =>
+            {
+                await UniTask.Delay(1);
+                return 123 < 100;
+            }, 123, "ERR");
+
+            Assert.IsTrue(r.IsSuccess);
+            Assert.AreEqual(123, r.Value);
+            
+            var r2 = await Result.FailureIf(async () =>
+            {
+                await UniTask.Delay(1);
+                return 123 > 100;
+            }, 123, "ERR");
+            
+            Assert.IsTrue(r2.IsFailure);
+            Assert.AreEqual("ERR", r2.Error);
+        }
+        
+        [Test]
+        public async Task OfFactoryMethod_Async()
+        {
+            var r = await Result.Of(async () =>
+            {
+                await UniTask.Delay(1);
+                return 123;
+            }, ex => "ERR");
+
+            Assert.IsTrue(r.IsSuccess);
+            Assert.AreEqual(123, r.Value);
+            
+            var r2 = await Result.Of(async () =>
+            {
+                await UniTask.Delay(1);
+                throw new Exception("ERR");
+                return 0;
+            }, ex => "ERR");
+
+            Assert.IsTrue(r2.IsFailure);
+            Assert.AreEqual("ERR", r2.Error);
+        }
+#endif
+    }
 
     // =======================================================
     // 2) SYNC EXTENSIONS TESTS

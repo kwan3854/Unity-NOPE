@@ -46,20 +46,24 @@ namespace NOPE.Tests
         public void SuccessIf_And_FailureIf()
         {
             var r = Result.SuccessIf(condition: () => DateTime.Now.Year > 2000,
-                                     resultValue: 999,
-                                     error: "Year <= 2000?");
+                                     999,
+                                     "Year <= 2000?");
             Assert.IsTrue(r.IsSuccess); 
 
             var r2 = Result.FailureIf(true, 123, "Condition triggered fail");
             Assert.IsTrue(r2.IsFailure);
             Assert.AreEqual("Condition triggered fail", r2.Error);
         }
-
+        
         [Test]
         public void Of_WrapsExceptions()
         {
-            var res = Result.Of<int,string>(
-                () => throw new InvalidOperationException("IOEx"),
+            var res = Result.Of(
+                () =>
+                {
+                    throw new InvalidOperationException("IOEx");
+                    return 100;
+                },
                 ex => $"Ex: {ex.Message}");
             Assert.IsTrue(res.IsFailure);
             Assert.AreEqual("Ex: IOEx", res.Error);
@@ -199,6 +203,19 @@ namespace NOPE.Tests
         }
         
 #if NOPE_UNITASK
+        [Test]
+        public async Task Async_SuccessIf()
+        {
+            var r = await Result.SuccessIf(conditionAsync: async () =>
+                {
+                    await UniTask.Delay(1);
+                    return DateTime.Now.Year > 2000;
+                },
+                999,
+                "Year <= 2000?");
+            Assert.IsTrue(r.IsSuccess);
+        }
+        
         // 5) Async usage (UniTask)
         [Test]
         public async Task Async_Chain_Result()
@@ -248,6 +265,42 @@ namespace NOPE.Tests
                 }
             }
             return result;
+        }
+        
+        [Test]
+        public async Task CombineValues_Async_UniTask()
+        {
+            var r1 = SlowSuccess(10);
+            var r2 = SlowSuccess(20);
+            var combined = await Result.CombineValues(r1, r2);
+            Assert.IsTrue(combined.IsSuccess);
+            Assert.AreEqual(10, combined.Value.Item1);
+            Assert.AreEqual(20, combined.Value.Item2);
+            
+            // 10 Tuple
+            var tenTuple = await Result.CombineValues(
+                SlowSuccess(10),
+                SlowSuccess(20),
+                SlowSuccess(10),
+                SlowSuccess(20),
+                SlowSuccess(10),
+                SlowSuccess(20),
+                SlowSuccess(10),
+                SlowSuccess(20),
+                SlowSuccess(10),
+                SlowSuccess(20));
+            Assert.IsTrue(tenTuple.IsSuccess);
+            Assert.AreEqual(10, tenTuple.Value.Length);
+            Assert.AreEqual(10, tenTuple.Value[0]);
+            Assert.AreEqual(20, tenTuple.Value[1]);
+            Assert.AreEqual(10, tenTuple.Value[2]);
+            Assert.AreEqual(20, tenTuple.Value[3]);
+            Assert.AreEqual(10, tenTuple.Value[4]);
+            Assert.AreEqual(20, tenTuple.Value[5]);
+            Assert.AreEqual(10, tenTuple.Value[6]);
+            Assert.AreEqual(20, tenTuple.Value[7]);
+            Assert.AreEqual(10, tenTuple.Value[8]);
+            Assert.AreEqual(20, tenTuple.Value[9]);
         }
 #endif
 
