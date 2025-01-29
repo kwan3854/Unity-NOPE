@@ -4,17 +4,17 @@ using Unity.PerformanceTesting;
 
 namespace NOPE.Tests.PerformanceBenchmarks
 {
-    public enum TestError
-    {
-        None = 0,
-        General = 1,
-        TooSmall = 2
-    }
-
     [TestFixture]
     public class NOPEPerformanceTests_Composite
     {
         private const int N = 100_000;
+        
+        public enum TestError
+        {
+            None = 0,
+            General = 1,
+            TooSmall = 2
+        }
 
         // ------------------ SYNC Composite Example ------------------
         [Test, Performance]
@@ -36,20 +36,17 @@ namespace NOPE.Tests.PerformanceBenchmarks
                         r = r.Map(x => x * 2);
 
                         // 4) Tap => side effect
-                        r.Tap(x =>
+                        r = r.Tap(x =>
                         {
                             int dummy = x + 1;
                         });
 
                         // 5) Ensure => must be > 0
                         r = r.Ensure(x => x > 0, TestError.General);
-
-                        // Possibly Combine, or MapError, etc. 
-                        // Just pick whichever chain you want to represent "real usage."
                     }
                 })
                 .WarmupCount(10)
-                .MeasurementCount(10)
+                .DynamicMeasurementCount()
                 .IterationsPerMeasurement(10)
                 .GC()
                 .SampleGroup("NOPE_SyncComposite")

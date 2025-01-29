@@ -2,7 +2,6 @@ using NUnit.Framework;
 using Unity.PerformanceTesting;
 using static LanguageExt.Prelude;
 using LanguageExt;
-using System.Threading.Tasks;
 
 namespace NOPE.Tests.PerformanceBenchmarks
 {
@@ -10,6 +9,13 @@ namespace NOPE.Tests.PerformanceBenchmarks
     public class LanguageExt_CompositeTests
     {
         private const int N = 100_000;
+        
+        public enum TestError
+        {
+            None = 0,
+            General = 1,
+            TooSmall = 2
+        }
 
         [Test, Performance]
         public void SyncComposite_LangExt()
@@ -42,7 +48,7 @@ namespace NOPE.Tests.PerformanceBenchmarks
                     }
                 })
                 .WarmupCount(10)
-                .MeasurementCount(10)
+                .DynamicMeasurementCount()
                 .IterationsPerMeasurement(10)
                 .GC()
                 .SampleGroup("LangExt_SyncComposite")
