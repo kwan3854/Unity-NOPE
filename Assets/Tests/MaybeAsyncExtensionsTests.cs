@@ -289,6 +289,22 @@ namespace NOPE.Tests
 
             Assert.IsFalse(result.HasValue);
         }
+        
+        [Test]
+        public async System.Threading.Tasks.Task Bind_Awaitable_ShouldReturnNone_WhenMaybeHasNoValue_2()
+        {
+            var cts = CreateMaybe(null);
+            var maybe = cts.Awaitable;
+
+            var result = await maybe.Bind(async x =>
+            {
+                await Task.Delay(1); // simulate some async operation
+                
+                return Maybe<string>.From(x.ToString());
+            });
+
+            Assert.IsFalse(result.HasValue);
+        }
 
         [Test]
         public async System.Threading.Tasks.Task Tap_Awaitable_ShouldExecuteAction_WhenMaybeHasValue()
