@@ -86,14 +86,14 @@ The following performance measurements were taken in an environment where the NO
    ```json
     {
       "dependencies": {
-        "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0"
+        "com.kwanjoong.nope": "https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.2.0"
       }
     }
    ```
 2. **Unity Package Manager (Git)**:
     1) `Window → Package Manager`
     2) “+” → “Add package from git URL…”
-    3) Paste `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE` to specify a version, append version tag like `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.0.0`.
+    3) Paste `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE` to specify a version, append version tag like `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.2.0`.
 
 3. **OpenUPM**:  
    On CLI, `openupm add com.kwanjoong.nope`.
@@ -706,6 +706,7 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
 - **Combine** / **CombineValues**
 - **SuccessIf**, **FailureIf**, **Of**
 - **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**
+- **BindSafe**, **MapSafe**, **TapSafe**
 - Overloads for sync→async bridging.
 
 **Maybe\<T\>**
