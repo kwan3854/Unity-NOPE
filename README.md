@@ -144,10 +144,10 @@ public async Task<string> DoStuff()
 ### With NOPE
 
 ```csharp
-public async UniTask<Result<string>> DoStuff()
+public async UniTask<Result<string, string>> DoStuff()
 {
-    return Result.SuccessIf(CheckA(), 0, "Condition A failed!")
-        .Bind(_ => FetchData()
+    return await Result.SuccessIf(CheckA(), Unit.Value, "Condition A failed!")
+        .Bind(_ =>  FetchData()
             .Map(data => Parse(data))
             .Ensure(x => x > 0, "Parsed <= 0?"))
         .Bind(parsed => FinalStep(parsed)
