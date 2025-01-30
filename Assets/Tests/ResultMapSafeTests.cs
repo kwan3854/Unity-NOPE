@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using NOPE.Runtime.Core.Result;
 using NUnit.Framework;
+using UnityEngine;
 
 #if NOPE_UNITASK
 using Cysharp.Threading.Tasks;
@@ -280,7 +281,7 @@ namespace NOPE.Tests
 
 #if NOPE_AWAITABLE
         //--------------------------------------------------------------------------
-        // 3) Awaitable 버전 MapSafe (동일 패턴, 실제 Awaitable 구현체에 맞춰 조정)
+        // 3) Awaitable 버전 MapSafe
         //--------------------------------------------------------------------------
 
         [Test]
@@ -316,7 +317,12 @@ namespace NOPE.Tests
                 async _ =>
                 {
                     await MyTestAwaitable.Delay(1);
-                    throw new InvalidOperationException("Selector threw!");
+                    throw new Exception("Selector threw!");
+                    
+                    // fake return value for compiler
+#pragma warning disable CS0162 // 접근할 수 없는 코드가 있습니다.
+                    return 0;
+#pragma warning restore CS0162 // 접근할 수 없는 코드가 있습니다.
                 },
                 ex => $"AwaitableException: {ex.Message}"
             );
@@ -373,7 +379,16 @@ namespace NOPE.Tests
 
             // Act
             var mappedResult = await asyncResult.MapSafe(
-                _ => throw new Exception("Awaitable map exception!"),
+                async _ =>
+                {
+                    await MyTestAwaitable.Delay(1);
+                    throw new Exception("Awaitable map exception!");
+                    
+                    // fake return value for compiler
+#pragma warning disable CS0162 // 접근할 수 없는 코드가 있습니다.
+                    return 0;
+#pragma warning restore CS0162 // 접근할 수 없는 코드가 있습니다.
+                },
                 ex => $"Caught: {ex.Message}"
             );
 
@@ -433,6 +448,11 @@ namespace NOPE.Tests
                 {
                     await MyTestAwaitable.Delay(1);
                     throw new Exception("Async map explosion!");
+                    
+                    // fake return value for compiler
+#pragma warning disable CS0162 // 접근할 수 없는 코드가 있습니다.
+                    return 0;
+#pragma warning restore CS0162 // 접근할 수 없는 코드가 있습니다.
                 },
                 ex => $"Error: {ex.Message}"
             );
@@ -464,17 +484,17 @@ namespace NOPE.Tests
         }
 
         //--------------------------------------------------------------------------
-        // 간단한 MyTestAwaitable 구현 예시 (실제 환경에 맞춰 대체)
+        // 간단한 MyTestAwaitable 구현
         //--------------------------------------------------------------------------
         private static class MyTestAwaitable
         {
-            public static async Task Delay(int frames)
+            public static async Awaitable Delay(int frames)
             {
                 // 예시로 Task.Delay 사용
                 await Task.Delay(10 * frames);
             }
 
-            public static async Task<Result<T, E>> FromResult<T, E>(Result<T, E> result)
+            public static async Awaitable<Result<T, E>> FromResult<T, E>(Result<T, E> result)
             {
                 await Task.Yield();
                 return result;
