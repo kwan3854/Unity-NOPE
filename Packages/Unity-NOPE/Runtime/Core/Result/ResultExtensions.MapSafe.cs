@@ -14,10 +14,10 @@ namespace NOPE.Runtime.Core.Result
         public static Result<TNew, E> MapSafe<TOriginal, TNew, E>(
             this Result<TOriginal, E> result,
             Func<TOriginal, TNew> selector,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             return result.IsSuccess
-                ? Result.Of(() => selector(result.Value), errorSelector)
+                ? Result.Of(() => selector(result.Value), errorHandler)
                 : Result<TNew, E>.Failure(result.Error);
         }
         
@@ -30,10 +30,10 @@ namespace NOPE.Runtime.Core.Result
         public static async UniTask<Result<TNew, E>> MapSafe<TOriginal, TNew, E>(
             this Result<TOriginal, E> result,
             Func<TOriginal, UniTask<TNew>> asyncSelector,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             return result.IsSuccess
-                ? await Result.Of(async () => await asyncSelector(result.Value), errorSelector)
+                ? await Result.Of(async () => await asyncSelector(result.Value), errorHandler)
                 : Result<TNew, E>.Failure(result.Error);
         }
 
@@ -45,11 +45,11 @@ namespace NOPE.Runtime.Core.Result
         public static async UniTask<Result<TNew, E>> MapSafe<TOriginal, TNew, E>(
             this UniTask<Result<TOriginal, E>> asyncResult,
             Func<TOriginal, TNew> selector,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             var result = await asyncResult;
             return result.IsSuccess
-                ? Result.Of(() => selector(result.Value), errorSelector)
+                ? Result.Of(() => selector(result.Value), errorHandler)
                 : Result<TNew, E>.Failure(result.Error);
         }
 
@@ -61,11 +61,11 @@ namespace NOPE.Runtime.Core.Result
         public static async UniTask<Result<TNew, E>> MapSafe<TOriginal, TNew, E>(
             this UniTask<Result<TOriginal, E>> asyncResult,
             Func<TOriginal, UniTask<TNew>> asyncSelector,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             var result = await asyncResult;
             return result.IsSuccess
-                ? await Result.Of(async () => await asyncSelector(result.Value), errorSelector)
+                ? await Result.Of(async () => await asyncSelector(result.Value), errorHandler)
                 : Result<TNew, E>.Failure(result.Error);
         }
 #endif
@@ -79,10 +79,10 @@ namespace NOPE.Runtime.Core.Result
         public static async Awaitable<Result<TNew, E>> MapSafe<TOriginal, TNew, E>(
             this Result<TOriginal, E> result,
             Func<TOriginal, Awaitable<TNew>> asyncSelector,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             return result.IsSuccess
-                ? await Result.Of(async () => await asyncSelector(result.Value), errorSelector)
+                ? await Result.Of(async () => await asyncSelector(result.Value), errorHandler)
                 : Result<TNew, E>.Failure(result.Error);
         }
 
@@ -94,11 +94,11 @@ namespace NOPE.Runtime.Core.Result
         public static async Awaitable<Result<TNew, E>> MapSafe<TOriginal, TNew, E>(
             this Awaitable<Result<TOriginal, E>> asyncResult,
             Func<TOriginal, TNew> selector,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             var result = await asyncResult;
             return result.IsSuccess
-                ? Result.Of(() => selector(result.Value), errorSelector)
+                ? Result.Of(() => selector(result.Value), errorHandler)
                 : Result<TNew, E>.Failure(result.Error);
         }
 
@@ -110,11 +110,11 @@ namespace NOPE.Runtime.Core.Result
         public static async Awaitable<Result<TNew, E>> MapSafe<TOriginal, TNew, E>(
             this Awaitable<Result<TOriginal, E>> asyncResult,
             Func<TOriginal, Awaitable<TNew>> asyncSelector,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             var result = await asyncResult;
             return result.IsSuccess
-                ? await Result.Of(async () => await asyncSelector(result.Value), errorSelector)
+                ? await Result.Of(async () => await asyncSelector(result.Value), errorHandler)
                 : Result<TNew, E>.Failure(result.Error);
         }
 #endif

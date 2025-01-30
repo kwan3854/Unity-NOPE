@@ -17,10 +17,10 @@ namespace NOPE.Runtime.Core.Result
         public static Result<TNew, E> BindSafe<TOriginal, TNew, E>(
             this Result<TOriginal, E> result,
             Func<TOriginal, Result<TNew, E>> binder,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             return result.IsSuccess
-                ? Result.Of(() => binder(result.Value), errorSelector).Bind(x => x)
+                ? Result.Of(() => binder(result.Value), errorHandler).Bind(x => x)
                 : Result<TNew, E>.Failure(result.Error);
         }
         
@@ -33,10 +33,10 @@ namespace NOPE.Runtime.Core.Result
         public static async UniTask<Result<TNew, E>> BindSafe<TOriginal, TNew, E>(
             this Result<TOriginal, E> result,
             Func<TOriginal, UniTask<Result<TNew, E>>> asyncBinder,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             return result.IsSuccess
-                ? await Result.Of(async () => await asyncBinder(result.Value), errorSelector).Bind(x => x)
+                ? await Result.Of(async () => await asyncBinder(result.Value), errorHandler).Bind(x => x)
                 : Result<TNew, E>.Failure(result.Error);
         }
 
@@ -48,11 +48,11 @@ namespace NOPE.Runtime.Core.Result
         public static async UniTask<Result<TNew, E>> BindSafe<TOriginal, TNew, E>(
             this UniTask<Result<TOriginal, E>> asyncResult,
             Func<TOriginal, Result<TNew, E>> binder,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             var result = await asyncResult;
             return result.IsSuccess
-                ? Result.Of(() => binder(result.Value), errorSelector).Bind(x => x)
+                ? Result.Of(() => binder(result.Value), errorHandler).Bind(x => x)
                 : Result<TNew, E>.Failure(result.Error);
         }
 
@@ -64,11 +64,11 @@ namespace NOPE.Runtime.Core.Result
         public static async UniTask<Result<TNew, E>> BindSafe<TOriginal, TNew, E>(
             this UniTask<Result<TOriginal, E>> asyncResult,
             Func<TOriginal, UniTask<Result<TNew, E>>> asyncBinder,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             var result = await asyncResult;
             return result.IsSuccess
-                ? await Result.Of(async () => await asyncBinder(result.Value), errorSelector).Bind(x => x)
+                ? await Result.Of(async () => await asyncBinder(result.Value), errorHandler).Bind(x => x)
                 : Result<TNew, E>.Failure(result.Error);
         }
 #endif
@@ -82,10 +82,10 @@ namespace NOPE.Runtime.Core.Result
         public static async Awaitable<Result<TNew, E>> BindSafe<TOriginal, TNew, E>(
             this Result<TOriginal, E> result,
             Func<TOriginal, Awaitable<Result<TNew, E>>> asyncBinder,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             return result.IsSuccess
-                ? await Result.Of(async () => await asyncBinder(result.Value), errorSelector).Bind(x => x)
+                ? await Result.Of(async () => await asyncBinder(result.Value), errorHandler).Bind(x => x)
                 : Result<TNew, E>.Failure(result.Error);
         }
         
@@ -97,11 +97,11 @@ namespace NOPE.Runtime.Core.Result
         public static async Awaitable<Result<TNew, E>> BindSafe<TOriginal, TNew, E>(
             this Awaitable<Result<TOriginal, E>> asyncResult,
             Func<TOriginal, Result<TNew, E>> binder,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             var result = await asyncResult;
             return result.IsSuccess
-                ? Result.Of(() => binder(result.Value), errorSelector).Bind(x => x)
+                ? Result.Of(() => binder(result.Value), errorHandler).Bind(x => x)
                 : Result<TNew, E>.Failure(result.Error);
         }
         
@@ -113,11 +113,11 @@ namespace NOPE.Runtime.Core.Result
         public static async Awaitable<Result<TNew, E>> BindSafe<TOriginal, TNew, E>(
             this Awaitable<Result<TOriginal, E>> asyncResult,
             Func<TOriginal, Awaitable<Result<TNew, E>>> asyncBinder,
-            Func<Exception, E> errorSelector)
+            Func<Exception, E> errorHandler)
         {
             var result = await asyncResult;
             return result.IsSuccess
-                ? await Result.Of(async () => await asyncBinder(result.Value), errorSelector).Bind(x => x)
+                ? await Result.Of(async () => await asyncBinder(result.Value), errorHandler).Bind(x => x)
                 : Result<TNew, E>.Failure(result.Error);
         }
 #endif
