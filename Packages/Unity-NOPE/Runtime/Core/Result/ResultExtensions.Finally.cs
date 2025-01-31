@@ -61,7 +61,7 @@ namespace NOPE.Runtime.Core.Result
         /// Executes a final function regardless of success or failure,
         /// returning whatever finalFunc produces.
         /// </summary>
-        public static async Awaitable<TOut> FinallyAwaitable<T, E, TOut>(
+        public static async Awaitable<TOut> Finally<T, E, TOut>(
             this Result<T, E> result,
             Func<Result<T, E>, Awaitable<TOut>> finalFunc)
         {
@@ -72,7 +72,7 @@ namespace NOPE.Runtime.Core.Result
         /// Executes a final function regardless of success or failure,
         /// returning whatever finalFunc produces.
         /// </summary>
-        public static async Awaitable<TOut> FinallyAwaitable<T, E, TOut>(
+        public static async Awaitable<TOut> Finally<T, E, TOut>(
             this Awaitable<Result<T, E>> asyncResult,
             Func<Result<T, E>, TOut> finalFunc)
         {
@@ -84,7 +84,7 @@ namespace NOPE.Runtime.Core.Result
         /// Executes a final function regardless of success or failure,
         /// returning whatever finalFunc produces.
         /// </summary>
-        public static async Awaitable<TOut> FinallyAwaitable<T, E, TOut>(
+        public static async Awaitable<TOut> Finally<T, E, TOut>(
             this Awaitable<Result<T, E>> asyncResult,
             Func<Result<T, E>, Awaitable<TOut>> finalFunc)
         {
