@@ -237,7 +237,9 @@ namespace NOPE.Tests
             {
                 await UniTask.Delay(1);
                 throw new Exception("ERR");
+#pragma warning disable CS0162 // Unreachable code detected
                 return 0;
+#pragma warning restore CS0162 // Unreachable code detected
             }, ex => "ERR");
 
             Assert.IsTrue(r2.IsFailure);
