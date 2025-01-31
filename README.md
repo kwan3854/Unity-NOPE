@@ -52,8 +52,8 @@ Focuses on **explicitly handling success/failure** without throwing exceptions a
 ## Motivation & Identity
 
 **NOPE** aims to eliminate **silent `null` checks** and **hidden exceptions** from your code. Instead, we use:
-- **Result\<T,E\>** (or `Result<T>` with `E=string` by default) for **explicit success/failure**.
-- **Maybe\<T\>** for optional values, similar to “nullable but without null pointer.”
+- **Result\<T,E\>**  for **explicit success/failure**.
+- **Maybe\<T\>**  for optional values, similar to “nullable but without null pointer.”
 
 Thus you can chain safe transformations (`Map`, `Bind`, `Tap`), or handle outcomes (`Match`, `Finally`) in a **clean, functional style**.
 
@@ -241,12 +241,12 @@ var r6 = Result<int, SomeErrorEnum>.Failure(SomeErrorEnum.FileNotFound);
     var r1 = Result<int, string>.Success(2);
     var r2 = Result<int, string>.Success(3);
     var r3 = Result<int, string>.Failure("Fail");
-
+   
     // Combine two results into a tuple
     var combinedTuple = Result.CombineValues(r1, r2);
     Assert.IsTrue(combinedTuple.IsSuccess);
     Assert.AreEqual((2, 3), combinedTuple.Value);
-
+   
     // Combine three results into an array
     var combinedArray = Result.CombineValues(r1, r2, r3);
     Assert.IsTrue(combinedArray.IsFailure);
@@ -297,13 +297,13 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   ```csharp
   var r1 = Result<int, string>.Success(10);
   var r2 = r1.Map(x => x + 1);
-
+  
   Assert.IsTrue(r2.IsSuccess);
   Assert.AreEqual(11, r2.Value);
   
   var r3 = Result<int, string>.Failure("Initial failure");
   var r4 = r3.Map(x => x + 1);
-
+  
   Assert.IsTrue(r4.IsFailure);
   Assert.AreEqual("Initial failure", r4.Error);
   ```
@@ -328,8 +328,10 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
 > // bindFunc:  int => Result<string,string>
 > Result<string,string> bindFunc(int x)
 > {
-> if (x > 5) return Result<string,string>.Success($"Value is {x}");
-> else return Result<string,string>.Failure("x <= 5");
+>   if (x > 5)
+>     return Result<string,string>.Success($"Value is {x}");
+>   else
+>     return Result<string,string>.Failure("x <= 5");
 > }
 > 
 > var r3 = Result<int,string>.Success(10);
@@ -344,13 +346,13 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   ```csharp
   var r1 = Result<int, string>.Failure("Initial error");
   var r2 = r1.MapError(e => $"Custom: {e}");
-
+  
   Assert.IsTrue(r2.IsFailure);
   Assert.AreEqual("Custom: Initial error", r2.Error);
   
   var r3 = Result<int, string>.Success(10);
   var r4 = r3.MapError(e => $"Custom: {e}");
-
+  
   Assert.IsTrue(r4.IsSuccess);
   Assert.AreEqual(10, r4.Value);
   ```
@@ -358,13 +360,13 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   ```csharp
   var r1 = Result<int, string>.Success(10);
   var r2 = r1.Tap(x => Debug.Log($"Value = {x}"));
-
+  
   Assert.IsTrue(r2.IsSuccess);
   Assert.AreEqual(10, r2.Value);
-
+  
   var r3 = Result<int, string>.Failure("Initial failure");
   var r4 = r3.Tap(x => Debug.Log($"Value = {x}"));
-
+  
   Assert.IsTrue(r4.IsFailure);
   Assert.AreEqual("Initial failure", r4.Error);
   ```
@@ -372,13 +374,13 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   ```csharp
   var r1 = Result<int, string>.Success(15);
   var r2 = r1.Ensure(x => x > 10, "too small?");
-
+  
   Assert.IsTrue(r2.IsSuccess);
   Assert.AreEqual(15, r2.Value);
-
+  
   var r3 = Result<int, string>.Success(5);
   var r4 = r3.Ensure(x => x > 10, "too small?");
-
+  
   Assert.IsTrue(r4.IsFailure);
   Assert.AreEqual("too small?", r4.Error);
   ```
@@ -389,15 +391,15 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
       onSuccess: val => $"Value = {val}",
       onFailure: err => $"Err = {err}"
   );
-
+  
   Assert.AreEqual("Value = 10", result1);
-
+  
   var r2 = Result<int, string>.Failure("Initial failure");
   var result2 = r2.Match(
       onSuccess: val => $"Value = {val}",
       onFailure: err => $"Err = {err}"
   );
-
+  
   Assert.AreEqual("Err = Initial failure", result2);
   ```
 - **Finally**: “chain termination” with a final function.
@@ -408,16 +410,16 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
       // do side effects
       return res.IsSuccess ? "OK" : $"Fail({res.Error})";
   });
-
+  
   Assert.AreEqual("OK", finalString1);
-
+  
   var r2 = Result<int, string>.Failure("Initial failure");
   var finalString2 = r2.Finally(res =>
   {
       // do side effects
       return res.IsSuccess ? "OK" : $"Fail({res.Error})";
   });
-
+  
   Assert.AreEqual("Fail(Initial failure)", finalString2);
   ```
 
@@ -457,13 +459,13 @@ Assert.IsFalse(m4.HasValue);
   ```csharp
   Maybe<int> m1 = 10;
   Maybe<string> m2 = m1.Map(x => $"Value is {x}");
-
+  
   Assert.IsTrue(m2.HasValue);
   Assert.AreEqual("Value is 10", m2.Value);
-
+  
   Maybe<int> m3 = Maybe<int>.None;
   Maybe<string> m4 = m3.Map(x => $"Value is {x}");
-
+  
   Assert.IsFalse(m4.HasValue);
   ```
 
@@ -471,13 +473,13 @@ Assert.IsFalse(m4.HasValue);
   ```csharp
   Maybe<int> m1 = 10;
   Maybe<string> m2 = m1.Bind(x => Maybe<string>.From($"Value is {x}"));
-
+  
   Assert.IsTrue(m2.HasValue);
   Assert.AreEqual("Value is 10", m2.Value);
-
+  
   Maybe<int> m3 = Maybe<int>.None;
   Maybe<string> m4 = m3.Bind(x => Maybe<string>.From($"Value is {x}"));
-
+  
   Assert.IsFalse(m4.HasValue);
   ```
 
@@ -485,7 +487,7 @@ Assert.IsFalse(m4.HasValue);
   ```csharp
   Maybe<int> m1 = 10;
   m1.Tap(x => Console.WriteLine($"Value = {x}"));
-
+  
   Maybe<int> m2 = Maybe<int>.None;
   m2.Tap(x => Console.WriteLine($"Value = {x}")); // No output
   ```
@@ -497,15 +499,15 @@ Assert.IsFalse(m4.HasValue);
       onValue: val => $"Value = {val}",
       onNone: () => "No value"
   );
-
+  
   Assert.AreEqual("Value = 10", result1);
-
+  
   Maybe<int> m2 = Maybe<int>.None;
   string result2 = m2.Match(
       onValue: val => $"Value = {val}",
       onNone: () => "No value"
   );
-
+  
   Assert.AreEqual("No value", result2);
   ```
 
@@ -513,12 +515,12 @@ Assert.IsFalse(m4.HasValue);
   ```csharp
   Maybe<int> m1 = 10;
   Maybe<int> m2 = m1.Where(x => x > 5);
-
+  
   Assert.IsTrue(m2.HasValue);
-
+  
   Maybe<int> m3 = 3;
   Maybe<int> m4 = m3.Where(x => x > 5);
-
+  
   Assert.IsFalse(m4.HasValue);
   ```
 
@@ -537,12 +539,12 @@ Assert.IsFalse(m4.HasValue);
   ```csharp
     Maybe<int> m1 = 10;
     Maybe<int> maybeValue1 = m1.Or(0);
-
+  
     Assert.AreEqual(10, maybeValue1.Value);
-
+  
     Maybe<int> m2 = Maybe<int>.None;
     var maybeValue2 = m2.Or(0);
-
+  
     Assert.AreEqual(0, maybeValue2.Value);
   ```
 
@@ -550,12 +552,12 @@ Assert.IsFalse(m4.HasValue);
   ```csharp
   Maybe<int> m1 = 10;
   int value1 = m1.GetValueOrThrow();
-
+  
   Assert.AreEqual(10, value1);
-
+  
   Maybe<int> m2 = Maybe<int>.None;
   int value2 = m2.GetValueOrDefault(0);
-
+  
   Assert.AreEqual(0, value2);
   ```
 
@@ -567,12 +569,12 @@ We provide **collection** helpers returning a `Maybe<T>`:
   ```csharp
   Dictionary<string, int> dict = new() { { "apple", 10 }, { "banana", 5 } };
   Maybe<int> found = dict.TryFind("banana");
-
+  
   Assert.IsTrue(found.HasValue);
   Assert.AreEqual(5, found.Value);
-
+  
   Maybe<int> notFound = dict.TryFind("cherry");
-
+  
   Assert.IsFalse(notFound.HasValue);
   ```
 
@@ -580,18 +582,18 @@ We provide **collection** helpers returning a `Maybe<T>`:
   ```csharp
   List<int> list = new() { 1, 2, 3 };
   Maybe<int> first = list.TryFirst();
-
+  
   Assert.IsTrue(first.HasValue);
   Assert.AreEqual(1, first.Value);
-
+  
   Maybe<int> last = list.TryLast();
-
+  
   Assert.IsTrue(last.HasValue);
   Assert.AreEqual(3, last.Value);
-
+  
   List<int> emptyList = new();
   Maybe<int> none = emptyList.TryFirst();
-
+  
   Assert.IsFalse(none.HasValue);
   ```
 
@@ -599,7 +601,7 @@ We provide **collection** helpers returning a `Maybe<T>`:
   ```csharp
   List<Maybe<int>> list = new() { Maybe<int>.From(1), Maybe<int>.None, Maybe<int>.From(3) };
   List<int> chosen = list.Choose().ToList();
-
+  
   Assert.AreEqual(2, chosen.Count);
   Assert.AreEqual(1, chosen[0]);
   Assert.AreEqual(3, chosen[1]);
@@ -673,7 +675,7 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
        .Map(x => x*2) // => Maybe(10)
        .Execute(value => Debug.Log("HasValue: " + value))
        .ExecuteNoValue(() => Debug.LogWarning("Not found or zero"));
-
+   
    // found => Maybe(10)
    ```
 
@@ -683,7 +685,7 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
     var r2 = Result<int, string>.Success(3);
     var merged = Result.CombineValues(r1, r2);
     // => Result<(int,int)>.Success((2,3))
-
+   
     var justCheck = Result.Combine(r1, r2);
     // => Result.Success() or first error
    ```
