@@ -236,7 +236,7 @@ namespace NOPE.Tests.ResultTests
             var result = Result<int, string>.Success(123);
 
             // Act
-            var finalValue = await result.FinallyAwaitable(async finalResult =>
+            var finalValue = await result.Finally(async finalResult =>
             {
                 await MyTestAwaitable.Delay(1);
                 Assert.IsTrue(finalResult.IsSuccess);
@@ -254,7 +254,7 @@ namespace NOPE.Tests.ResultTests
             var result = Result<int, string>.Failure("Awaitable error");
 
             // Act
-            var finalValue = await result.FinallyAwaitable(async finalResult =>
+            var finalValue = await result.Finally(async finalResult =>
             {
                 await MyTestAwaitable.Delay(1);
                 Assert.IsTrue(finalResult.IsFailure);
@@ -272,7 +272,7 @@ namespace NOPE.Tests.ResultTests
             var asyncResult = MyTestAwaitable.FromResult(Result<int, string>.Success(999));
 
             // Act
-            var finalValue = await asyncResult.FinallyAwaitable(finalResult =>
+            var finalValue = await asyncResult.Finally(finalResult =>
             {
                 Assert.IsTrue(finalResult.IsSuccess);
                 Assert.AreEqual(999, finalResult.Value);
@@ -290,7 +290,7 @@ namespace NOPE.Tests.ResultTests
             var asyncResult = MyTestAwaitable.FromResult(Result<int, string>.Failure("Async fail"));
 
             // Act
-            var finalValue = await asyncResult.FinallyAwaitable(finalResult =>
+            var finalValue = await asyncResult.Finally(finalResult =>
             {
                 Assert.IsTrue(finalResult.IsFailure);
                 Assert.AreEqual("Async fail", finalResult.Error);
@@ -308,7 +308,7 @@ namespace NOPE.Tests.ResultTests
             var asyncResult = MyTestAwaitable.FromResult(Result<int, string>.Success(777));
 
             // Act
-            var finalValue = await asyncResult.FinallyAwaitable(async finalResult =>
+            var finalValue = await asyncResult.Finally(async finalResult =>
             {
                 await MyTestAwaitable.Delay(1);
                 Assert.IsTrue(finalResult.IsSuccess);
@@ -326,7 +326,7 @@ namespace NOPE.Tests.ResultTests
             var asyncResult = MyTestAwaitable.FromResult(Result<int, string>.Failure("Fail 777"));
 
             // Act
-            var finalValue = await asyncResult.FinallyAwaitable(async finalResult =>
+            var finalValue = await asyncResult.Finally(async finalResult =>
             {
                 await MyTestAwaitable.Delay(1);
                 Assert.IsTrue(finalResult.IsFailure);
@@ -346,7 +346,7 @@ namespace NOPE.Tests.ResultTests
             // Act & Assert
             try
             {
-                var someValue = result.FinallyAwaitable(async _ =>
+                var someValue = result.Finally(async _ =>
                 {
                     await MyTestAwaitable.Delay(1);
                     throw exception;
