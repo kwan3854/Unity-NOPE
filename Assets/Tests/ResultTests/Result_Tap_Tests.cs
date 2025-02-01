@@ -17,7 +17,7 @@ namespace NOPE.Tests.ResultTests
     /// 실패인 경우 실행되지 않으며, 항상 동일한 Result가 반환되는지 확인합니다.
     /// </summary>
     [TestFixture]
-    public class ResultTapTests
+    public class Result_Tap_Tests
     {
         // ----------------------------------------------------
         // 동기 메서드 (Action<T>와 파라미터 없는 Action) 테스트

@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace NOPE.Tests
 {
-    public class MaybeLinqTests
+    public class Maybe_Linq_Tests
     {
         [Test]
         public void LinqSyntax_SimpleQuery_ReturnsExpectedResult()

@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 namespace NOPE.Tests
 {
     [TestFixture]
-    public class MaybeTryGetTests
+    public class Maybe_TryGet_Tests
     {
         [Test]
         public void TryGetValue_HasValue_ReturnsTrueAndValue()
