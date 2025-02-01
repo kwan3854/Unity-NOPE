@@ -49,6 +49,7 @@ namespace NOPE.Tests.MaybeTests
         
         private class TestClass
         {
+            // ReSharper disable once UnusedMember.Local
             public int Value { get; set; }
         }
     }
