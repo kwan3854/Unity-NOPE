@@ -651,18 +651,18 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
 
 1. **Chaining multiple checks & async calls** with `Result<int>`:
    ```csharp
-   public async UniTask<Result<string, string>> ComplexOperation()
-   {
-       return Result.SuccessIf(CheckA(), 0, "CheckA failed!")
-          .Bind(_ => FetchDataAsync()) // => UniTask<Result<string>>
-          .Ensure(str => !string.IsNullOrEmpty(str), "Empty data!")
-          .Map(str => str.Length)
-          .Bind(len => FinalStepAsync(len))
-          .Match(
-             onSuccess: val => $"Final OK: {val}",
-             onFailure: err => $"Failure: {err}"
-          );
-   }
+    public async UniTask<string> ComplexOperation()
+    {
+        return await Result.SuccessIf(CheckA(), 0, "CheckA failed!")
+            .Bind(_ => FetchDataAsync()) // => UniTask<Result<string>>
+            .Ensure(str => !string.IsNullOrEmpty(str), "Empty data!")
+            .Map(str => str.Length)
+            .Bind(FinalStepAsync)
+            .Match(
+                onSuccess: val => $"Final OK: {val}",
+                onFailure: err => $"Failure: {err}"
+            );
+    }
    ```
 
 2. **Maybe usage** with dictionary:
