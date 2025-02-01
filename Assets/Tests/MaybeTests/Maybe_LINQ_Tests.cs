@@ -1,7 +1,7 @@
 using NOPE.Runtime.Core.Maybe;
 using NUnit.Framework;
 
-namespace NOPE.Tests
+namespace NOPE.Tests.MaybeTests
 {
     public class Maybe_Linq_Tests
     {

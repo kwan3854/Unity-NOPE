@@ -1,9 +1,7 @@
-using System.Collections;
 using NOPE.Runtime.Core.Maybe;
 using NUnit.Framework;
-using UnityEngine.TestTools;
 
-namespace NOPE.Tests
+namespace NOPE.Tests.MaybeTests
 {
     [TestFixture]
     public class Maybe_TryGet_Tests
