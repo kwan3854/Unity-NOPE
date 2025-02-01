@@ -69,7 +69,9 @@ namespace NOPE.Tests.ResultTests
                     throw new InvalidOperationException("Boom!");
                     
                     // fake return value
+#pragma warning disable CS0162 // 접근할 수 없는 코드가 있습니다.
                     return 0;
+#pragma warning restore CS0162 // 접근할 수 없는 코드가 있습니다.
                 });
             });
         }
@@ -211,7 +213,9 @@ namespace NOPE.Tests.ResultTests
                     throw exception;
 
                     // fake return value
+#pragma warning disable CS0162 // 접근할 수 없는 코드가 있습니다.
                     return 0;
+#pragma warning restore CS0162 // 접근할 수 없는 코드가 있습니다.
                 });
             }
             catch (Exception e)
