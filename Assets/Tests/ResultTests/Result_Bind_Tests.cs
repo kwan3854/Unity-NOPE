@@ -262,7 +262,9 @@ namespace NOPE.Tests.ResultTests
             return Result<int, string>.Success(value);
         }
         
+#pragma warning disable CS1998 // 이 비동기 메서드에는 'await' 연산자가 없으며 메서드가 동시에 실행됩니다.
         private async UniTask<Result<int, string>> TaskOfFailureResult(string error)
+#pragma warning restore CS1998 // 이 비동기 메서드에는 'await' 연산자가 없으며 메서드가 동시에 실행됩니다.
         {
             return Result<int, string>.Failure(error);
         }
