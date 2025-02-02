@@ -235,3 +235,4 @@ namespace NOPE.Tests.MaybeTests
 #endif // NOPE_AWAITABLE
     }
 }
+

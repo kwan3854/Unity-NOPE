@@ -257,7 +257,3 @@ namespace NOPE.Tests.MaybeTests
     }
 }
 
-
-namespace NOPE.Tests
-{
-}
