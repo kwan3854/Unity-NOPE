@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace NOPE.Runtime.Core.Result
 {
@@ -6,7 +7,7 @@ namespace NOPE.Runtime.Core.Result
     /// Represents the outcome of an operation that can either succeed (with a value T)
     /// or fail (with an error E).
     /// </summary>
-    public readonly struct Result<T, E>
+    public readonly struct Result<T, E> : IEquatable<Result<T, E>>
     {
         private readonly T _value;
         private readonly E _error;
@@ -58,5 +59,43 @@ namespace NOPE.Runtime.Core.Result
         /// </summary>
         public static implicit operator Result<T, E>(E error)
             => Failure(error);
+        
+        public override bool Equals(object obj)
+        {
+            return obj is Result<T, E> other && Equals(other);
+        }
+
+        public bool Equals(Result<T, E> other)
+        {
+            if (this.IsSuccess != other.IsSuccess)
+                return false;
+            
+            if (this.IsSuccess)
+                return EqualityComparer<T>.Default.Equals(this._value, other._value);
+            else
+                return EqualityComparer<E>.Default.Equals(this._error, other._error);
+        }
+
+        public override int GetHashCode()
+        {
+            if (IsSuccess)
+            {
+                return _value?.GetHashCode() ?? 0;
+            }
+            else
+            {
+                return _error?.GetHashCode() ?? 0;
+            }
+        }
+
+        public static bool operator ==(Result<T, E> left, Result<T, E> right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Result<T, E> left, Result<T, E> right)
+        {
+            return !left.Equals(right);
+        }
     }
 }
