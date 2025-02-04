@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace NOPE.Runtime.Core.Maybe
 {
     /// <summary>
     /// Represents an optional value: either it has a value (of type T) or it does not (None).
     /// </summary>
-    public readonly struct Maybe<T>
+    public readonly struct Maybe<T> : IEquatable<Maybe<T>>
     {
         private readonly bool _hasValue;
         private readonly T _value;
@@ -53,5 +54,36 @@ namespace NOPE.Runtime.Core.Maybe
         /// Implicitly converts a value of type T to Maybe&lt;T&gt; (useful for direct returns).
         /// </summary>
         public static implicit operator Maybe<T>(T value) => From(value);
+        
+        public override bool Equals(object obj)
+        {
+            return obj is Maybe<T> other && Equals(other);
+        }
+        
+        public bool Equals(Maybe<T> other)
+        {
+            if (!this._hasValue && !other._hasValue)
+                return true;
+            
+            if (this._hasValue != other._hasValue)
+                return false;
+            
+            return EqualityComparer<T>.Default.Equals(this._value, other._value);
+        }
+        
+        public override int GetHashCode()
+        {
+            return _hasValue ? (_value?.GetHashCode() ?? 0) : 0;
+        }
+        
+        public static bool operator ==(Maybe<T> left, Maybe<T> right)
+        {
+            return left.Equals(right);
+        }
+        
+        public static bool operator !=(Maybe<T> left, Maybe<T> right)
+        {
+            return !left.Equals(right);
+        }
     }
 }
