@@ -73,7 +73,7 @@ namespace NOPE.Runtime.Core.Maybe
         
         public override int GetHashCode()
         {
-            return _hasValue ? (_value?.GetHashCode() ?? 0) : 0;
+            return _hasValue ? _value.GetHashCode() : 0;
         }
         
         public static bool operator ==(Maybe<T> left, Maybe<T> right)
