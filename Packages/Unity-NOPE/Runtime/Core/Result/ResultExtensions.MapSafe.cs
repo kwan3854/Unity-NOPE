@@ -1,6 +1,9 @@
 using System;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
+
+#if NOPE_UNITASK
+using Cysharp.Threading.Tasks;
+#endif
 
 namespace NOPE.Runtime.Core.Result
 {
