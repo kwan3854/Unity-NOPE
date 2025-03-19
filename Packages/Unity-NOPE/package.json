@@ -1,6 +1,6 @@
 {
   "name": "com.kwanjoong.nope",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "displayName": "Unity NOPE",
   "description": "No Overused Possibly Evil exceptions.",
   "unity": "2022.3",

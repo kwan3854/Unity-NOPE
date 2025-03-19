@@ -44,7 +44,8 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "jp.hadashikick.vcontainer": "1.16.8"
   },
   "scopedRegistries": [
     {
@@ -53,7 +54,8 @@
       "scopes": [
         "com.cysharp.unitask",
         "com.github-glitchenzo.nugetforunity",
-        "ext.csharpfunctionalextensions.unitask"
+        "ext.csharpfunctionalextensions.unitask",
+        "jp.hadashikick.vcontainer"
       ]
     }
   ]
