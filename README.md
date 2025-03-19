@@ -28,24 +28,25 @@ Focuses on **explicitly handling success/failure** without throwing exceptions a
 1. [Motivation & Identity](#motivation--identity)
 2. [Performance Comparison](#performance-comparison)
 3. [Installation](#installation)
-4. [Quick “Before & After”](#quick-before--after)
-5. [Features Overview](#features-overview)
-6. [Result\<T,E\> Usage](#resultte-usage)
+4. [Example Project](#example-project)
+5. [Quick “Before & After”](#quick-before--after)
+6. [Features Overview](#features-overview)
+7. [Result\<T,E\> Usage](#resultte-usage)
     - [Creating a Result](#1-creating-a-result)
     - [Combine / CombineValues](#2-combine--combinevalues)
     - [SuccessIf, FailureIf, Of](#3-successif-failureif-of)
     - [Bind, Map, MapError, Tap, Ensure, Match, Finally](#4-bind-map-maperror-tap-ensure-match-finally)
-7. [Maybe\<T\> Usage](#maybet-usage)
+8. [Maybe\<T\> Usage](#maybet-usage)
     - [Creating a Maybe](#1-creating-a-maybe)
     - [Key Maybe Methods](#2-key-maybe-methods)
     - [Collection Helpers](#3-collection-helpers)
     - [LINQ Integration](#4-linq-integration)
-8. [Async Support](#async-support)
+9. [Async Support](#async-support)
     - [NOPE_UNITASK or NOPE_AWAITABLE](#nope_unitask-or-nope_awaitable)
     - [Sync ↔ Async bridging](#sync--async-bridging)
-9. [Usage Examples](#usage-examples)
-10. [API Reference](#api-reference)
-11. [License](#license)
+10. [Usage Examples](#usage-examples)
+11. [API Reference](#api-reference)
+12. [License](#license)
 
 ---
 
@@ -108,6 +109,19 @@ The following performance measurements were taken in an environment where the NO
 > - *Don't define both at the same time.*
 
 ---
+
+## Example Project
+
+This repository includes an example Unity project that demonstrates the NOPE library in action. To use the example project:
+
+1. Clone the entire repository:
+   ```bash
+   git clone https://github.com/kwan3854/Unity-NOPE.git
+   ```
+2. Open the cloned repository as a Unity project (the repository itself is the Unity project).
+3. In the Unity Editor, navigate to and open example scenes located in: `Assets/NOPE_Examples/Scene/`
+4. Run the example scenes to see various NOPE library features in action.
+5. Study the example code in: `Assets/NOPE_Examples/Scripts/`
 
 ## Quick “Before & After”
 
