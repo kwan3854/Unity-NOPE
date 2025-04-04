@@ -13,30 +13,31 @@
 
 ![Image 1](Documentation~/NOPE.png)
 
-**CSharpFunctionalExtensions**에서 영감을 받은 Unity를 위한 가벼운 **제로 할당** 함수형 확장 라이브러리입니다.  
-예외를 던지지 않고 **성공/실패를 명시적으로 처리**하고 null 없이 **옵셔널 값**을 다루는 `Result<T,E>` 및 `Maybe<T>` 타입에 중점을 둡니다.
+**CSharpFunctionalExtensions**에서 영감을 받은 유니티용 경량 **제로 할당** 함수형 확장 라이브러리입니다.  
+예외 대신 **성공/실패를 명시적으로 표현**하고, null 없이 **선택적 값**을 다루는 `Result<T,E>`와 `Maybe<T>` 타입에 중점을 둡니다.
 
-- **동기식**과 **비동기식** 워크플로우 모두 **지원**:
-    - **UniTask** 통합(`Cysharp.Threading.Tasks`가 설치되고 `NOPE_UNITASK` 정의가 설정된 경우).
-    - **Awaitable** 통합(**Unity6+**에서 내장 `Awaitable`를 사용하며, `NOPE_AWAITABLE` 정의로 설정).
-- `Result<T,E>`와 `Maybe<T>` 모두에 대해 **완전한 동기 ↔ 비동기 브리징**:  
-  Map/Bind/Tap/Match/Finally는 이제 **"모든 조합"**(동기→비동기, 비동기→동기, 비동기→비동기)을 제공합니다.
-- **최소한의 GC 부담**: 할당을 낮게 유지하기 위해 `readonly struct`로 구현되었습니다.
+- **동기**와 **비동기** 워크플로우 모두 **지원**:
+    - **UniTask** 통합(`Cysharp.Threading.Tasks`가 설치되고 `NOPE_UNITASK` 심볼이 정의된 경우).
+    - **Awaitable** 통합(**Unity6+**에서 내장 `Awaitable`을 사용할 경우, `NOPE_AWAITABLE` 심볼 정의).
+- `Result<T,E>`와 `Maybe<T>` 모두에 대한 **완전한 동기 ↔ 비동기 연결**:  
+  Map/Bind/Tap/Match/Finally 등이 이제 **"모든 조합"**(동기→비동기, 비동기→동기, 비동기→비동기)을 지원합니다.
+- **최소한의 GC 부담**: 메모리 할당을 최소화하기 위해 `readonly struct`로 구현되었습니다.
 
-> **정의 심볼** 사용법:  
-> \- **프로젝트 설정**에서 UniTask 기반 비동기를 원한다면 **`NOPE_UNITASK`**를 정의하세요.  
-> \- 또는 내장 Awaitable 통합을 원한다면 **`NOPE_AWAITABLE`**(Unity6+)을 정의하세요.  
-> \- 동기 메서드만 사용할 계획이라면 두 정의 모두 생략할 수 있습니다.
+> **심볼 정의** 사용법:  
+> \- **프로젝트 설정**에서 UniTask 기반 비동기를 사용하려면 **`NOPE_UNITASK`**를 정의하세요.  
+> \- 내장 Awaitable 통합을 사용하려면 **`NOPE_AWAITABLE`**(Unity6+)을 정의하세요.  
+> \- 동기 메서드만 사용할 계획이라면 두 심볼 모두 생략해도 됩니다.  
+> \- *두 심볼을 동시에 정의하지 마세요.*
 
 ---
 
 ## 목차
 
-1. [동기 및 정체성](#동기--정체성)
+1. [개발 동기 및 특징](#개발-동기-및-특징)
 2. [성능 비교](#성능-비교)
-3. [설치](#설치)
+3. [설치 방법](#설치-방법)
 4. [예제 프로젝트](#예제-프로젝트)
-5. [간단한 "이전 & 이후"](#간단한-이전--이후)
+5. [간단한 "이전 & 이후" 비교](#간단한-이전--이후-비교)
 6. [기능 개요](#기능-개요)
 7. [Result\<T,E\> 사용법](#resultte-사용법)
     - [Result 생성하기](#1-result-생성하기)
@@ -50,39 +51,39 @@
     - [LINQ 통합](#4-linq-통합)
 9. [비동기 지원](#비동기-지원)
     - [NOPE_UNITASK 또는 NOPE_AWAITABLE](#nope_unitask-또는-nope_awaitable)
-    - [동기 ↔ 비동기 브리징](#동기--비동기-브리징)
+    - [동기 ↔ 비동기 연결](#동기--비동기-연결)
 10. [사용 예제](#사용-예제)
 11. [API 참조](#api-참조)
 12. [라이선스](#라이선스)
 
 ---
 
-## 동기 & 정체성
+## 개발 동기 및 특징
 
-**NOPE**는 코드에서 **암묵적인 `null` 검사**와 **숨겨진 예외**를 제거하는 것을 목표로 합니다. 대신 우리는 다음을 사용합니다:
-- **명시적인 성공/실패**를 위한 **Result\<T,E\>**.
-- 옵셔널 값을 위한 **Maybe\<T\>**, "null 포인터 없이 nullable과 유사함".
+**NOPE**는 코드에서 **암묵적인 `null` 검사**와 **숨겨진 예외**를 제거하는 것을 목표로 합니다. 이를 위해 다음과 같은 방식을 사용합니다:
+- **명시적인 성공/실패**를 표현하는 **Result\<T,E\>**.
+- **선택적 값**을 위한 **Maybe\<T\>**, "null 참조 오류 없이 사용할 수 있는 Nullable과 유사".
 
-따라서 안전한 변환(`Map`, `Bind`, `Tap`)을 체이닝하거나, 결과를 처리(`Match`, `Finally`)할 수 있으며 이를 **깔끔한 함수형 스타일**로 할 수 있습니다.
+이를 통해 안전한 변환(`Map`, `Bind`, `Tap`)을 연결하거나, 결과를 처리(`Match`, `Finally`)할 수 있으며 이를 **깔끔한 함수형 스타일**로 할 수 있습니다.
 
-**목표**: 복잡한 코드를 더 **읽기 쉽고**, 안전하며, 오류 처리에 대해 명시적으로 만들기.  
-**철학**: 숨겨진 예외나 `null` 서프라이즈 없음. "**실패**" 또는 "**없음**" 상태를 사용자 정의 오류 타입과 함께 또는 없이 명시적으로 반환.
+**목표**: 복잡한 코드를 더 **읽기 쉽고**, 안전하며, 오류 처리를 명시적으로 만들기.  
+**철학**: 숨겨진 예외나 `null` 관련 문제를 방지. "**실패**" 또는 "**없음**" 상태를 사용자 정의 오류 타입과 함께 명시적으로 반환.
 
 ---
 
 ## 성능 비교
-다음 성능 측정은 NOPE 라이브러리의 기능이 포괄적으로 사용된 환경에서 이루어졌습니다. 테스트에는 `CSharpFunctionalExtensions`, `Optional`, `LanguageExt`, `OneOf` 라이브러리와의 비교가 포함됩니다.
+아래 성능 측정은 NOPE 라이브러리의 기능을 포괄적으로 사용한 환경에서 이루어졌습니다. 이 테스트는 `CSharpFunctionalExtensions`, `Optional`, `LanguageExt`, `OneOf` 라이브러리와의 비교를 포함합니다.
 
-> 모든 라이브러리가 정확히 동일한 기능을 지원하는 것은 아닙니다. 일부 경우에는 사용자 관점에서 동일한 결과를 생성하는 유사한 함수가 비교에 사용되었습니다.
+> 모든 라이브러리가 정확히 같은 기능을 제공하는 것은 아닙니다. 일부 경우에는 사용자 관점에서 동등한 결과를 내는 유사한 함수로 비교했습니다.
 
 ![Image 2](Documentation~/Bench_Memory_250129.svg)
 ![Image 1](Documentation~/Bench_Time_250129.svg)
 
 
-## 설치
+## 설치 방법
 
 1. **Git (UPM) 사용**:  
-   `Packages/manifest.json`에서:
+   `Packages/manifest.json`에 다음을 추가:
    ```json
    {
      "dependencies": {
@@ -90,7 +91,7 @@
      }
    }
    ```
-   버전을 지정하려면 다음을 사용하세요:
+   특정 버전을 사용하려면:
    ```json
     {
       "dependencies": {
@@ -99,40 +100,40 @@
     }
    ```
 2. **Unity Package Manager (Git)**:
-    1) `Window → Package Manager`
-    2) "+" → "Add package from git URL…"
-    3) `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE`를 붙여넣기, 버전을 지정하려면 `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.3.2`와 같이 버전 태그를 추가하세요.
+    1) `Window → Package Manager` 메뉴 열기
+    2) "+" → "Add package from git URL…" 클릭
+    3) `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE` 입력. 특정 버전을 사용하려면 `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.3.2`와 같이 버전 태그 추가.
 
 3. **OpenUPM**:  
-   CLI에서 `openupm add com.kwanjoong.nope`.
+   명령줄에서 `openupm add com.kwanjoong.nope` 실행.
 3. **수동 다운로드**:  
-   클론 또는 다운로드한 후 `Packages/` 또는 `Assets/Plugins`에 배치하세요.
+   저장소를 클론하거나 다운로드 후 `Packages/` 또는 `Assets/Plugins` 폴더에 배치.
 
 > [!NOTE] 
-> **정의**:
+> **심볼 정의**:
 > - **UniTask** 통합을 사용하려면 `NOPE_UNITASK`
 > - Unity6+ 내장 **Awaitable** 통합을 사용하려면 `NOPE_AWAITABLE`
-> - 동기식 사용만 원하는 경우 두 가지 모두 생략하세요.
-> - *동시에 둘 다 정의하지 마세요.*
+> - 동기 메서드만 사용할 계획이라면 두 심볼 모두 생략 가능
+> - *두 심볼을 동시에 정의하지 마세요.*
 
 ---
 
 ## 예제 프로젝트
 
-이 리포지토리에는 NOPE 라이브러리를 실제로 보여주는 예제 Unity 프로젝트가 포함되어 있습니다. 예제 프로젝트를 사용하려면:
+이 저장소에는 NOPE 라이브러리를 실제로 활용하는 예제 유니티 프로젝트가 포함되어 있습니다. 예제 프로젝트 사용 방법:
 
-1. 전체 리포지토리 클론:
+1. 전체 저장소 클론:
    ```bash
    git clone https://github.com/kwan3854/Unity-NOPE.git
    ```
-2. 클론된 리포지토리를 Unity 프로젝트로 열기 (리포지토리 자체가 Unity 프로젝트입니다).
-3. Unity 에디터에서 다음 위치에 있는 예제 씬으로 이동하여 열기: `Assets/NOPE_Examples/Scene/`
-4. 예제 씬을 실행하여 다양한 NOPE 라이브러리 기능을 확인하세요.
-5. `Assets/NOPE_Examples/Scripts/`에 있는 예제 코드를 학습하세요.
+2. 클론한 저장소를 유니티 프로젝트로 열기 (저장소 자체가 유니티 프로젝트임).
+3. 유니티 에디터에서 다음 위치에 있는 예제 씬 열기: `Assets/NOPE_Examples/Scene/`
+4. 예제 씬을 실행해 다양한 NOPE 라이브러리 기능 확인.
+5. `Assets/NOPE_Examples/Scripts/` 폴더의 예제 코드 살펴보기.
 
-## 간단한 "이전 & 이후"
+## 간단한 "이전 & 이후" 비교
 
-**상상해보세요** 두세 가지 조건을 확인하고, 비동기적으로 일부 데이터를 가져오고, 데이터가 유효한지 확인한 다음, 성공 결과를 반환하거나 오류를 로깅하는 함수를.
+**다음과 같은 상황을 생각해보세요**: 두세 가지 조건을 확인하고, 비동기적으로 데이터를 가져오고, 데이터의 유효성을 검증한 다음, 성공 결과를 반환하거나 오류를 로깅하는 함수가 필요합니다.
 
 ### NOPE 없이
 
@@ -193,7 +194,7 @@ public async UniTask<Result<string, string>> DoStuff()
     - `Map`, `Bind`, `Tap`, `Match`, `Where`, `Execute` 등
     - LINQ 통합 (`Select`, `SelectMany`, `Where`)
 
-- **동기 ↔ 비동기 브리징**
+- **동기 ↔ 비동기 연결**
     - 모든 메서드(`Bind`, `Map` 등)에 대해 다음이 있습니다:
         - 동기→동기, 동기→비동기, 비동기→동기, 비동기→비동기
     - **UniTask**(`NOPE_UNITASK`인 경우) 또는 **Awaitable**(`NOPE_AWAITABLE`인 경우)와 함께 작동
