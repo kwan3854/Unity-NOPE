@@ -1,11 +1,10 @@
-
 [![openupm](https://img.shields.io/npm/v/com.kwanjoong.nope?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.kwanjoong.nope/)
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE.md)
 
 <div align="center" style="margin: 20px 0">
-  <h3>📚 Documentation Languages</h3>
-  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸_English-Current-blue?style=for-the-badge" alt="English"></a>
-  <a href="README-KR.md"><img src="https://img.shields.io/badge/🇰🇷_한국어-Available-success?style=for-the-badge" alt="Korean"></a>
+  <h3>📚 문서 언어</h3>
+  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸_English-Available-success?style=for-the-badge" alt="English"></a>
+  <a href="README-KR.md"><img src="https://img.shields.io/badge/🇰🇷_한국어-Current-blue?style=for-the-badge" alt="Korean"></a>
   <a href="README-JP.md"><img src="https://img.shields.io/badge/🇯🇵_日本語-Available-success?style=for-the-badge" alt="Japanese"></a>
   <a href="README-CN.md"><img src="https://img.shields.io/badge/🇨🇳_中文-Available-success?style=for-the-badge" alt="Chinese"></a>
 </div>
@@ -14,76 +13,76 @@
 
 ![Image 1](Documentation~/NOPE.png)
 
-A lightweight, **zero-allocation** functional extensions library for Unity, inspired by **CSharpFunctionalExtensions**.  
-Focuses on **explicitly handling success/failure** without throwing exceptions and **optional values** without null, using `Result<T,E>` and `Maybe<T>` types.
+**CSharpFunctionalExtensions**에서 영감을 받은 Unity를 위한 가벼운 **제로 할당** 함수형 확장 라이브러리입니다.  
+예외를 던지지 않고 **성공/실패를 명시적으로 처리**하고 null 없이 **옵셔널 값**을 다루는 `Result<T,E>` 및 `Maybe<T>` 타입에 중점을 둡니다.
 
-- **Supports** both **synchronous** and **asynchronous** workflows:
-    - **UniTask** integration (if `Cysharp.Threading.Tasks` is installed and `NOPE_UNITASK` define is set).
-    - **Awaitable** integration (if on **Unity6+** with built-in `Awaitable`, using `NOPE_AWAITABLE` define).
-- **Full sync ↔ async bridging** for both `Result<T,E>` and `Maybe<T>`:  
-  Map/Bind/Tap/Match/Finally now have **"all combos"** (sync→async, async→sync, async→async).
-- **Minimal GC pressure**: implemented as `readonly struct` to keep allocations low.
+- **동기식**과 **비동기식** 워크플로우 모두 **지원**:
+    - **UniTask** 통합(`Cysharp.Threading.Tasks`가 설치되고 `NOPE_UNITASK` 정의가 설정된 경우).
+    - **Awaitable** 통합(**Unity6+**에서 내장 `Awaitable`를 사용하며, `NOPE_AWAITABLE` 정의로 설정).
+- `Result<T,E>`와 `Maybe<T>` 모두에 대해 **완전한 동기 ↔ 비동기 브리징**:  
+  Map/Bind/Tap/Match/Finally는 이제 **"모든 조합"**(동기→비동기, 비동기→동기, 비동기→비동기)을 제공합니다.
+- **최소한의 GC 부담**: 할당을 낮게 유지하기 위해 `readonly struct`로 구현되었습니다.
 
-> **Define Symbol** Usage:  
-> \- In your **Project Settings**, define **`NOPE_UNITASK`** if you want UniTask-based async.  
-> \- Or define **`NOPE_AWAITABLE`** (Unity6+) if you want the built-in Awaitable integrations.  
-> \- If you only plan to use synchronous methods, you can omit both defines.
+> **정의 심볼** 사용법:  
+> \- **프로젝트 설정**에서 UniTask 기반 비동기를 원한다면 **`NOPE_UNITASK`**를 정의하세요.  
+> \- 또는 내장 Awaitable 통합을 원한다면 **`NOPE_AWAITABLE`**(Unity6+)을 정의하세요.  
+> \- 동기 메서드만 사용할 계획이라면 두 정의 모두 생략할 수 있습니다.
 
 ---
 
-## Table of Contents
+## 목차
 
-1. [Motivation & Identity](#motivation--identity)
-2. [Performance Comparison](#performance-comparison)
-3. [Installation](#installation)
-4. [Example Project](#example-project)
-5. [Quick “Before & After”](#quick-before--after)
-6. [Features Overview](#features-overview)
-7. [Result\<T,E\> Usage](#resultte-usage)
-    - [Creating a Result](#1-creating-a-result)
+1. [동기 및 정체성](#동기--정체성)
+2. [성능 비교](#성능-비교)
+3. [설치](#설치)
+4. [예제 프로젝트](#예제-프로젝트)
+5. [간단한 "이전 & 이후"](#간단한-이전--이후)
+6. [기능 개요](#기능-개요)
+7. [Result\<T,E\> 사용법](#resultte-사용법)
+    - [Result 생성하기](#1-result-생성하기)
     - [Combine / CombineValues](#2-combine--combinevalues)
     - [SuccessIf, FailureIf, Of](#3-successif-failureif-of)
     - [Bind, Map, MapError, Tap, Ensure, Match, Finally](#4-bind-map-maperror-tap-ensure-match-finally)
-8. [Maybe\<T\> Usage](#maybet-usage)
-    - [Creating a Maybe](#1-creating-a-maybe)
-    - [Key Maybe Methods](#2-key-maybe-methods)
-    - [Collection Helpers](#3-collection-helpers)
-    - [LINQ Integration](#4-linq-integration)
-9. [Async Support](#async-support)
-    - [NOPE_UNITASK or NOPE_AWAITABLE](#nope_unitask-or-nope_awaitable)
-    - [Sync ↔ Async bridging](#sync--async-bridging)
-10. [Usage Examples](#usage-examples)
-11. [API Reference](#api-reference)
-12. [License](#license)
+8. [Maybe\<T\> 사용법](#maybet-사용법)
+    - [Maybe 생성하기](#1-maybe-생성하기)
+    - [주요 Maybe 메서드](#2-주요-maybe-메서드)
+    - [컬렉션 헬퍼](#3-컬렉션-헬퍼)
+    - [LINQ 통합](#4-linq-통합)
+9. [비동기 지원](#비동기-지원)
+    - [NOPE_UNITASK 또는 NOPE_AWAITABLE](#nope_unitask-또는-nope_awaitable)
+    - [동기 ↔ 비동기 브리징](#동기--비동기-브리징)
+10. [사용 예제](#사용-예제)
+11. [API 참조](#api-참조)
+12. [라이선스](#라이선스)
 
 ---
 
-## Motivation & Identity
+## 동기 & 정체성
 
-**NOPE** aims to eliminate **silent `null` checks** and **hidden exceptions** from your code. Instead, we use:
-- **Result\<T,E\>**  for **explicit success/failure**.
-- **Maybe\<T\>**  for optional values, similar to “nullable but without null pointer.”
+**NOPE**는 코드에서 **암묵적인 `null` 검사**와 **숨겨진 예외**를 제거하는 것을 목표로 합니다. 대신 우리는 다음을 사용합니다:
+- **명시적인 성공/실패**를 위한 **Result\<T,E\>**.
+- 옵셔널 값을 위한 **Maybe\<T\>**, "null 포인터 없이 nullable과 유사함".
 
-Thus you can chain safe transformations (`Map`, `Bind`, `Tap`), or handle outcomes (`Match`, `Finally`) in a **clean, functional style**.
+따라서 안전한 변환(`Map`, `Bind`, `Tap`)을 체이닝하거나, 결과를 처리(`Match`, `Finally`)할 수 있으며 이를 **깔끔한 함수형 스타일**로 할 수 있습니다.
 
-**Goal**: Make complex code more **readable**, safer, and explicit about error handling.  
-**Philosophy**: No hidden exceptions or `null` surprises. Return “**Failure**” or “**None**” states explicitly, with or without user-defined error types.
+**목표**: 복잡한 코드를 더 **읽기 쉽고**, 안전하며, 오류 처리에 대해 명시적으로 만들기.  
+**철학**: 숨겨진 예외나 `null` 서프라이즈 없음. "**실패**" 또는 "**없음**" 상태를 사용자 정의 오류 타입과 함께 또는 없이 명시적으로 반환.
 
 ---
 
-## Performance Comparison
-The following performance measurements were taken in an environment where the NOPE library's features were used comprehensively. The tests include comparisons with `CSharpFunctionalExtensions`, `Optional`, `LanguageExt`, and `OneOf` libraries.
+## 성능 비교
+다음 성능 측정은 NOPE 라이브러리의 기능이 포괄적으로 사용된 환경에서 이루어졌습니다. 테스트에는 `CSharpFunctionalExtensions`, `Optional`, `LanguageExt`, `OneOf` 라이브러리와의 비교가 포함됩니다.
 
-> Please note that not all libraries support exactly the same features. In some cases, similar functions that produce equivalent results from the user's perspective were used for comparison.
+> 모든 라이브러리가 정확히 동일한 기능을 지원하는 것은 아닙니다. 일부 경우에는 사용자 관점에서 동일한 결과를 생성하는 유사한 함수가 비교에 사용되었습니다.
 
 ![Image 2](Documentation~/Bench_Memory_250129.svg)
 ![Image 1](Documentation~/Bench_Time_250129.svg)
 
 
-## Installation
+## 설치
 
-1. **Via Git (UPM)**:  
-   In `Packages/manifest.json`:
+1. **Git (UPM) 사용**:  
+   `Packages/manifest.json`에서:
    ```json
    {
      "dependencies": {
@@ -91,7 +90,7 @@ The following performance measurements were taken in an environment where the NO
      }
    }
    ```
-   To specify a version, use:
+   버전을 지정하려면 다음을 사용하세요:
    ```json
     {
       "dependencies": {
@@ -101,69 +100,69 @@ The following performance measurements were taken in an environment where the NO
    ```
 2. **Unity Package Manager (Git)**:
     1) `Window → Package Manager`
-    2) “+” → “Add package from git URL…”
-    3) Paste `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE` to specify a version, append version tag like `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.3.2`.
+    2) "+" → "Add package from git URL…"
+    3) `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE`를 붙여넣기, 버전을 지정하려면 `https://github.com/kwan3854/Unity-NOPE.git?path=/Packages/Unity-NOPE#1.3.2`와 같이 버전 태그를 추가하세요.
 
 3. **OpenUPM**:  
-   On CLI, `openupm add com.kwanjoong.nope`.
-3. **Manual Download**:  
-   Clone or download, then place in `Packages/` or `Assets/Plugins`.
+   CLI에서 `openupm add com.kwanjoong.nope`.
+3. **수동 다운로드**:  
+   클론 또는 다운로드한 후 `Packages/` 또는 `Assets/Plugins`에 배치하세요.
 
 > [!NOTE] 
-> **Defines**:
-> - `NOPE_UNITASK` for using **UniTask** integration
-> - `NOPE_AWAITABLE` for Unity6+ built-in **Awaitable** integration
-> - Omit both if you only want synchronous usage.
-> - *Don't define both at the same time.*
+> **정의**:
+> - **UniTask** 통합을 사용하려면 `NOPE_UNITASK`
+> - Unity6+ 내장 **Awaitable** 통합을 사용하려면 `NOPE_AWAITABLE`
+> - 동기식 사용만 원하는 경우 두 가지 모두 생략하세요.
+> - *동시에 둘 다 정의하지 마세요.*
 
 ---
 
-## Example Project
+## 예제 프로젝트
 
-This repository includes an example Unity project that demonstrates the NOPE library in action. To use the example project:
+이 리포지토리에는 NOPE 라이브러리를 실제로 보여주는 예제 Unity 프로젝트가 포함되어 있습니다. 예제 프로젝트를 사용하려면:
 
-1. Clone the entire repository:
+1. 전체 리포지토리 클론:
    ```bash
    git clone https://github.com/kwan3854/Unity-NOPE.git
    ```
-2. Open the cloned repository as a Unity project (the repository itself is the Unity project).
-3. In the Unity Editor, navigate to and open example scenes located in: `Assets/NOPE_Examples/Scene/`
-4. Run the example scenes to see various NOPE library features in action.
-5. Study the example code in: `Assets/NOPE_Examples/Scripts/`
+2. 클론된 리포지토리를 Unity 프로젝트로 열기 (리포지토리 자체가 Unity 프로젝트입니다).
+3. Unity 에디터에서 다음 위치에 있는 예제 씬으로 이동하여 열기: `Assets/NOPE_Examples/Scene/`
+4. 예제 씬을 실행하여 다양한 NOPE 라이브러리 기능을 확인하세요.
+5. `Assets/NOPE_Examples/Scripts/`에 있는 예제 코드를 학습하세요.
 
-## Quick “Before & After”
+## 간단한 "이전 & 이후"
 
-**Imagine** a function that checks two or three conditions, fetches some data asynchronously, ensures the data is valid, and returns either a success result or logs some error.
+**상상해보세요** 두세 가지 조건을 확인하고, 비동기적으로 일부 데이터를 가져오고, 데이터가 유효한지 확인한 다음, 성공 결과를 반환하거나 오류를 로깅하는 함수를.
 
-### Without NOPE
+### NOPE 없이
 
 ```csharp
 public async Task<string> DoStuff()
 {
-    // a) check some condition
+    // a) 조건 확인
     if (!CheckA()) 
         throw new Exception("Condition A failed!");
 
-    // b) fetch data
-    var data = await FetchData(); // might return null?
+    // b) 데이터 가져오기
+    var data = await FetchData(); // null을 반환할 수도 있나요?
     if (data == null)
         return null; // ?
 
-    // c) parse & validate
+    // c) 파싱 & 검증
     var parsed = Parse(data);
     if (parsed <= 0)
         return "Negative value?";
 
-    // d) do final step
+    // d) 최종 단계 수행
     if (!await FinalStep(parsed))
         return "Final step failed!";
     
     return "All Good!";
 }
 ```
-**Problems**: We have a mix of thrown exceptions, `null`, special strings. It’s easy to forget checks or accidentally skip error paths.
+**문제점**: 던져진 예외, `null`, 특수 문자열이 혼합되어 있습니다. 검사를 잊어버리거나 실수로 오류 경로를 건너뛰기 쉽습니다.
 
-### With NOPE
+### NOPE 사용
 
 ```csharp
 public async UniTask<Result<string, string>> DoStuff()
@@ -179,42 +178,42 @@ public async UniTask<Result<string, string>> DoStuff()
 }
 ```
 
-Here, each step returns a `Result<T>`, we do **Bind/Map/Ensure** to unify success/failure in **one chain**. No `null` or thrown exceptions.
+여기서 각 단계는 `Result<T>`를 반환하고, **한 체인**에서 성공/실패를 통합하기 위해 **Bind/Map/Ensure**를 수행합니다. `null`이나 던져진 예외가 없습니다.
 
 ---
 
-## Features Overview
+## 기능 개요
 
 - **Result<T,E>**
-    - chainable methods: `Map`, `Bind`, `Tap`, `Ensure`, `MapError`, `Match`, `Finally`
-    - combine multiple results with `Combine`(no value) or `CombineValues`(with new tuple/array)
+    - 체이닝 가능한 메서드: `Map`, `Bind`, `Tap`, `Ensure`, `MapError`, `Match`, `Finally`
+    - `Combine`(값 없음) 또는 `CombineValues`(새로운 tuple/array 포함)로 여러 결과 결합
 
 - **Maybe<T>**
-    - “optional” type, no `null` needed
-    - `Map`, `Bind`, `Tap`, `Match`, `Where`, `Execute` and more
-    - LINQ integration (`Select`, `SelectMany`, `Where`)
+    - "옵셔널" 타입, `null` 필요 없음
+    - `Map`, `Bind`, `Tap`, `Match`, `Where`, `Execute` 등
+    - LINQ 통합 (`Select`, `SelectMany`, `Where`)
 
-- **Sync ↔ Async bridging**
-    - For every method (`Bind`, `Map`, etc.), we have:
-        - sync→sync, sync→async, async→sync, async→async
-    - Works with **UniTask** (if `NOPE_UNITASK`) or **Awaitable** (if `NOPE_AWAITABLE`)
-    - So you can seamlessly mix synchronous and asynchronous steps in a single chain.
+- **동기 ↔ 비동기 브리징**
+    - 모든 메서드(`Bind`, `Map` 등)에 대해 다음이 있습니다:
+        - 동기→동기, 동기→비동기, 비동기→동기, 비동기→비동기
+    - **UniTask**(`NOPE_UNITASK`인 경우) 또는 **Awaitable**(`NOPE_AWAITABLE`인 경우)와 함께 작동
+    - 따라서 단일 체인에서 동기 및 비동기 단계를 원활하게 혼합할 수 있습니다.
 
-- **Collection Utilities**
-    - For `Maybe<T>`: `TryFind`, `TryFirst`, `TryLast`, `Choose`, etc.
+- **컬렉션 유틸리티**
+    - `Maybe<T>`용: `TryFind`, `TryFirst`, `TryLast`, `Choose` 등
 
 ---
 
-## Result\<T,E\> Usage
+## Result\<T,E\> 사용법
 
-### 1) Creating a Result
+### 1) Result 생성하기
 
 ```csharp
-// Basic success/failure
+// 기본 성공/실패
 var r1 = Result<int, string>.Success(100);
 var r2 = Result<int, string>.Failure("Oops"); 
 
-// Implicit conversion
+// 암시적 변환
 Result<int, string> r3 = 10;
 Assert.IsTrue(r3.IsSuccess);
 Assert.AreEqual(10, r3.Value);
@@ -231,15 +230,15 @@ Result<int, string> r5 = b == 0 ?
 Assert.IsTrue(r5.IsSuccess);
 Assert.AreEqual(100, r5.Value);
 
-// If you use a custom error type E:
+// 사용자 정의 오류 타입 E를 사용하는 경우:
 var r6 = Result<int, SomeErrorEnum>.Failure(SomeErrorEnum.FileNotFound);
 ```
 
 ### 2) Combine / CombineValues
 
 1. **`Combine`**
-    - Gathers multiple `Result<T,E>` into a single **“valueless”** `Result<Unit, E>` (only success/failure).
-    - If **all** are success → returns Success(). If **any** fail → returns the first error.
+    - 여러 `Result<T,E>`를 단일 **"값 없는"** `Result<Unit, E>`(성공/실패만)로 수집합니다.
+    - **모두** 성공이면 → Success()를 반환합니다. **하나라도** 실패하면 → 첫 번째 오류를 반환합니다.
 
    ```csharp
     var r1 = Result<int, string>.Success(2);
@@ -256,20 +255,20 @@ var r6 = Result<int, SomeErrorEnum>.Failure(SomeErrorEnum.FileNotFound);
    ```
 
 2. **`CombineValues`**
-    - Gathers multiple `Result<T,E>` into a single `Result<(T1,T2,...) , E>` or `Result<T[], E>`.
-    - If any fail, returns that error. Otherwise, returns a new combined “value.”
+    - 여러 `Result<T,E>`를 단일 `Result<(T1,T2,...) , E>` 또는 `Result<T[], E>`로 수집합니다.
+    - 하나라도 실패하면 해당 오류를 반환합니다. 그렇지 않으면 새로운 결합된 "값"을 반환합니다.
 
    ```csharp
     var r1 = Result<int, string>.Success(2);
     var r2 = Result<int, string>.Success(3);
     var r3 = Result<int, string>.Failure("Fail");
    
-    // Combine two results into a tuple
+    // 두 결과를 튜플로 결합
     var combinedTuple = Result.CombineValues(r1, r2);
     Assert.IsTrue(combinedTuple.IsSuccess);
     Assert.AreEqual((2, 3), combinedTuple.Value);
    
-    // Combine three results into an array
+    // 세 결과를 배열로 결합
     var combinedArray = Result.CombineValues(r1, r2, r3);
     Assert.IsTrue(combinedArray.IsFailure);
     Assert.AreEqual("Fail", combinedArray.Error)
@@ -278,11 +277,11 @@ var r6 = Result<int, SomeErrorEnum>.Failure(SomeErrorEnum.FileNotFound);
 ### 3) SuccessIf, FailureIf, Of
 
 - **`SuccessIf(condition, successValue, error)`**  
-  → “if condition is true → success, else → fail.”
+  → "조건이 참이면 → 성공, 그렇지 않으면 → 실패."
 - **`FailureIf(condition, successValue, error)`**  
-  → “if condition is true → fail, else → success.”
+  → "조건이 참이면 → 실패, 그렇지 않으면 → 성공."
 - **`Of(func, errorConverter)`**  
-  → Wrap a try/catch block, returning success if no exception, else fail(error).
+  → try/catch 블록을 래핑하여 예외가 없으면 성공을 반환하고, 그렇지 않으면 fail(error)를 반환합니다.
 
 ```csharp
 var x = 10;
@@ -301,7 +300,7 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
 
 ### 4) Bind, Map, MapError, Tap, Ensure, Match, Finally
 
-- **Bind**: transform `Result<TOriginal,E>` → `Result<TNew,E>` if success, else pass through error.
+- **Bind**: 성공 시 `Result<TOriginal,E>` → `Result<TNew,E>`로 변환하고, 그렇지 않으면 오류를 통과시킵니다.
   ```csharp
   var r1 = Result<int, string>.Success(10);
   var r2 = r1.Bind(x => Result<string, string>.Success($"Value is {x}"));
@@ -315,7 +314,7 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   Assert.IsTrue(r4.IsFailure);
   Assert.AreEqual("Initial failure", r4.Error);
   ```
-- **Map**: transform the **value** if success → `Result<U,E>`, no extra error.
+- **Map**: 성공 시 **값**을 변환 → `Result<U,E>`, 추가 오류 없음.
   ```csharp
   var r1 = Result<int, string>.Success(10);
   var r2 = r1.Map(x => x + 1);
@@ -332,7 +331,7 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
 > [!TIP]
 > ## Bind vs Map
 > ### Map
-> Simple transformation on success (T → U)
+> 성공 시 간단한 변환 (T → U)
 > ```csharp
 > // mapFunc:  int => string
 > string mapFunc(int x) => $"Value is {x}";
@@ -343,9 +342,9 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
 > // r2 : Result<string, string>
 > // Success => "Value is 10"
 > ```
-> Since `mapFunc` itself returns a string, `Map` internally creates `Result<string, E>.Success(mapFunc(x))`. If `mapFunc` needs to produce an exception or failure, it is not possible (you would have to throw directly, which is outside the Result pattern).
+> `mapFunc` 자체가 문자열을 반환하므로 `Map`은 내부적으로 `Result<string, E>.Success(mapFunc(x))`를 생성합니다. `mapFunc`가 예외나 실패를 생성해야 하는 경우 이는 불가능합니다(직접 throw해야 하는데, 이는 Result 패턴 외부에 있습니다).
 > ### Bind
-> Another Result on success (T → Result<U,E>)
+> 성공 시 다른 Result (T → Result<U,E>)
 > ```csharp
 > // bindFunc:  int => Result<string,string>
 > Result<string,string> bindFunc(int x)
@@ -362,9 +361,9 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
 > // r4 : Result<string,string>
 > // Success => "Value is 10"
 > ```
-> `bindFunc` contains logic to directly produce "success or failure". `Bind` works by "calling `bindFunc` and returning its result (success or failure) if the input is successful", "keeping the existing failure if the input is a failure".
+> `bindFunc`는 "성공 또는 실패"를 직접 생성하는 로직을 포함합니다. `Bind`는 "입력이 성공적이면 `bindFunc`를 호출하고 그 결과(성공 또는 실패)를 반환", "입력이 실패면 기존 실패를 유지"하는 방식으로 작동합니다.
 
-- **MapError**: only changes the error.
+- **MapError**: 오류만 변경합니다.
   ```csharp
   var r1 = Result<int, string>.Failure("Initial error");
   var r2 = r1.MapError(e => $"Custom: {e}");
@@ -378,7 +377,7 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   Assert.IsTrue(r4.IsSuccess);
   Assert.AreEqual(10, r4.Value);
   ```
-- **Tap**: run side effect if success.
+- **Tap**: 성공 시 부수 효과를 실행합니다.
   ```csharp
   var r1 = Result<int, string>.Success(10);
   var r2 = r1.Tap(x => Debug.Log($"Value = {x}"));
@@ -392,7 +391,7 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   Assert.IsTrue(r4.IsFailure);
   Assert.AreEqual("Initial failure", r4.Error);
   ```
-- **Ensure**: “if success but fails predicate => become fail(error).”
+- **Ensure**: "성공했지만 조건자를 통과하지 못하면 => fail(error)가 됩니다."
   ```csharp
   var r1 = Result<int, string>.Success(15);
   var r2 = r1.Ensure(x => x > 10, "too small?");
@@ -406,7 +405,7 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   Assert.IsTrue(r4.IsFailure);
   Assert.AreEqual("too small?", r4.Error);
   ```
-- **Match**: convert a `Result<T,E>` into a single outcome:
+- **Match**: `Result<T,E>`를 단일 결과로 변환합니다:
   ```csharp
   var r1 = Result<int, string>.Success(10);
   var result1 = r1.Match(
@@ -424,12 +423,12 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   
   Assert.AreEqual("Err = Initial failure", result2);
   ```
-- **Finally**: “chain termination” with a final function.
+- **Finally**: 최종 함수로 "체인 종료".
   ```csharp
   var r1 = Result<int, string>.Success(10);
   var finalString1 = r1.Finally(res =>
   {
-      // do side effects
+      // 부수 효과 수행
       return res.IsSuccess ? "OK" : $"Fail({res.Error})";
   });
   
@@ -438,46 +437,46 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   var r2 = Result<int, string>.Failure("Initial failure");
   var finalString2 = r2.Finally(res =>
   {
-      // do side effects
+      // 부수 효과 수행
       return res.IsSuccess ? "OK" : $"Fail({res.Error})";
   });
   
   Assert.AreEqual("Fail(Initial failure)", finalString2);
   ```
 
-> All these methods have **sync → async** or **async → async** variants if `NOPE_UNITASK`/`NOPE_AWAITABLE` is set.
+> 이러한 모든 메서드는 `NOPE_UNITASK`/`NOPE_AWAITABLE`이 설정된 경우 **동기 → 비동기** 또는 **비동기 → 비동기** 변형을 갖습니다.
 
 ---
 
-## Maybe\<T\> Usage
+## Maybe\<T\> 사용법
 
-`Maybe<T>` represents an optional value (like a `Nullable<T>` but without boxing and no null checks).
+`Maybe<T>`는 옵셔널 값을 나타냅니다(박싱 없이 `Nullable<T>`와 같지만 null 검사가 없습니다).
 
 ```csharp
 Maybe<int> m1 = 100;         // => HasValue=true
-Maybe<int> m2 = Maybe<int>.None; // => no value
+Maybe<int> m2 = Maybe<int>.None; // => 값 없음
 ```
 
-### 1) Creating a Maybe
+### 1) Maybe 생성하기
 
 ```csharp
-// Basic creation
+// 기본 생성
 Maybe<int> m1 = 100;         // => HasValue=true
-Maybe<int> m2 = Maybe<int>.None; // => no value
+Maybe<int> m2 = Maybe<int>.None; // => 값 없음
 
-// From a nullable type
+// nullable 타입에서
 int? nullableInt = 10;
 Maybe<int?> m3 = Maybe<int?>.From(nullableInt); // => HasValue=true
 Assert.IsTrue(m3.HasValue);
 
 nullableInt = null;
-Maybe<int?> m4 = Maybe<int?>.From(nullableInt); // => no value
+Maybe<int?> m4 = Maybe<int?>.From(nullableInt); // => 값 없음
 Assert.IsFalse(m4.HasValue);
 ```
 
-### 2) Key Maybe Methods
+### 2) 주요 Maybe 메서드
 
-- **Map**: transform the value if it exists.
+- **Map**: 값이 존재하면 변환합니다.
   ```csharp
   Maybe<int> m1 = 10;
   Maybe<string> m2 = m1.Map(x => $"Value is {x}");
@@ -491,7 +490,7 @@ Assert.IsFalse(m4.HasValue);
   Assert.IsFalse(m4.HasValue);
   ```
 
-- **Bind**: transform the value into another `Maybe<T>`.
+- **Bind**: 값을 다른 `Maybe<T>`로 변환합니다.
   ```csharp
   Maybe<int> m1 = 10;
   Maybe<string> m2 = m1.Bind(x => Maybe<string>.From($"Value is {x}"));
@@ -505,16 +504,16 @@ Assert.IsFalse(m4.HasValue);
   Assert.IsFalse(m4.HasValue);
   ```
 
-- **Tap**: run a side effect if the value exists.
+- **Tap**: 값이 존재하면 부수 효과를 실행합니다.
   ```csharp
   Maybe<int> m1 = 10;
   m1.Tap(x => Console.WriteLine($"Value = {x}"));
   
   Maybe<int> m2 = Maybe<int>.None;
-  m2.Tap(x => Console.WriteLine($"Value = {x}")); // No output
+  m2.Tap(x => Console.WriteLine($"Value = {x}")); // 출력 없음
   ```
 
-- **Match**: convert a `Maybe<T>` into a single outcome.
+- **Match**: `Maybe<T>`를 단일 결과로 변환합니다.
   ```csharp
   Maybe<int> m1 = 10;
   string result1 = m1.Match(
@@ -533,7 +532,7 @@ Assert.IsFalse(m4.HasValue);
   Assert.AreEqual("No value", result2);
   ```
 
-- **Where**: if `HasValue` but doesn’t satisfy the predicate, becomes None.
+- **Where**: `HasValue`가 있지만 조건자를 만족하지 않으면 None이 됩니다.
   ```csharp
   Maybe<int> m1 = 10;
   Maybe<int> m2 = m1.Where(x => x > 5);
@@ -546,7 +545,7 @@ Assert.IsFalse(m4.HasValue);
   Assert.IsFalse(m4.HasValue);
   ```
 
-- **Execute**: run an action if the Maybe<T> has a value.
+- **Execute**: Maybe<T>에 값이 있는 경우 액션을 실행합니다.
   ```csharp
     Maybe<int> m1 = 10;
     m1.Execute(val => Console.WriteLine($"This will print: {val}"));
@@ -557,7 +556,7 @@ Assert.IsFalse(m4.HasValue);
     Assert.IsFalse(m2.HasValue);
   ```
 
-- **Or**: provide a fallback value if None.
+- **Or**: None인 경우 대체 값을 제공합니다.
   ```csharp
     Maybe<int> m1 = 10;
     Maybe<int> maybeValue1 = m1.Or(0);
@@ -570,7 +569,7 @@ Assert.IsFalse(m4.HasValue);
     Assert.AreEqual(0, maybeValue2.Value);
   ```
 
-- **GetValueOrThrow**, **GetValueOrDefault**: for direct extraction.
+- **GetValueOrThrow**, **GetValueOrDefault**: 직접적인 추출을 위해.
   ```csharp
   Maybe<int> m1 = 10;
   int value1 = m1.GetValueOrThrow();
@@ -583,9 +582,9 @@ Assert.IsFalse(m4.HasValue);
   Assert.AreEqual(0, value2);
   ```
 
-### 3) Collection Helpers
+### 3) 컬렉션 헬퍼
 
-We provide **collection** helpers returning a `Maybe<T>`:
+`Maybe<T>`를 반환하는 **컬렉션** 헬퍼를 제공합니다:
 
 - `dict.TryFind(key) -> Maybe<TValue>`
   ```csharp
@@ -619,7 +618,7 @@ We provide **collection** helpers returning a `Maybe<T>`:
   Assert.IsFalse(none.HasValue);
   ```
 
-- `Choose(...)` to filter out None from a sequence of `Maybe<T>`.
+- `Choose(...)`로 `Maybe<T>` 시퀀스에서 None을 필터링합니다.
   ```csharp
   List<Maybe<int>> list = new() { Maybe<int>.From(1), Maybe<int>.None, Maybe<int>.From(3) };
   List<int> chosen = list.Choose().ToList();
@@ -629,9 +628,9 @@ We provide **collection** helpers returning a `Maybe<T>`:
   Assert.AreEqual(3, chosen[1]);
   ```
 
-### 4) LINQ Integration
+### 4) LINQ 통합
 
-We have `Select`, `SelectMany`, `Where` so you can do:
+`Select`, `SelectMany`, `Where`가 있어 다음과 같은 작업이 가능합니다:
 ```csharp
 Maybe<int> maybeNum = 50;
 var query =
@@ -641,18 +640,18 @@ var query =
 // => Maybe(100)
 ```
 
-This detailed explanation should now be on par with the `Result<T,E>` section.
+이제 이 상세한 설명은 `Result<T,E>` 섹션과 동등한 수준이 되었습니다.
 
 ---
 
-## Async Support
+## 비동기 지원
 
-### NOPE_UNITASK or NOPE_AWAITABLE
+### NOPE_UNITASK 또는 NOPE_AWAITABLE
 
-If you define **`NOPE_UNITASK`**, we add `UniTask<Result<T,E>>` / `UniTask<Maybe<T>>` overloads for Map/Bind/etc.  
-If you define **`NOPE_AWAITABLE`** (Unity6+), we add `Awaitable<Result<T,E>>` / `Awaitable<Maybe<T>>` overloads.
+**`NOPE_UNITASK`**를 정의하면 Map/Bind/등에 대한 `UniTask<Result<T,E>>` / `UniTask<Maybe<T>>` 오버로드가 추가됩니다.  
+**`NOPE_AWAITABLE`**(Unity6+)를 정의하면 `Awaitable<Result<T,E>>` / `Awaitable<Maybe<T>>` 오버로드가 추가됩니다.
 
-### Sync ↔ Async bridging
+### 동기 ↔ 비동기 브리징
 
 ```csharp
 // syncResult + asyncBinder
@@ -665,13 +664,13 @@ public static async Awaitable<Result<TNew>> Bind<T,TNew>(
    Func<T, Awaitable<Result<TNew>>> asyncBinder);
 ```
 
-So you can seamlessly chain a synchronous step into an async step. Similarly, we have **asyncResult + sync transform** overloads.
+따라서 동기 단계를 비동기 단계로 원활하게 체이닝할 수 있습니다. 마찬가지로 **asyncResult + sync transform** 오버로드도 있습니다.
 
 ---
 
-## Usage Examples
+## 사용 예제
 
-1. **Chaining multiple checks & async calls** with `Result<int>`:
+1. **여러 체크 & 비동기 호출을 체이닝하기** (`Result<int>` 사용):
    ```csharp
     public async UniTask<string> ComplexOperation()
     {
@@ -687,7 +686,7 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
     }
    ```
 
-2. **Maybe usage** with dictionary:
+2. **사전과 함께 Maybe 사용**:
    ```csharp
    Dictionary<string,int> dict = new() {
      {"apple", 10}, {"banana", 5}
@@ -709,10 +708,10 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
     // => Result<(int,int)>.Success((2,3))
    
     var justCheck = Result.Combine(r1, r2);
-    // => Result.Success() or first error
+    // => Result.Success() 또는 첫 번째 오류
    ```
 
-4. **LINQ with Maybe**:
+4. **Maybe와 함께 LINQ 사용**:
    ```csharp
    Maybe<int> maybeNum = 10;
    var query =
@@ -724,28 +723,28 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
 
 ---
 
-## API Reference
+## API 참조
 
 **Result\<T,E\>**
 - **Combine** / **CombineValues**
 - **SuccessIf**, **FailureIf**, **Of**
 - **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**
 - **BindSafe**, **MapSafe**, **TapSafe**
-- Overloads for sync→async bridging.
+- 동기→비동기 브리징을 위한 오버로드.
 
 **Maybe\<T\>**
 - **Map**, **Bind**, **Tap**, **Match**, **Finally**
-- **Where**, **Execute**, **Or**, **GetValueOrThrow**, etc.
-- **TryFind**, **TryFirst**, **TryLast**, **Choose** from collections.
-- LINQ operators: **Select**, **SelectMany**, **Where**.
+- **Where**, **Execute**, **Or**, **GetValueOrThrow** 등
+- 컬렉션에서의 **TryFind**, **TryFirst**, **TryLast**, **Choose**.
+- LINQ 연산자: **Select**, **SelectMany**, **Where**.
 
-> For the complete list, see the `.cs` files in `NOPE.Runtime.Core.Result` / `NOPE.Runtime.Core.Maybe`.
+> 전체 목록은 `NOPE.Runtime.Core.Result` / `NOPE.Runtime.Core.Maybe`의 `.cs` 파일을 참조하세요.
 
 ---
 
-## License
+## 라이선스
 
-**MIT** License.  
-Contributions & Pull requests are welcome.
+**MIT** 라이선스.  
+기여 및 Pull 요청은 환영합니다.
 
 ---
