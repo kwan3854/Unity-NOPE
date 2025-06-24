@@ -443,6 +443,55 @@ Assert.AreEqual("尝试除以零。附加信息", r3.Error);
   
   Assert.AreEqual("失败(初始失败)", finalString2);
   ```
+- **Or**: 如果当前Result是失败，提供一个备用的Result<T,E>。
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var r2 = Result<int, string>.Success(20);
+  var result1 = r1.Or(r2);
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);  // 原始成功值
+  
+  var r3 = Result<int, string>.Failure("第一个错误");
+  var r4 = Result<int, string>.Success(30);
+  var result2 = r3.Or(r4);
+  
+  Assert.IsTrue(result2.IsSuccess);
+  Assert.AreEqual(30, result2.Value);  // 备用值
+  
+  var r5 = Result<int, string>.Failure("第一个错误");
+  var r6 = Result<int, string>.Failure("第二个错误");
+  var result3 = r5.Or(r6);
+  
+  Assert.IsTrue(result3.IsFailure);
+  Assert.AreEqual("第二个错误", result3.Error);  // 备用错误
+  ```
+- **OrElse**: 如果当前Result是失败，通过函数提供一个备用的Result<T,E>。
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var result1 = r1.OrElse(() => Result<int, string>.Success(100));
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);  // 原始值
+  
+  var r2 = Result<int, string>.Failure("错误");
+  var result2 = r2.OrElse(() => Result<int, string>.Success(100));
+  
+  Assert.IsTrue(result2.IsSuccess);
+  Assert.AreEqual(100, result2.Value);  // 备用值
+  
+  // 备用函数只在需要时执行
+  var r3 = Result<int, string>.Success(10);
+  var executionCount = 0;
+  var result3 = r3.OrElse(() => 
+  {
+      executionCount++;
+      return Result<int, string>.Success(100);
+  });
+  
+  Assert.AreEqual(0, executionCount);  // 未执行
+  Assert.AreEqual(10, result3.Value);
+  ```
 
 > 如果定义了`NOPE_UNITASK`/`NOPE_AWAITABLE`，所有这些方法都有**同步→异步**或**异步→异步**的变体。
 
@@ -580,6 +629,41 @@ Assert.IsFalse(m4.HasValue);
   int value2 = m2.GetValueOrDefault(0); // 无值，返回提供的默认值0
   
   Assert.AreEqual(0, value2);
+  ```
+
+- **OrElse**: 如果无值，通过函数提供备用的Maybe<T>。
+  ```csharp
+  Maybe<int> m1 = 10;
+  Maybe<int> result1 = m1.OrElse(() => Maybe<int>.From(100));
+  
+  Assert.AreEqual(10, result1.Value);  // 原始值
+  
+  Maybe<int> m2 = Maybe<int>.None;
+  Maybe<int> result2 = m2.OrElse(() => Maybe<int>.From(100));
+  
+  Assert.AreEqual(100, result2.Value);  // 备用值
+  
+  // 当Maybe无值时也可以返回Result<T,E>
+  Maybe<int> m3 = Maybe<int>.None;
+  Result<int, string> result3 = m3.OrElse(() => 
+      Result<int, string>.Failure("未找到值"));
+  
+  Assert.IsTrue(result3.IsFailure);
+  ```
+
+- **ToResult**: 将Maybe<T>转换为Result<T,E>，无值时使用提供的错误。
+  ```csharp
+  Maybe<int> m1 = 10;
+  Result<int, string> result1 = m1.ToResult("无值");
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);
+  
+  Maybe<int> m2 = Maybe<int>.None;
+  Result<int, string> result2 = m2.ToResult("无值");
+  
+  Assert.IsTrue(result2.IsFailure);
+  Assert.AreEqual("无值", result2.Error);
   ```
 
 ### 3) 集合辅助方法
@@ -726,13 +810,13 @@ public static async Awaitable<Result<TNew>> Bind<T,TNew>(
 **Result\<T,E\>**
 - **Combine** / **CombineValues**
 - **SuccessIf**, **FailureIf**, **Of**
-- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**
+- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**, **Or**, **OrElse**
 - **BindSafe**, **MapSafe**, **TapSafe**
 - 用于同步→异步桥接的重载
 
 **Maybe\<T\>**
 - **Map**, **Bind**, **Tap**, **Match**, **Finally**
-- **Where**, **Execute**, **Or**, **GetValueOrThrow**等
+- **Where**, **Execute**, **Or**, **OrElse**, **ToResult**, **GetValueOrThrow**, **GetValueOrDefault**
 - 集合操作: **TryFind**, **TryFirst**, **TryLast**, **Choose**
 - LINQ操作符: **Select**, **SelectMany**, **Where**
 

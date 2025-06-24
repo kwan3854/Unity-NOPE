@@ -444,6 +444,55 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   
   Assert.AreEqual("Fail(Initial failure)", finalString2);
   ```
+- **Or**: 현재 Result가 실패인 경우 대체 Result<T,E>를 제공합니다.
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var r2 = Result<int, string>.Success(20);
+  var result1 = r1.Or(r2);
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);  // 원래 성공 값
+  
+  var r3 = Result<int, string>.Failure("첫 번째 오류");
+  var r4 = Result<int, string>.Success(30);
+  var result2 = r3.Or(r4);
+  
+  Assert.IsTrue(result2.IsSuccess);
+  Assert.AreEqual(30, result2.Value);  // 대체 값
+  
+  var r5 = Result<int, string>.Failure("첫 번째 오류");
+  var r6 = Result<int, string>.Failure("두 번째 오류");
+  var result3 = r5.Or(r6);
+  
+  Assert.IsTrue(result3.IsFailure);
+  Assert.AreEqual("두 번째 오류", result3.Error);  // 대체 오류
+  ```
+- **OrElse**: 현재 Result가 실패인 경우 함수를 통해 대체 Result<T,E>를 제공합니다.
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var result1 = r1.OrElse(() => Result<int, string>.Success(100));
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);  // 원래 값
+  
+  var r2 = Result<int, string>.Failure("오류");
+  var result2 = r2.OrElse(() => Result<int, string>.Success(100));
+  
+  Assert.IsTrue(result2.IsSuccess);
+  Assert.AreEqual(100, result2.Value);  // 대체 값
+  
+  // 대체 함수는 필요할 때만 실행됩니다
+  var r3 = Result<int, string>.Success(10);
+  var executionCount = 0;
+  var result3 = r3.OrElse(() => 
+  {
+      executionCount++;
+      return Result<int, string>.Success(100);
+  });
+  
+  Assert.AreEqual(0, executionCount);  // 실행되지 않음
+  Assert.AreEqual(10, result3.Value);
+  ```
 
 > 이러한 모든 메서드는 `NOPE_UNITASK`/`NOPE_AWAITABLE`이 설정된 경우 **동기 → 비동기** 또는 **비동기 → 비동기** 변형을 갖습니다.
 
@@ -581,6 +630,41 @@ Assert.IsFalse(m4.HasValue);
   int value2 = m2.GetValueOrDefault(0);
   
   Assert.AreEqual(0, value2);
+  ```
+
+- **OrElse**: None인 경우 함수를 통해 대체 Maybe<T>를 제공합니다.
+  ```csharp
+  Maybe<int> m1 = 10;
+  Maybe<int> result1 = m1.OrElse(() => Maybe<int>.From(100));
+  
+  Assert.AreEqual(10, result1.Value);  // 원래 값
+  
+  Maybe<int> m2 = Maybe<int>.None;
+  Maybe<int> result2 = m2.OrElse(() => Maybe<int>.From(100));
+  
+  Assert.AreEqual(100, result2.Value);  // 대체 값
+  
+  // Maybe가 None일 때 Result<T,E>를 반환할 수도 있습니다
+  Maybe<int> m3 = Maybe<int>.None;
+  Result<int, string> result3 = m3.OrElse(() => 
+      Result<int, string>.Failure("값을 찾을 수 없습니다"));
+  
+  Assert.IsTrue(result3.IsFailure);
+  ```
+
+- **ToResult**: Maybe<T>를 Result<T,E>로 변환합니다. None인 경우 오류로 처리합니다.
+  ```csharp
+  Maybe<int> m1 = 10;
+  Result<int, string> result1 = m1.ToResult("값 없음");
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);
+  
+  Maybe<int> m2 = Maybe<int>.None;
+  Result<int, string> result2 = m2.ToResult("값 없음");
+  
+  Assert.IsTrue(result2.IsFailure);
+  Assert.AreEqual("값 없음", result2.Error);
   ```
 
 ### 3) 컬렉션 헬퍼
@@ -729,13 +813,13 @@ public static async Awaitable<Result<TNew>> Bind<T,TNew>(
 **Result\<T,E\>**
 - **Combine** / **CombineValues**
 - **SuccessIf**, **FailureIf**, **Of**
-- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**
+- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**, **Or**, **OrElse**
 - **BindSafe**, **MapSafe**, **TapSafe**
 - 동기→비동기 브리징을 위한 오버로드.
 
 **Maybe\<T\>**
 - **Map**, **Bind**, **Tap**, **Match**, **Finally**
-- **Where**, **Execute**, **Or**, **GetValueOrThrow** 등
+- **Where**, **Execute**, **Or**, **OrElse**, **ToResult**, **GetValueOrThrow** 등
 - 컬렉션에서의 **TryFind**, **TryFirst**, **TryLast**, **Choose**.
 - LINQ 연산자: **Select**, **SelectMany**, **Where**.
 

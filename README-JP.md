@@ -444,6 +444,55 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   
   Assert.AreEqual("Fail(Initial failure)", finalString2);
   ```
+- **Or**: 現在のResultが失敗の場合、フォールバックのResult<T,E>を提供します。
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var r2 = Result<int, string>.Success(20);
+  var result1 = r1.Or(r2);
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);  // 元の成功値
+  
+  var r3 = Result<int, string>.Failure("最初のエラー");
+  var r4 = Result<int, string>.Success(30);
+  var result2 = r3.Or(r4);
+  
+  Assert.IsTrue(result2.IsSuccess);
+  Assert.AreEqual(30, result2.Value);  // フォールバック値
+  
+  var r5 = Result<int, string>.Failure("最初のエラー");
+  var r6 = Result<int, string>.Failure("2番目のエラー");
+  var result3 = r5.Or(r6);
+  
+  Assert.IsTrue(result3.IsFailure);
+  Assert.AreEqual("2番目のエラー", result3.Error);  // フォールバックエラー
+  ```
+- **OrElse**: 現在のResultが失敗の場合、関数を通じてフォールバックのResult<T,E>を提供します。
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var result1 = r1.OrElse(() => Result<int, string>.Success(100));
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);  // 元の値
+  
+  var r2 = Result<int, string>.Failure("エラー");
+  var result2 = r2.OrElse(() => Result<int, string>.Success(100));
+  
+  Assert.IsTrue(result2.IsSuccess);
+  Assert.AreEqual(100, result2.Value);  // フォールバック値
+  
+  // フォールバック関数は必要な場合にのみ実行されます
+  var r3 = Result<int, string>.Success(10);
+  var executionCount = 0;
+  var result3 = r3.OrElse(() => 
+  {
+      executionCount++;
+      return Result<int, string>.Success(100);
+  });
+  
+  Assert.AreEqual(0, executionCount);  // 実行されない
+  Assert.AreEqual(10, result3.Value);
+  ```
 
 > これらのすべてのメソッドは、`NOPE_UNITASK`/`NOPE_AWAITABLE`が設定されている場合、**同期 → 非同期**または**非同期 → 非同期**のバリアントを持ちます。
 
@@ -581,6 +630,41 @@ Assert.IsFalse(m4.HasValue);
   int value2 = m2.GetValueOrDefault(0);
   
   Assert.AreEqual(0, value2);
+  ```
+
+- **OrElse**: Noneの場合、関数を通じてフォールバックのMaybe<T>を提供します。
+  ```csharp
+  Maybe<int> m1 = 10;
+  Maybe<int> result1 = m1.OrElse(() => Maybe<int>.From(100));
+  
+  Assert.AreEqual(10, result1.Value);  // 元の値
+  
+  Maybe<int> m2 = Maybe<int>.None;
+  Maybe<int> result2 = m2.OrElse(() => Maybe<int>.From(100));
+  
+  Assert.AreEqual(100, result2.Value);  // フォールバック値
+  
+  // MaybeがNoneの場合、Result<T,E>を返すこともできます
+  Maybe<int> m3 = Maybe<int>.None;
+  Result<int, string> result3 = m3.OrElse(() => 
+      Result<int, string>.Failure("値が見つかりません"));
+  
+  Assert.IsTrue(result3.IsFailure);
+  ```
+
+- **ToResult**: Maybe<T>をResult<T,E>に変換し、Noneの場合のエラーを指定します。
+  ```csharp
+  Maybe<int> m1 = 10;
+  Result<int, string> result1 = m1.ToResult("値なし");
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);
+  
+  Maybe<int> m2 = Maybe<int>.None;
+  Result<int, string> result2 = m2.ToResult("値なし");
+  
+  Assert.IsTrue(result2.IsFailure);
+  Assert.AreEqual("値なし", result2.Error);
   ```
 
 ### 3) コレクションヘルパー
@@ -729,13 +813,13 @@ public static async Awaitable<Result<TNew>> Bind<T,TNew>(
 **Result\<T,E\>**
 - **Combine** / **CombineValues**
 - **SuccessIf**, **FailureIf**, **Of**
-- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**
+- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**, **Or**, **OrElse**
 - **BindSafe**, **MapSafe**, **TapSafe**
 - 同期→非同期ブリッジング用のオーバーロード。
 
 **Maybe\<T\>**
 - **Map**, **Bind**, **Tap**, **Match**, **Finally**
-- **Where**, **Execute**, **Or**, **GetValueOrThrow**など
+- **Where**, **Execute**, **Or**, **OrElse**, **ToResult**, **GetValueOrThrow**など
 - コレクションからの**TryFind**, **TryFirst**, **TryLast**, **Choose**。
 - LINQ演算子: **Select**, **SelectMany**, **Where**。
 
