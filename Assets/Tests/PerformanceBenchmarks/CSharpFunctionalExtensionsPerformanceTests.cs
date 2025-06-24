@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using NUnit.Framework;
 using Unity.PerformanceTesting;
@@ -17,7 +18,7 @@ namespace NOPE.Tests.PerformanceBenchmarks
         }
 
         [Test, Performance]
-        public void SyncComposite_CFE()
+        public async Task SyncComposite_CFE()
         {
             Measure.Method(() =>
                 {

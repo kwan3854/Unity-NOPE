@@ -444,6 +444,55 @@ Assert.AreEqual("Attempted to divide by zero. Added info", r3.Error);
   
   Assert.AreEqual("Fail(Initial failure)", finalString2);
   ```
+- **Or**: provide a fallback Result<T,E> if the current Result is a failure.
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var r2 = Result<int, string>.Success(20);
+  var result1 = r1.Or(r2);
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);  // Original success value
+  
+  var r3 = Result<int, string>.Failure("First error");
+  var r4 = Result<int, string>.Success(30);
+  var result2 = r3.Or(r4);
+  
+  Assert.IsTrue(result2.IsSuccess);
+  Assert.AreEqual(30, result2.Value);  // Fallback value
+  
+  var r5 = Result<int, string>.Failure("First error");
+  var r6 = Result<int, string>.Failure("Second error");
+  var result3 = r5.Or(r6);
+  
+  Assert.IsTrue(result3.IsFailure);
+  Assert.AreEqual("Second error", result3.Error);  // Fallback error
+  ```
+- **OrElse**: provide a fallback Result<T,E> through a function if the current Result is a failure.
+  ```csharp
+  var r1 = Result<int, string>.Success(10);
+  var result1 = r1.OrElse(() => Result<int, string>.Success(100));
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);  // Original value
+  
+  var r2 = Result<int, string>.Failure("Error");
+  var result2 = r2.OrElse(() => Result<int, string>.Success(100));
+  
+  Assert.IsTrue(result2.IsSuccess);
+  Assert.AreEqual(100, result2.Value);  // Fallback value
+  
+  // The fallback function is only executed if needed
+  var r3 = Result<int, string>.Success(10);
+  var executionCount = 0;
+  var result3 = r3.OrElse(() => 
+  {
+      executionCount++;
+      return Result<int, string>.Success(100);
+  });
+  
+  Assert.AreEqual(0, executionCount);  // Not executed
+  Assert.AreEqual(10, result3.Value);
+  ```
 
 > All these methods have **sync → async** or **async → async** variants if `NOPE_UNITASK`/`NOPE_AWAITABLE` is set.
 
@@ -581,6 +630,41 @@ Assert.IsFalse(m4.HasValue);
   int value2 = m2.GetValueOrDefault(0);
   
   Assert.AreEqual(0, value2);
+  ```
+
+- **OrElse**: provide a fallback Maybe<T> through a function if None.
+  ```csharp
+  Maybe<int> m1 = 10;
+  Maybe<int> result1 = m1.OrElse(() => Maybe<int>.From(100));
+  
+  Assert.AreEqual(10, result1.Value);  // Original value
+  
+  Maybe<int> m2 = Maybe<int>.None;
+  Maybe<int> result2 = m2.OrElse(() => Maybe<int>.From(100));
+  
+  Assert.AreEqual(100, result2.Value);  // Fallback value
+  
+  // Can also return a Result<T,E> when Maybe is None
+  Maybe<int> m3 = Maybe<int>.None;
+  Result<int, string> result3 = m3.OrElse(() => 
+      Result<int, string>.Failure("No value found"));
+  
+  Assert.IsTrue(result3.IsFailure);
+  ```
+
+- **ToResult**: convert Maybe<T> to Result<T,E> with error for None case.
+  ```csharp
+  Maybe<int> m1 = 10;
+  Result<int, string> result1 = m1.ToResult("No value");
+  
+  Assert.IsTrue(result1.IsSuccess);
+  Assert.AreEqual(10, result1.Value);
+  
+  Maybe<int> m2 = Maybe<int>.None;
+  Result<int, string> result2 = m2.ToResult("No value");
+  
+  Assert.IsTrue(result2.IsFailure);
+  Assert.AreEqual("No value", result2.Error);
   ```
 
 ### 3) Collection Helpers
@@ -729,13 +813,13 @@ So you can seamlessly chain a synchronous step into an async step. Similarly, we
 **Result\<T,E\>**
 - **Combine** / **CombineValues**
 - **SuccessIf**, **FailureIf**, **Of**
-- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**
+- **Bind**, **Map**, **MapError**, **Tap**, **Ensure**, **Match**, **Finally**, **Or**, **OrElse**
 - **BindSafe**, **MapSafe**, **TapSafe**
 - Overloads for sync→async bridging.
 
 **Maybe\<T\>**
 - **Map**, **Bind**, **Tap**, **Match**, **Finally**
-- **Where**, **Execute**, **Or**, **GetValueOrThrow**, etc.
+- **Where**, **Execute**, **Or**, **OrElse**, **ToResult**, **GetValueOrThrow**, etc.
 - **TryFind**, **TryFirst**, **TryLast**, **Choose** from collections.
 - LINQ operators: **Select**, **SelectMany**, **Where**.
 
