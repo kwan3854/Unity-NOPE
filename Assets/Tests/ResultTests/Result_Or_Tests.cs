@@ -1,6 +1,7 @@
 using NOPE.Runtime.Core.Result;
 using NUnit.Framework;
 using System;
+using Cysharp.Threading.Tasks;
 
 #if NOPE_UNITASK
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Cysharp.Threading.Tasks;
 #endif
 
 #if NOPE_AWAITABLE
+using System.Threading.Tasks;
 using UnityEngine;
 #endif
 
@@ -197,14 +199,14 @@ namespace NOPE.Tests.ResultTests
         {
             var result = Result<int, string>.Success(42);
             var evaluatedFallback = false;
-            var asyncFallback = UniTask.Run(() =>
+            var asyncFallback = UniTask.Defer(() => UniTask.Run(() =>
             {
                 evaluatedFallback = true;
                 return Result<int, string>.Success(100);
-            });
-            
+            }));
+
             var final = await result.Or(asyncFallback);
-            
+
             Assert.IsTrue(final.IsSuccess);
             Assert.AreEqual(42, final.Value);
             Assert.IsFalse(evaluatedFallback);
@@ -354,7 +356,7 @@ namespace NOPE.Tests.ResultTests
             var asyncFallback1 = AwaitableFromResult(Result<int, string>.Failure("Error2"));
             var fallback2 = Result<int, string>.Success(42);
             
-            var final = await (await asyncResult.Or(asyncFallback1)).Or(fallback2);
+            var final = await asyncResult.Or(asyncFallback1).Or(fallback2);
             
             Assert.IsTrue(final.IsSuccess);
             Assert.AreEqual(42, final.Value);
@@ -372,21 +374,20 @@ namespace NOPE.Tests.ResultTests
             Assert.AreEqual(100, final.Value);
         }
 
-        private async Task<T> AwaitableFromResult<T>(T value)
+        private async Awaitable<T> AwaitableFromResult<T>(T value)
         {
-            await Awaitable.NextFrameAsync();
             return value;
         }
 
-        private async Task<T> DelayedAwaitableFromResult<T>(T value)
+        private async Awaitable<T> DelayedAwaitableFromResult<T>(T value)
         {
-            await Awaitable.WaitForSecondsAsync(0.01f);
+            await UniTask.WaitForSeconds(0.01f);
             return value;
         }
 
-        private async Task<T> EvaluatingAwaitableFromResult<T>(Func<T> valueFactory)
+        private async Awaitable<T> EvaluatingAwaitableFromResult<T>(Func<T> valueFactory)
         {
-            await Awaitable.NextFrameAsync();
+            await UniTask.Yield();
             return valueFactory();
         }
 #endif

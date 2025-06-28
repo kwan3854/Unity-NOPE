@@ -8,6 +8,8 @@ using Cysharp.Threading.Tasks;
 #endif
 
 #if NOPE_AWAITABLE
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 #endif
 
@@ -450,13 +452,13 @@ namespace NOPE.Tests.ResultTests
 
         private async Awaitable<T> AwaitableFromResult<T>(T value)
         {
-            await Awaitable.NextFrameAsync();
+            await UniTask.Yield();
             return value;
         }
 
         private async Awaitable<T> DelayedAwaitableFromResult<T>(T value)
         {
-            await Awaitable.WaitForSecondsAsync(0.01f);
+            await UniTask.WaitForSeconds(0.0f);
             return value;
         }
 #endif
