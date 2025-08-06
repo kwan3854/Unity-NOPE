@@ -80,9 +80,11 @@ namespace NOPE.Runtime.Core.Result
         public static Result<T[], E> CombineValues<T, E>(
             params Result<T, E>[] results)
         {
-            var firstFail = results.FirstOrDefault(r => r.IsFailure);
-            if (firstFail.IsFailure)
-                return firstFail.Error;
+            foreach (var result in results)
+            {
+                if (result.IsFailure)
+                    return result.Error;
+            }
 
             var values = results.Select(r => r.Value).ToArray();
             return values;
@@ -93,9 +95,11 @@ namespace NOPE.Runtime.Core.Result
         /// </summary>
         public static Result<Unit, E> Combine<E>(params Result<Unit, E>[] results)
         {
-            var firstFail = results.FirstOrDefault(r => r.IsFailure);
-            if (firstFail.IsFailure)
-                return Result<Unit, E>.Failure(firstFail.Error);
+            foreach (var result in results)
+            {
+                if (result.IsFailure)
+                    return Result<Unit, E>.Failure(result.Error);
+            }
 
             return Result<Unit, E>.Success(Unit.Value);
         }
